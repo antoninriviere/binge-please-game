@@ -51,7 +51,15 @@ exports.cssLoaders = options => {
         less: generateLoaders('less'),
         sass: generateLoaders('sass', { indentedSyntax: true }),
         scss: generateLoaders('sass'),
-        stylus: generateLoaders('stylus'),
+        stylus: generateLoaders('stylus').concat({
+            loader: 'stylus-resources-loader',
+            options: {
+                resources: [
+                  'src/styles/base/colors.styl',
+                  'src/styles/utils/easing.styl'
+                ]
+            }
+        }),
         styl: generateLoaders('stylus')
     }
 }
