@@ -6,6 +6,6 @@ export default {
     environment: 'dev',
     isTouchDevice: support.touch,
     smoothScroll: {
-        active: true
+        active: false
     }
 }

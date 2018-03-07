@@ -6,7 +6,7 @@ export default {
         orbitControls: true
     },
     postProcessing: {
-        active: true,
+        active: false,
         passes: [
             {
                 name: 'BloomPass',
@@ -32,7 +32,7 @@ export default {
             },
             {
                 name: 'WavesPass',
-                active: true,
+                active: false,
                 gui: true,
                 constructor: () =>
                 {
