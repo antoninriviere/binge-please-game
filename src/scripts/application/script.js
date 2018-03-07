@@ -1,6 +1,7 @@
 import router from './router.js'
 
 import PageHome from '../components/page-home'
+import AppWebglCanvas from '../components/app-webgl-canvas'
 
 import Config from 'Config'
 
@@ -11,7 +12,8 @@ export default {
 
     components:
     {
-        PageHome
+        PageHome,
+        AppWebglCanvas
     },
 
     data()

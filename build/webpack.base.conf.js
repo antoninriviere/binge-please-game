@@ -26,6 +26,9 @@ module.exports = {
             Mixins: path.resolve(__dirname, '../src/scripts/mixins'),
             Config: path.resolve(__dirname, '../src/scripts/config'),
             Static: path.resolve(__dirname, '../static'),
+            WebGLConfig: path.resolve(__dirname, '../src/scripts/webgl/config'),
+            WebGLCore: path.resolve(__dirname, '../src/scripts/webgl/core'),
+            WebGLUtils: path.resolve(__dirname, '../src/scripts/webgl/utils')
         }
     },
     module: {
@@ -59,6 +62,13 @@ module.exports = {
                 limit: 10000,
                 name: utils.assetsPath('fonts/[name].[hash:7].[ext]')
             }
+        }, {
+            test: /\.(glsl|frag|vert)$/,
+            exclude: /node_modules/,
+            loaders: [
+            'raw-loader',
+            'glslify'
+            ]
         }]
     }
 }
