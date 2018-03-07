@@ -3,7 +3,7 @@ import WavesPass from '../passes/Waves'
 export default {
     debug: {
         stats: true,
-        orbitControls: true
+        orbitControls: false
     },
     postProcessing: {
         active: false,
