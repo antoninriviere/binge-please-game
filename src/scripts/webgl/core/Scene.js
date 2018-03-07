@@ -44,7 +44,7 @@ class SceneObj extends Scene
         this.camera = new PerspectiveCamera(this.options.fov, this.width / this.height, this.options.near, this.options.far)
         this.camera.position.copy(this.options.camera.position)
 
-        if(this.options.postProcessing)
+        if(this.options.postProcessing.active)
             this.initPostProcessing()
 
         if(this.options.debug.stats)
@@ -81,6 +81,7 @@ class SceneObj extends Scene
 
     initPostProcessing()
     {
+        console.log('initPostProcessing')
         this.composer = new EffectComposer(this.renderer)
         const renderPass = new RenderPass(this, this.camera)
         renderPass.renderToScreen = false
