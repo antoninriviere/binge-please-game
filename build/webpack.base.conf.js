@@ -20,7 +20,7 @@ module.exports = {
         extensions: ['.js', '.vue', '.json'],
         alias: {
             '@': resolve('src'),
-            styles: path.resolve(__dirname, '../src/styles'),
+            Styles: path.resolve(__dirname, '../src/styles'),
             Components: path.resolve(__dirname, '../src/scripts/components'),
             Utils: path.resolve(__dirname, '../src/scripts/utils'),
             Mixins: path.resolve(__dirname, '../src/scripts/mixins'),
