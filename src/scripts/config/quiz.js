@@ -9,7 +9,7 @@ export default
         },
         name: 'Stranger Things',
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
-        component: 'component-name'
+        componentId: 'quiz-video'
     },
     {
         id: 'breaking_bad',
@@ -20,7 +20,7 @@ export default
         },
         name: 'Breaking Bad',
         answers: [],
-        component: 'component-name'
+        componentId: 'quiz-dom'
     },
     {
         id: 'orange_is_the_new_black',
@@ -31,6 +31,6 @@ export default
         },
         name: 'Orange is the new Black',
         answers: [],
-        component: 'component-name'
+        componentId: 'quiz-emoji'
     }
 ]

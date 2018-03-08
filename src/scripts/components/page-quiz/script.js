@@ -1,5 +1,9 @@
 import appPage from 'Mixins/app-page'
-// import quiz from '../../config/quiz'
+import Quiz from 'Config/quiz'
+
+import QuizDom from 'Components/quiz-dom'
+import QuizEmoji from 'Components/quiz-emoji'
+import QuizVideo from 'Components/quiz-video'
 
 export default
 {
@@ -7,13 +11,18 @@ export default
 
     components:
     {
-
+        QuizDom,
+        QuizEmoji,
+        QuizVideo
     },
 
     data()
     {
         return {
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            quizObject: {
+                componentId: 'quiz-dom'
+            }
         }
     },
 
@@ -24,7 +33,7 @@ export default
 
     mounted()
     {
-
+        this.quizObject = Quiz[0]
     },
 
     destroyed()
@@ -39,6 +48,7 @@ export default
         onRouteChange(id)
         {
             this.id = id
+            this.quizObject = Quiz[id - 1]
         }
     }
 }
