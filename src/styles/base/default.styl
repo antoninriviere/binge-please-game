@@ -27,6 +27,9 @@ if border-box {
 
 html {
     -webkit-tap-highlight-color rgba(0,0,0,0)
+    overflow hidden
+    width 100%
+    height 100%
 }
 
 body {
@@ -42,16 +45,16 @@ body {
     -ms-text-size-adjust 100%
 
 
-    color : $colors['black']
-    background-color : $colors['white']
+    color: $colors['black']
+    background-color: $colors['white']
 
     // line-height 0.5em
 
 
-    height auto
+    height 100%
     // overflow auto
     overflow-x hidden
-    overflow-y scroll
+    overflow-y auto
 }
 
 .is-disable-scroll {
