@@ -9,10 +9,11 @@ class Cube extends Object3D
     constructor()
     {
         super()
+        this.name = 'mouseMoveRotateCube'
         const geometry = new BoxGeometry(2, 2, 2)
         this.colors = {
-            primary: '#EF6853',
-            secondary: '#F7904A'
+            primary: '#6B8FF2',
+            secondary: '#6A1B8C'
         }
         this.uniforms = {
             uTime: { value: 0 },
@@ -24,11 +25,22 @@ class Cube extends Object3D
             fragmentShader: glslify(fragmentShader),
             vertexShader: glslify(vertexShader)
         })
+        this.mouse = {
+            nX: 0,
+            nY: 0
+        }
+        this.ease = 0.1
 
         this.mesh = new Mesh(geometry, material)
         this.add(this.mesh)
 
-        this.initGUI()
+        this.addListeners()
+        // this.initGUI()
+    }
+
+    addListeners()
+    {
+        window.addEventListener('mousemove', this.onMouseMove)
     }
 
     initGUI()
@@ -55,9 +67,23 @@ class Cube extends Object3D
             })
     }
 
+    onMouseMove = (e) =>
+    {
+        this.mouse.nX = (e.clientX / window.innerWidth) * 2 - 1
+        this.mouse.nY = - (e.clientY / window.innerHeight) * 2 + 1
+        // this.mesh.rotation.z += ((Math.sin(this.mouse.nX)) - this.mesh.rotation.z) * this.ease
+    }
+
     update = (dt) =>
     {
         this.uniforms.uTime.value += dt * 0.001
+        this.mesh.rotation.x += ((Math.sin(this.mouse.nY)) - this.mesh.rotation.x) * this.ease
+        this.mesh.rotation.y += ((Math.sin(this.mouse.nX)) - this.mesh.rotation.y) * this.ease
+    }
+
+    clear()
+    {
+        window.removeEventListener('mousemove', this.onMouseMove)
     }
 }
 

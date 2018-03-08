@@ -6,7 +6,7 @@ export default {
         orbitControls: false
     },
     postProcessing: {
-        active: true,
+        active: false,
         passes: [
             {
                 name: 'BloomPass',
