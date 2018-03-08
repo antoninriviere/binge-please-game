@@ -1,4 +1,4 @@
-import { BloomPass, GlitchPass } from 'postprocessing'
+import { BloomPass } from 'postprocessing'
 import WavesPass from '../passes/Waves'
 export default {
     debug: {
@@ -6,7 +6,7 @@ export default {
         orbitControls: false
     },
     postProcessing: {
-        active: false,
+        active: true,
         passes: [
             {
                 name: 'BloomPass',
@@ -22,17 +22,8 @@ export default {
                 }
             },
             {
-                name: 'GlitchPass',
-                active: false,
-                gui: false,
-                constructor: () =>
-                {
-                    return new GlitchPass({})
-                }
-            },
-            {
                 name: 'WavesPass',
-                active: false,
+                active: true,
                 gui: true,
                 constructor: () =>
                 {

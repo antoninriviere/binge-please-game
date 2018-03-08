@@ -17,6 +17,7 @@ class SceneObj extends Scene
                 position: new Vector3(0, 0, 10)
             },
             renderer: {
+                alpha: true,
                 antialias: false,
                 pixelRatio: Math.max(1, Math.min(window.devicePixelRatio, 2))
             },
@@ -38,6 +39,7 @@ class SceneObj extends Scene
 
         this.renderer = new WebGLRenderer(this.options.renderer)
         this.renderer.setSize(this.width, this.height)
+        this.renderer.setClearAlpha(0)
 
         this.container.appendChild(this.renderer.domElement)
 
