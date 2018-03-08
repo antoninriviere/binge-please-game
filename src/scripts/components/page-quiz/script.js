@@ -17,17 +17,28 @@ export default
         }
     },
 
-    computed:
+    created()
     {
-        getTitle: function()
-        {
-            return 'title'
-        }
+        this.eventHub.$on('application:route-change', this.onRouteChange)
+    },
+
+    mounted()
+    {
+
+    },
+
+    destroyed()
+    {
+        this.eventHub.$off('application:route-change', this.onRouteChange)
     },
 
     mixins: [appPage],
 
     methods:
     {
+        onRouteChange(id)
+        {
+            this.id = id
+        }
     }
 }

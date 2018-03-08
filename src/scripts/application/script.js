@@ -49,11 +49,13 @@ export default {
 
         window.addEventListener('resize', this.onResize)
         window.addEventListener('keydown', this.onKeyPress)
+
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)
 
         this.eventHub.$on('page:disable-scroll', this.onDisableScroll)
         this.eventHub.$on('page:enable-scroll', this.onEnableScroll)
+
         if(!this.isTouchDevice && this.isSmoothScroll)
             this.eventHub.$on('page:set-height', this.setPageHeight)
     },
@@ -156,6 +158,7 @@ export default {
         onRouteChange(to)
         {
             this.componentId = to.meta.componentId
+            this.eventHub.$emit('application:route-change', to.params.id)
         },
 
         onEnterFrame()
