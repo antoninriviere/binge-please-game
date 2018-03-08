@@ -90,7 +90,7 @@ export default {
             switch(char)
             {
                 case 37:
-                    if(id !== 1)
+                    if(id - 1 > 0)
                     {
                         logger('left', 'royalblue')
                         id--
