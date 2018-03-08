@@ -20,7 +20,6 @@ class App
 
         this.initMeshes()
         this.initLights()
-        this.addListeners()
         this.update()
     }
 
@@ -36,11 +35,6 @@ class App
         this.scene.add(this.ambientLight)
     }
 
-    addListeners()
-    {
-        window.addEventListener('resize', this.onResize)
-    }
-
     update = () =>
     {
         this.DELTA_TIME = Date.now() - this.LAST_TIME
@@ -52,7 +46,7 @@ class App
         raf(this.update)
     }
 
-    onResize = () =>
+    resize = () =>
     {
         this.width = window.innerWidth
         this.height = window.innerHeight

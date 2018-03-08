@@ -17,6 +17,13 @@ const routes = [
         meta: {
             componentId: 'page-home'
         }
+    },
+    {
+        path: '/quiz/:id',
+        name: 'quiz',
+        meta: {
+            componentId: 'page-quiz'
+        }
     }
 ]
 

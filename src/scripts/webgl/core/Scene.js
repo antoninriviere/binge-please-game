@@ -83,7 +83,6 @@ class SceneObj extends Scene
 
     initPostProcessing()
     {
-        console.log('initPostProcessing')
         this.composer = new EffectComposer(this.renderer)
         const renderPass = new RenderPass(this, this.camera)
         renderPass.renderToScreen = false

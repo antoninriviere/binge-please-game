@@ -11,13 +11,21 @@ export default
         }
     },
 
+    created()
+    {
+        this.eventHub.$on('window:resize', this.onResize)
+    },
+
     mounted()
     {
-        new WebGLApp(this.$el)
+        this.webGLApp = new WebGLApp(this.$el)
     },
 
     methods:
     {
-
+        onResize()
+        {
+            this.webGLApp.resize()
+        }
     }
 }

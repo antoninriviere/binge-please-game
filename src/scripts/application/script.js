@@ -1,8 +1,10 @@
 import router from './router.js'
 
 import PageHome from '../components/page-home'
+import PageQuiz from '../components/page-quiz'
 import AppWebglCanvas from '../components/app-webgl-canvas'
 
+import logger from 'Utils/logger'
 import Config from 'Config'
 
 export default {
@@ -13,6 +15,7 @@ export default {
     components:
     {
         PageHome,
+        PageQuiz,
         AppWebglCanvas
     },
 
@@ -28,7 +31,9 @@ export default {
             componentId: '',
             pageHeight: 0,
             scrollTop: 0,
-            smoothScroll: 0
+            smoothScroll: 0,
+            quizId: 0,
+            maxQuestions: 3
         }
     },
 
@@ -43,6 +48,7 @@ export default {
         this.$body = document.body
 
         window.addEventListener('resize', this.onResize)
+        window.addEventListener('keydown', this.onKeyPress)
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)
 
@@ -72,6 +78,37 @@ export default {
         {
             this.windowObj = { width: window.innerWidth, height: window.innerHeight }
             this.eventHub.$emit('window:resize', this.windowObj)
+        },
+
+        onKeyPress(e)
+        {
+            e.preventDefault()
+            const char = e.which || e.keyCode
+            let id = this.quizId
+            switch(char)
+            {
+                case 37:
+                    if(id !== 1)
+                    {
+                        logger('left', 'royalblue')
+                        id--
+                    }
+                    break
+                case 39:
+                    if(id !== this.maxQuestions)
+                    {
+                        logger('right', 'royalblue')
+                        id++
+                    }
+                    break
+                default:
+                    break
+            }
+            if(this.quizId !== id)
+            {
+                this.quizId = id
+                this.$router.push(`/quiz/${this.quizId}`)
+            }
         },
 
         onScroll()
