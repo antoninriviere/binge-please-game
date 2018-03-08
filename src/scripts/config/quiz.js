@@ -19,7 +19,7 @@ export default
             interaction: ''
         },
         name: 'Breaking Bad',
-        answers: [],
+        answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
         componentId: 'quiz-dom'
     },
     {
@@ -30,7 +30,7 @@ export default
             interaction: ''
         },
         name: 'Orange is the new Black',
-        answers: [],
+        answers: ['orange is the new black', 'orange is the new white'],
         componentId: 'quiz-emoji'
     }
 ]

@@ -1,5 +1,8 @@
 import appPage from 'Mixins/app-page'
+
 import Quiz from 'Config/quiz'
+
+import GameTypeManager from 'Components/game-type-manager'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -13,7 +16,8 @@ export default
     {
         QuizDom,
         QuizEmoji,
-        QuizVideo
+        QuizVideo,
+        GameTypeManager
     },
 
     data()
@@ -49,6 +53,7 @@ export default
         {
             this.id = id
             this.quizObject = Quiz[id - 1]
+            this.$root.gameManager.setCurrentQuiz(this.quizObject)
         }
     }
 }
