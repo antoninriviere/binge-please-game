@@ -1,3 +1,4 @@
+import eventHub from 'Application/event-hub'
 import WebGLApp from 'WebGL/app'
 
 export default
@@ -13,9 +14,9 @@ export default
 
     created()
     {
-        this.eventHub.$on('window:resize', this.onResize)
-        this.eventHub.$on('webgl:add-group', this.onSetupGroup)
-        this.eventHub.$on('webgl:clear-group', this.onClearGroup)
+        eventHub.$on('window:resize', this.onResize)
+        eventHub.$on('webgl:add-group', this.onSetupGroup)
+        eventHub.$on('webgl:clear-group', this.onClearGroup)
     },
 
     mounted()

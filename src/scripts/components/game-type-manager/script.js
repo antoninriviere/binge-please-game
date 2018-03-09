@@ -1,3 +1,5 @@
+import eventHub from 'Application/event-hub.js'
+
 export default
 {
     name: 'game-type-manager',
@@ -85,7 +87,7 @@ export default
                     // Enter
                     case 13 :
                         win = this.$root.gameManager.submitAnswer(this.currentType.toLowerCase())
-                        this.eventHub.$emit('game:submit-answer', win)
+                        eventHub.$emit('game:submit-answer', win)
                         this.currentType = ''
                         break
                     // Backspace

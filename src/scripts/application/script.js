@@ -1,5 +1,7 @@
 import router from './router.js'
 
+import eventHub from 'Application/event-hub'
+
 import PageHome from '../components/page-home'
 import PageQuiz from '../components/page-quiz'
 import AppWebglCanvas from '../components/app-webgl-canvas'
@@ -57,11 +59,13 @@ export default {
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)
 
-        this.eventHub.$on('page:disable-scroll', this.onDisableScroll)
-        this.eventHub.$on('page:enable-scroll', this.onEnableScroll)
+        console.log(eventHub)
+
+        eventHub.$on('page:disable-scroll', this.onDisableScroll)
+        eventHub.$on('page:enable-scroll', this.onEnableScroll)
 
         if(!this.isTouchDevice && this.isSmoothScroll)
-            this.eventHub.$on('page:set-height', this.setPageHeight)
+            eventHub.$on('page:set-height', this.setPageHeight)
     },
 
     mounted()
@@ -75,7 +79,7 @@ export default {
 
     destroyed()
     {
-        this.eventHub.$off('page:set-height', this.setPageHeight)
+        eventHub.$off('page:set-height', this.setPageHeight)
     },
 
     methods:
@@ -83,7 +87,7 @@ export default {
         onResize()
         {
             this.windowObj = { width: window.innerWidth, height: window.innerHeight }
-            this.eventHub.$emit('window:resize', this.windowObj)
+            eventHub.$emit('window:resize', this.windowObj)
         },
 
         onKeyPress(e)
@@ -120,7 +124,7 @@ export default {
         onScroll()
         {
             this.scrollTop = window.pageYOffset || document.documentElement.scrollTop || window.scrollY
-            this.eventHub.$emit('window:scroll', this.scrollTop)
+            eventHub.$emit('window:scroll', this.scrollTop)
         },
 
         onDisableScroll()
@@ -162,14 +166,14 @@ export default {
         onRouteChange(to)
         {
             this.componentId = to.meta.componentId
-            this.eventHub.$emit('application:route-change', to.params.id)
+            eventHub.$emit('application:route-change', to.params.id)
         },
 
         onEnterFrame()
         {
             if(!this.isTouchDevice && this.isSmoothScroll) this.smoothScroll += (this.scrollTop - this.smoothScroll) * 0.1
 
-            if(!this.isTouchDevice && this.isSmoothScroll) this.eventHub.$emit('application:enterframe', (Math.round(this.smoothScroll * 100) / 100))
+            if(!this.isTouchDevice && this.isSmoothScroll) eventHub.$emit('application:enterframe', (Math.round(this.smoothScroll * 100) / 100))
             requestAnimationFrame(this.onEnterFrame)
         },
 

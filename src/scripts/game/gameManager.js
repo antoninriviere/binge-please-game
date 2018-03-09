@@ -1,11 +1,17 @@
 import logger from 'Utils/logger'
 
+import eventHub from 'Application/event-hub.js'
+
 class GameManager
 {
 
     constructor()
     {
         this.currentQuiz = {}
+        eventHub.$on('game:submit-answer', () =>
+        {
+            console.log('receive event from game manager')
+        })
     }
 
     setCurrentQuiz(quiz)

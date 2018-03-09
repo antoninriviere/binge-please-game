@@ -1,3 +1,4 @@
+import eventHub from 'Application/event-hub'
 import gameScoreManager from 'Game/gameScoreManager'
 
 export default
@@ -18,7 +19,7 @@ export default
 
     created()
     {
-        this.eventHub.$on('game:submit-answer', this.onNewAnswer)
+        eventHub.$on('game:submit-answer', this.onNewAnswer)
     },
 
     mounted()
@@ -28,7 +29,7 @@ export default
 
     destroyed()
     {
-        this.eventHub.$off('game:submit-answer', this.onNewAnswer)
+        eventHub.$off('game:submit-answer', this.onNewAnswer)
     },
 
     methods:

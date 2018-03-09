@@ -21,6 +21,7 @@ module.exports = {
         alias: {
             '@': resolve('src'),
             Styles: path.resolve(__dirname, '../src/styles'),
+            Application: path.resolve(__dirname, '../src/scripts/application'),
             Components: path.resolve(__dirname, '../src/scripts/components'),
             Utils: path.resolve(__dirname, '../src/scripts/utils'),
             Mixins: path.resolve(__dirname, '../src/scripts/mixins'),

@@ -1,3 +1,4 @@
+import eventHub from 'Application/event-hub'
 import Config from 'Config'
 
 export default {
@@ -12,23 +13,23 @@ export default {
 
     created()
     {
-        this.eventHub.$on('window:resize', this.onMixinResize)
-        this.eventHub.$on('update:pageHeight', this.onMixinResize)
-        this.eventHub.$on('application:enterframe', this.onMixinEnterFrame)
+        eventHub.$on('window:resize', this.onMixinResize)
+        eventHub.$on('update:pageHeight', this.onMixinResize)
+        eventHub.$on('application:enterframe', this.onMixinEnterFrame)
     },
 
     destroyed()
     {
-        this.eventHub.$off('window:resize', this.onMixinResize)
-        this.eventHub.$off('update:pageHeight', this.onMixinResize)
-        this.eventHub.$off('application:enterframe', this.onMixinEnterFrame)
+        eventHub.$off('window:resize', this.onMixinResize)
+        eventHub.$off('update:pageHeight', this.onMixinResize)
+        eventHub.$off('application:enterframe', this.onMixinEnterFrame)
     },
 
     methods:
     {
         onMixinResize()
         {
-            if(!this.isTouchDevice && this.isSmoothScroll) this.eventHub.$emit('set:pageHeight', this.$el.offsetHeight)
+            if(!this.isTouchDevice && this.isSmoothScroll) eventHub.$emit('set:pageHeight', this.$el.offsetHeight)
         },
 
         onMixinEnterFrame(smoothScroll)

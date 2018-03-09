@@ -1,3 +1,4 @@
+import eventHub from 'Application/event-hub'
 export default {
     name: 'app-page',
 
@@ -20,7 +21,7 @@ export default {
     {
         this.meta = this.$route.meta
 
-        this.eventHub.$on('window:resize', this.onResize)
+        eventHub.$on('window:resize', this.onResize)
     },
 
     mounted()
@@ -28,13 +29,13 @@ export default {
         console.log(`page ${this.$route.name} mounted`)
         this.ready = true
         this.$root.scrollTo(0, true)
-        this.eventHub.$emit('page:enable-scroll')
+        eventHub.$emit('page:enable-scroll')
         this.onResize()
     },
 
     destroyed()
     {
-        this.eventHub.$off('window:resize', this.onResize)
+        eventHub.$off('window:resize', this.onResize)
     },
 
     methods: {
@@ -42,7 +43,7 @@ export default {
         {
             if(this.ready)
             {
-                this.eventHub.$emit('page:ready', this.ready)
+                eventHub.$emit('page:ready', this.ready)
             }
         },
 
@@ -50,7 +51,7 @@ export default {
         {
             if(this.$el.offsetHeight > 0)
             {
-                this.eventHub.$emit('page:set-height', this.$el.offsetHeight)
+                eventHub.$emit('page:set-height', this.$el.offsetHeight)
             }
         }
     }

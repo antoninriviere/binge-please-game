@@ -1,5 +1,7 @@
 import appPage from 'Mixins/app-page'
 
+import eventHub from 'Application/event-hub'
+
 import Quiz from 'Config/quiz'
 
 import GameTypeManager from 'Components/game-type-manager'
@@ -35,7 +37,7 @@ export default
 
     created()
     {
-        this.eventHub.$on('application:route-change', this.onRouteChange)
+        eventHub.$on('application:route-change', this.onRouteChange)
     },
 
     mounted()
@@ -46,7 +48,7 @@ export default
 
     destroyed()
     {
-        this.eventHub.$off('application:route-change', this.onRouteChange)
+        eventHub.$off('application:route-change', this.onRouteChange)
     },
 
     mixins: [appPage],
@@ -60,7 +62,7 @@ export default
 
             this.$root.gameManager.setCurrentQuiz(nextQuizObject)
 
-            if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d') this.eventHub.$emit('webgl:clear-group')
+            if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d') eventHub.$emit('webgl:clear-group')
             // if(this.quizObject.type === '3d') this.setupWebGLGroup()
             this.quizObject = nextQuizObject
             if(this.quizObject.type === '3d') this.setupWebGLGroup()
@@ -68,7 +70,7 @@ export default
 
         setupWebGLGroup()
         {
-            this.eventHub.$emit('webgl:add-group', 'mouse-move-rotate')
+            eventHub.$emit('webgl:add-group', 'mouse-move-rotate')
         }
     }
 }
