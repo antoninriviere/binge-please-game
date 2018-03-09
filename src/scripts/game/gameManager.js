@@ -1,6 +1,6 @@
 import logger from 'Utils/logger'
 
-class gameManager
+class GameManager
 {
 
     constructor()
@@ -30,4 +30,4 @@ class gameManager
     }
 }
 
-export default gameManager
+export default new GameManager()

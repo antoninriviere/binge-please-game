@@ -52,7 +52,7 @@ export default {
         window.addEventListener('resize', this.onResize)
         window.addEventListener('keydown', this.onKeyPress)
 
-        this.$root.gameManager = new GameManager()
+        this.$root.gameManager = GameManager
 
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)

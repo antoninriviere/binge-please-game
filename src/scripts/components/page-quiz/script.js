@@ -3,6 +3,7 @@ import appPage from 'Mixins/app-page'
 import Quiz from 'Config/quiz'
 
 import GameTypeManager from 'Components/game-type-manager'
+import GameScoreManager from 'Components/game-score-manager'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -17,7 +18,8 @@ export default
         QuizDom,
         QuizEmoji,
         QuizVideo,
-        GameTypeManager
+        GameTypeManager,
+        GameScoreManager
     },
 
     data()

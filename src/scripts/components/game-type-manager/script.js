@@ -93,7 +93,7 @@ export default
                         this.currentType = this.currentType.substring(0, this.currentType.length - 1)
                         break
                     // Space
-                    case 22 :
+                    case 32 :
                         this.currentType += ' '
                         break
                     // Default
