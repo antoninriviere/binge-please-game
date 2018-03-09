@@ -65,24 +65,45 @@ export default
         {
             const entry = ev.keyCode || ev.which
 
-            if(entry === 13)
-            {
-                if(!this.isActive)
-                    this.isActive = true
-                else
-                {
-                    this.eventHub.$emit('game:submit-answer', this.currentType)
-                    this.$root.gameManager.submitAnswer(this.currentType)
-                }
-            }
-            else
+            if(!this.isActive)
             {
                 for(let i = 0; i < this.keyCodeLetters.length; i++)
                 {
                     if(entry === this.keyCodeLetters[i].code)
                     {
+                        this.isActive = true
                         this.currentType += this.keyCodeLetters[i].letter
                     }
+                }
+            }
+            else
+            {
+                let win
+
+                switch(entry)
+                {
+                    // Enter
+                    case 13 :
+                        win = this.$root.gameManager.submitAnswer(this.currentType.toLowerCase())
+                        this.eventHub.$emit('game:submit-answer', win)
+                        this.currentType = ''
+                        break
+                    // Backspace
+                    case 8 :
+                        this.currentType = this.currentType.substring(0, this.currentType.length - 1)
+                        break
+                    // Space
+                    case 22 :
+                        this.currentType += ' '
+                        break
+                    // Default
+                    default :
+                        for(let i = 0; i < this.keyCodeLetters.length; i++)
+                        {
+                            if(entry === this.keyCodeLetters[i].code)
+                                this.currentType += this.keyCodeLetters[i].letter
+                        }
+                        break
                 }
             }
         }

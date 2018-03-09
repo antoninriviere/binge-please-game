@@ -21,11 +21,12 @@ class gameManager
             if(answer === this.currentQuiz.answers[i])
             {
                 logger('WIN', 'green')
-                return
+                return true
             }
         }
 
         logger('LOOSER', 'red')
+        return false
     }
 }
 
