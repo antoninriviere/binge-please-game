@@ -2,5 +2,5 @@
     <!-- <h1 class="page-quiz__title">Quizz page {{this.id}}</h1> -->
     <game-score-manager></game-score-manager>
     <game-type-manager></game-type-manager>
-    <div :is="quizObject.componentId"></div>
+    <div v-if="quizObject.type === '2d'" :is="quizObject.componentId"></div>
 </div>
