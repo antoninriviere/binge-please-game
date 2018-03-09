@@ -1,16 +1,17 @@
 import { BloomPass } from 'postprocessing'
-import WavesPass from '../passes/Waves'
+// import WavesPass from '../passes/Waves'
+import FXAAPass from '../passes/FXAA'
 export default {
     debug: {
         stats: true,
         orbitControls: false
     },
     postProcessing: {
-        active: false,
+        active: true,
         passes: [
             {
                 name: 'BloomPass',
-                active: true,
+                active: false,
                 gui: false,
                 constructor: () =>
                 {
@@ -22,12 +23,12 @@ export default {
                 }
             },
             {
-                name: 'WavesPass',
+                name: 'FXAAPass',
                 active: true,
-                gui: true,
+                gui: false,
                 constructor: () =>
                 {
-                    return new WavesPass({})
+                    return new FXAAPass({})
                 }
             }
         ]

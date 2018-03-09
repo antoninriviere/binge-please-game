@@ -9,6 +9,6 @@ varying vec2 vUv;
 void main() {
   vec2 wavedUv = vUv;
   wavedUv.x += sin( vUv.y * uInfluence + uTime * uSpeed ) * uDistortion;
-  vec4 color = texture2D( uDiffuse, wavedUv );
+  vec4 color = texture2D( uDiffuse, vUv );
   gl_FragColor = color;
 }

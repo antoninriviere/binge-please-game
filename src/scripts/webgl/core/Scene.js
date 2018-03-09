@@ -84,21 +84,21 @@ class SceneObj extends Scene
     initPostProcessing()
     {
         this.composer = new EffectComposer(this.renderer)
-        const renderPass = new RenderPass(this, this.camera)
-        renderPass.renderToScreen = false
-        this.composer.addPass(renderPass)
+        this.renderPass = new RenderPass(this, this.camera)
+        this.composer.addPass(this.renderPass)
 
         let passObject
         GUI.panel.addGroup({ label: 'Postprocessing' })
 
         this.options.postProcessing.passes.forEach((pass) =>
         {
-            passObject = pass.constructor()
-
             if(pass.active)
+            {
+                passObject = pass.constructor()
                 this.composer.addPass(passObject)
-            if(pass.gui)
-                passObject.initGUI()
+                if(pass.gui)
+                    passObject.initGUI()
+            }
         })
         passObject.renderToScreen = true
     }
