@@ -34,7 +34,7 @@ export default {
             pageHeight: 0,
             scrollTop: 0,
             smoothScroll: 0,
-            quizId: 0,
+            quizId: 1,
             maxQuestions: 3
         }
     },

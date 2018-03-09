@@ -25,7 +25,8 @@ export default
         return {
             id: this.$route.params.id,
             quizObject: {
-                componentId: 'quiz-dom'
+                componentId: undefined,
+                type: undefined
             }
         }
     },
@@ -37,7 +38,8 @@ export default
 
     mounted()
     {
-        this.quizObject = Quiz[0]
+        this.quizObject = Quiz[this.id - 1]
+        if(this.quizObject.type === '3d') this.setupWebGLGroup()
     },
 
     destroyed()
@@ -52,8 +54,19 @@ export default
         onRouteChange(id)
         {
             this.id = id
-            this.quizObject = Quiz[id - 1]
-            this.$root.gameManager.setCurrentQuiz(this.quizObject)
+            const nextQuizObject = Quiz[id - 1]
+
+            this.$root.gameManager.setCurrentQuiz(nextQuizObject)
+
+            if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d') this.eventHub.$emit('webgl:clear-group')
+            // if(this.quizObject.type === '3d') this.setupWebGLGroup()
+            this.quizObject = nextQuizObject
+            if(this.quizObject.type === '3d') this.setupWebGLGroup()
+        },
+
+        setupWebGLGroup()
+        {
+            this.eventHub.$emit('webgl:add-group', 'mouse-move-rotate')
         }
     }
 }

@@ -1,8 +1,9 @@
 import raf from 'raf'
-import { AmbientLight } from 'three'
 import SceneObj from 'WebGLCore/scene'
-import Cube from './meshes/cube'
 import Config from 'WebGLConfig'
+import camelcase from 'lodash.camelcase'
+
+import MouseMoveRotate from './interactions/mouse-move-rotate'
 
 class App
 {
@@ -14,25 +15,37 @@ class App
         })
 
         this.container = container
+        this.group = undefined
+        this.interactionId = undefined
 
         this.DELTA_TIME = 0
         this.LAST_TIME = Date.now()
 
-        this.initMeshes()
-        this.initLights()
         this.update()
     }
 
-    initMeshes()
+    addGroup(id)
     {
-        this.cube = new Cube()
-        this.scene.add(this.cube)
+        this.interactionId = id
+        this.group = this.getInteractionGroup(id)
+        this.scene.add(this.group)
     }
 
-    initLights()
+    getInteractionGroup(id)
     {
-        this.ambientLight = new AmbientLight(0x111111)
-        this.scene.add(this.ambientLight)
+        switch(id)
+        {
+            case 'mouse-move-rotate':
+                return new MouseMoveRotate()
+        }
+    }
+
+    clearGroup()
+    {
+        const groupName = camelcase(this.interactionId)
+        const group = this.scene.getObjectByName(groupName)
+        group.clear()
+        this.scene.remove(group)
     }
 
     update = () =>
@@ -40,7 +53,7 @@ class App
         this.DELTA_TIME = Date.now() - this.LAST_TIME
         this.LAST_TIME = Date.now()
 
-        this.cube.update(this.DELTA_TIME)
+        if(this.group) this.group.update(this.DELTA_TIME)
 
         this.scene.render(this.DELTA_TIME)
         raf(this.update)

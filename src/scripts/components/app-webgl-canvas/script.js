@@ -1,4 +1,4 @@
-import WebGLApp from '../../webgl/app'
+import WebGLApp from 'WebGL/app'
 
 export default
 {
@@ -14,6 +14,8 @@ export default
     created()
     {
         this.eventHub.$on('window:resize', this.onResize)
+        this.eventHub.$on('webgl:add-group', this.onSetupGroup)
+        this.eventHub.$on('webgl:clear-group', this.onClearGroup)
     },
 
     mounted()
@@ -26,6 +28,15 @@ export default
         onResize()
         {
             this.webGLApp.resize()
+        },
+
+        onSetupGroup(interactionId)
+        {
+            this.webGLApp.addGroup(interactionId)
+        },
+        onClearGroup()
+        {
+            this.webGLApp.clearGroup()
         }
     }
 }
