@@ -104,7 +104,7 @@ export default {
                     }
                     break
                 case 39:
-                    if(id !== this.maxQuestions)
+                    if(id < this.maxQuestions)
                     {
                         logger('right', 'royalblue')
                         id++
