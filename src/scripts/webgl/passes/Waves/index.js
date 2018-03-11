@@ -23,11 +23,8 @@ export default class WavesPass extends Pass
         this.material = new ShaderMaterial({
             uniforms: this.uniforms,
             transparent: true,
-            opacity: 0.5,
             fragmentShader: glslify(fragmentShader),
-            vertexShader: glslify(vertexShader),
-            depthWrite: false,
-            depthTest: false
+            vertexShader: glslify(vertexShader)
         })
         this.quad.material = this.material
     }

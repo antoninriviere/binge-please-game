@@ -37,7 +37,7 @@ export default {
             pageHeight: 0,
             scrollTop: 0,
             smoothScroll: 0,
-            quizId: 1,
+            quizId: 0,
             maxQuestions: ConfigQuiz.length
         }
     },
@@ -164,6 +164,8 @@ export default {
 
         onRouteChange(to)
         {
+            if(to.name === 'quiz')
+                this.quizId = to.params.id
             this.componentId = to.meta.componentId
             eventHub.$emit('application:route-change', to.params.id)
         },

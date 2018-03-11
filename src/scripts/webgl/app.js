@@ -15,6 +15,7 @@ class App
         })
 
         this.container = container
+
         this.group = undefined
         this.interactionId = undefined
 
@@ -46,6 +47,7 @@ class App
         const group = this.scene.getObjectByName(groupName)
         group.clear()
         this.scene.remove(group)
+        this.scene.renderer.dispose()
     }
 
     update = () =>
