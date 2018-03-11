@@ -12,25 +12,53 @@ export default
         componentId: 'quiz-video'
     },
     {
+        id: 'good_place',
+        type: '2d',
+        props: {
+            image: 'good-place.jpg'
+        },
+        name: 'Good place',
+        answers: ['the good place', 'good place'],
+        componentId: 'quiz-dom'
+    },
+    {
         id: 'breaking_bad',
         type: '2d',
         props: {
-            model: '',
-            interaction: ''
+            image: 'breaking-bad.jpg'
         },
         name: 'Breaking Bad',
         answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
         componentId: 'quiz-dom'
     },
     {
-        id: 'orange_is_the_new_black',
+        id: 'stranger_things',
         type: '2d',
         props: {
-            model: '',
-            interaction: ''
+            image: 'stranger-things.jpg'
         },
-        name: 'Orange is the new Black',
-        answers: ['orange is the new black', 'orange is the new white'],
-        componentId: 'quiz-emoji'
+        name: 'Stranger Things',
+        answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
+        componentId: 'quiz-dom'
+    },
+    {
+        id: 'peaky_blinders',
+        type: '2d',
+        props: {
+            image: 'peaky-blinders.jpg'
+        },
+        name: 'Peaky Blinders',
+        answers: ['peaky blinders'],
+        componentId: 'quiz-dom'
+    },
+    {
+        id: 'casa_de_papel',
+        type: '2d',
+        props: {
+            image: 'casa-papel.jpg'
+        },
+        name: 'Casa de papel',
+        answers: ['casa de papel'],
+        componentId: 'quiz-dom'
     }
 ]

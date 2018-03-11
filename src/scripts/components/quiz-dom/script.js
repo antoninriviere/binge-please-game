@@ -7,6 +7,21 @@ export default
 
     },
 
+    props: {
+        image: {
+            type: String,
+            required: false
+        }
+    },
+
+    computed: {
+        imageSrc: function()
+        {
+            console.log('image ready')
+            return '../static/images/' + this.image
+        }
+    },
+
     data()
     {
         return {
@@ -21,7 +36,7 @@ export default
 
     mounted()
     {
-
+        console.log('mounted quiz dom')
     },
 
     destroyed()

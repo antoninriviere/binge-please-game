@@ -30,7 +30,10 @@ export default
             id: this.$route.params.id,
             quizObject: {
                 componentId: undefined,
-                type: undefined
+                type: undefined,
+                props: {
+                    image: ''
+                }
             }
         }
     },

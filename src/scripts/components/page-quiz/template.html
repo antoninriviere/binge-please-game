@@ -1,6 +1,5 @@
 <div class="page-quiz">
-    <!-- <h1 class="page-quiz__title">Quizz page {{this.id}}</h1> -->
     <game-score-manager></game-score-manager>
+    <div :is="quizObject.componentId" :image="quizObject.props.image"></div>
     <game-type-manager></game-type-manager>
-    <div :is="quizObject.componentId"></div>
 </div>

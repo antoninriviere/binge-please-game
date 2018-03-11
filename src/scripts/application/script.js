@@ -8,6 +8,7 @@ import AppWebglCanvas from '../components/app-webgl-canvas'
 
 import logger from 'Utils/logger'
 import Config from 'Config'
+import ConfigQuiz from 'Config/quiz'
 
 import GameManager from 'Game/gameManager'
 
@@ -37,7 +38,7 @@ export default {
             scrollTop: 0,
             smoothScroll: 0,
             quizId: 1,
-            maxQuestions: 3
+            maxQuestions: ConfigQuiz.length
         }
     },
 
@@ -58,8 +59,6 @@ export default {
 
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)
-
-        console.log(eventHub)
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
         eventHub.$on('page:enable-scroll', this.onEnableScroll)
