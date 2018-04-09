@@ -1,5 +1,7 @@
 import router from './router.js'
 
+import store from '../store'
+
 import eventHub from 'Application/event-hub'
 
 import PageHome from '../components/page-home'
@@ -15,6 +17,7 @@ import GameManager from 'Game/gameManager'
 export default {
     name: 'app',
 
+    store,
     router,
 
     components:
@@ -49,6 +52,7 @@ export default {
 
     created()
     {
+        console.log(this.$store)
         this.$html = document.documentElement
         this.$body = document.body
 
@@ -59,6 +63,8 @@ export default {
 
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)
+
+        // console.log(eventHub)
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
         eventHub.$on('page:enable-scroll', this.onEnableScroll)
