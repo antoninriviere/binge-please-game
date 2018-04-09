@@ -80,14 +80,13 @@ export default
             }
             else
             {
-                let win
-
                 switch(entry)
                 {
                     // Enter
                     case 13 :
-                        win = this.$root.gameManager.submitAnswer(this.currentType.toLowerCase())
-                        eventHub.$emit('game:submit-answer', win)
+                        this.$store.dispatch('submitAnswer', this.currentType.toLowerCase())
+                        // win = this.$root.gameManager.submitAnswer(this.currentType.toLowerCase())
+                        // eventHub.$emit('game:submit-answer', win)
                         this.currentType = ''
                         break
                     // Backspace

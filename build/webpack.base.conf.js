@@ -28,10 +28,13 @@ module.exports = {
             Config: path.resolve(__dirname, '../src/scripts/config'),
             Static: path.resolve(__dirname, '../static'),
             Game: path.resolve(__dirname, '../src/scripts/game'),
+            // WebGl
             WebGL: path.resolve(__dirname, '../src/scripts/webgl'),
             WebGLConfig: path.resolve(__dirname, '../src/scripts/webgl/config'),
             WebGLCore: path.resolve(__dirname, '../src/scripts/webgl/core'),
-            WebGLUtils: path.resolve(__dirname, '../src/scripts/webgl/utils')
+            WebGLUtils: path.resolve(__dirname, '../src/scripts/webgl/utils'),
+            // Store
+            MutationTypes: path.resolve(__dirname, '../src/scripts/store/mutation-types.js')
         }
     },
     module: {

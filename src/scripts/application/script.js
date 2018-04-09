@@ -12,8 +12,6 @@ import logger from 'Utils/logger'
 import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
 
-import GameManager from 'Game/gameManager'
-
 export default {
     name: 'app',
 
@@ -58,8 +56,6 @@ export default {
 
         window.addEventListener('resize', this.onResize)
         window.addEventListener('keydown', this.onKeyPress)
-
-        this.$root.gameManager = GameManager
 
         if(!this.isTouchDevice && this.isSmoothScroll)
             window.addEventListener('scroll', this.onScroll)

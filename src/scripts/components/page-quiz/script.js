@@ -11,6 +11,8 @@ import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
 import QuizVideo from 'Components/quiz-video'
 
+import { SET_QUIZ, SET_PROGRESS } from 'MutationTypes'
+
 export default
 {
     name: 'page-quiz',
@@ -27,25 +29,27 @@ export default
     data()
     {
         return {
-            id: this.$route.params.id,
-            quizObject: {
-                componentId: undefined,
-                type: undefined,
-                props: {
-                    image: ''
-                }
-            }
+            id: this.$route.params.id
+        }
+    },
+
+    computed: {
+        quizObject()
+        {
+            return this.$store.getters.getCurrentQuestion()
         }
     },
 
     created()
     {
+        this.$store.commit(SET_QUIZ, Quiz)
+        this.$store.commit(SET_PROGRESS, this.id - 1)
+
         eventHub.$on('application:route-change', this.onRouteChange)
     },
 
     mounted()
     {
-        this.quizObject = Quiz[this.id - 1]
         if(this.quizObject.type === '3d') this.setupWebGLGroup()
     },
 
@@ -60,15 +64,17 @@ export default
     {
         onRouteChange(id)
         {
-            this.id = id
-            const nextQuizObject = Quiz[id - 1]
+            const currentId = id - 1
+            const nextQuizObject = this.$store.getters.getQuestion(currentId)
 
-            this.$root.gameManager.setCurrentQuiz(nextQuizObject)
+            if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d')
+            {
+                eventHub.$emit('webgl:clear-group')
+            }
 
-            if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d') eventHub.$emit('webgl:clear-group')
-            // if(this.quizObject.type === '3d') this.setupWebGLGroup()
-            this.quizObject = nextQuizObject
-            if(this.quizObject.type === '3d') this.setupWebGLGroup()
+            if(nextQuizObject.type === '3d') this.setupWebGLGroup()
+
+            this.$store.commit(SET_PROGRESS, currentId)
         },
 
         setupWebGLGroup()
