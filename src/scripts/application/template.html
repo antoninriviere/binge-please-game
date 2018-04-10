@@ -1,12 +1,4 @@
 <div id="app">
     <app-webgl-canvas></app-webgl-canvas>
-    <template v-if="isSmoothScroll && !isTouchDevice">
-        <div class="app__wrapper">
-            <div :is="componentId"></div>
-        </div>
-        <div :style="{ height: pageHeight + 'px' }" class="js-smooth-scroll-container"></div>
-    </template>
-    <template v-else>
-        <div :is="componentId"></div>
-    </template>
+    <div :is="componentId"></div>
 </div>

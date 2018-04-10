@@ -4,8 +4,5 @@ const support = new Support()
 
 export default {
     environment: 'dev',
-    isTouchDevice: support.touch,
-    smoothScroll: {
-        active: false
-    }
+    isTouchDevice: support.touch
 }
