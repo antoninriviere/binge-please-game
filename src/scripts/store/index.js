@@ -4,6 +4,7 @@ import Config from 'Config'
 
 import Game from './modules/game'
 import Quiz from './modules/quiz'
+import WebGL from './modules/webgl'
 
 Vue.use(Vuex)
 
@@ -12,7 +13,8 @@ const debug = Config.environment !== 'production'
 export default new Vuex.Store({
     modules: {
         Game,
-        Quiz
+        Quiz,
+        WebGL
     },
     strict: debug
 })

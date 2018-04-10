@@ -15,8 +15,7 @@ export default
     created()
     {
         eventHub.$on('window:resize', this.onResize)
-        eventHub.$on('webgl:add-group', this.onSetupGroup)
-        eventHub.$on('webgl:clear-group', this.onClearGroup)
+        this.$store.watch(this.$store.getters.getWebGLGroup, this.onGroupUpdate)
     },
 
     mounted()
@@ -31,13 +30,16 @@ export default
             this.webGLApp.resize()
         },
 
-        onSetupGroup(interactionId)
+        onGroupUpdate(interactionId)
         {
-            this.webGLApp.addGroup(interactionId)
-        },
-        onClearGroup()
-        {
-            this.webGLApp.clearGroup()
+            if(interactionId === '')
+            {
+                this.webGLApp.clearGroup()
+            }
+            else
+            {
+                this.webGLApp.addGroup(interactionId)
+            }
         }
     }
 }

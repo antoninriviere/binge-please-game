@@ -11,7 +11,7 @@ import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
 import QuizVideo from 'Components/quiz-video'
 
-import { SET_QUIZ, SET_PROGRESS } from 'MutationTypes'
+import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
 
 export default
 {
@@ -69,7 +69,8 @@ export default
 
             if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d')
             {
-                eventHub.$emit('webgl:clear-group')
+                // eventHub.$emit('webgl:clear-group')
+                this.$store.commit(WEBGL_CLEAR_GROUP)
             }
 
             if(nextQuizObject.type === '3d') this.setupWebGLGroup()
@@ -79,7 +80,7 @@ export default
 
         setupWebGLGroup()
         {
-            eventHub.$emit('webgl:add-group', 'mouse-move-rotate')
+            this.$store.commit(WEBGL_ADD_GROUP, 'mouse-move-rotate')
         }
     }
 }
