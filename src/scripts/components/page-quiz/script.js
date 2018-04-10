@@ -4,6 +4,8 @@ import eventHub from 'Application/event-hub'
 
 import Quiz from 'Config/quiz'
 
+import AudioManager from 'Utils/AudioManager'
+
 import GameTypeManager from 'Components/game-type-manager'
 import GameScoreManager from 'Components/game-score-manager'
 
@@ -42,6 +44,7 @@ export default
 
     created()
     {
+        this.audioManager = new AudioManager()
         this.$store.commit(SET_QUIZ, Quiz)
         this.$store.commit(SET_PROGRESS, this.id - 1)
 
@@ -50,11 +53,16 @@ export default
 
     mounted()
     {
-        if(this.quizObject.type === '3d') this.setupWebGLGroup()
+        if(this.quizObject.type === '3d')
+            this.setupWebGLGroup()
+
+        if(this.quizObject.ambientSound)
+            this.setupAmbientSound(this.quizObject.ambientSound)
     },
 
     destroyed()
     {
+        // this.ambientSound.destroy()
         eventHub.$off('application:route-change', this.onRouteChange)
     },
 
@@ -64,18 +72,30 @@ export default
     {
         onRouteChange(id)
         {
+            if(this.ambientSound)
+                this.ambientSound.destroy()
             const currentId = id - 1
             const nextQuizObject = this.$store.getters.getQuestion(currentId)
 
             if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d')
-            {
-                // eventHub.$emit('webgl:clear-group')
                 this.$store.commit(WEBGL_CLEAR_GROUP)
-            }
 
-            if(nextQuizObject.type === '3d') this.setupWebGLGroup()
+            if(nextQuizObject.type === '3d')
+                this.setupWebGLGroup()
+
+            if(nextQuizObject.ambientSound)
+                this.setupAmbientSound(nextQuizObject.ambientSound)
 
             this.$store.commit(SET_PROGRESS, currentId)
+        },
+
+        setupAmbientSound(soundId)
+        {
+            this.ambientSound = this.audioManager.create({
+                url: `../static/sounds/${soundId}.mp3`,
+                autoplay: true,
+                loop: true
+            })
         },
 
         setupWebGLGroup()
