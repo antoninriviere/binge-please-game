@@ -1,4 +1,3 @@
-import pageSmoothScroll from 'Mixins/page-smooth-scroll'
 import appPage from 'Mixins/app-page'
 
 export default
@@ -17,7 +16,7 @@ export default
         }
     },
 
-    mixins: [appPage, pageSmoothScroll],
+    mixins: [appPage],
 
     created()
     {

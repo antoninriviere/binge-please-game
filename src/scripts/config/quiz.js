@@ -10,7 +10,8 @@ export default
         name: 'Stranger Things',
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
         componentId: 'quiz-video',
-        elapsedTime: 0
+        elapsedTime: 0,
+        ambientSound: 'ambient1'
     },
     {
         id: 'good_place',
@@ -21,7 +22,8 @@ export default
         name: 'Good place',
         answers: ['the good place', 'good place'],
         componentId: 'quiz-dom',
-        elapsedTime: 0
+        elapsedTime: 0,
+        ambientSound: 'ambient2'
     },
     {
         id: 'breaking_bad',
@@ -32,7 +34,8 @@ export default
         name: 'Breaking Bad',
         answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
         componentId: 'quiz-dom',
-        elapsedTime: 0
+        elapsedTime: 0,
+        ambientSound: 'ambient3'
     },
     {
         id: 'stranger_things',
@@ -43,7 +46,8 @@ export default
         name: 'Stranger Things',
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
         componentId: 'quiz-dom',
-        elapsedTime: 0
+        elapsedTime: 0,
+        ambientSound: 'ambient4'
     },
     {
         id: 'peaky_blinders',
@@ -54,7 +58,8 @@ export default
         name: 'Peaky Blinders',
         answers: ['peaky blinders'],
         componentId: 'quiz-dom',
-        elapsedTime: 0
+        elapsedTime: 0,
+        ambientSound: 'ambient5'
     },
     {
         id: 'casa_de_papel',
@@ -65,6 +70,7 @@ export default
         name: 'Casa de papel',
         answers: ['casa de papel'],
         componentId: 'quiz-dom',
-        elapsedTime: 0
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
     }
 ]

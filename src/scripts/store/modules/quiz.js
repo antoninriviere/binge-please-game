@@ -1,7 +1,5 @@
 import { SET_QUIZ, SET_PROGRESS, INCREMENT_PROGRESS, INCREMENT_SCORE } from 'MutationTypes'
 
-console.log(SET_QUIZ)
-
 const state = {
     quiz: [],
     progress: 0

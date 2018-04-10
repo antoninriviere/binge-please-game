@@ -17,7 +17,6 @@ export default
     computed: {
         imageSrc: function()
         {
-            console.log('image ready')
             return '../static/images/' + this.image
         }
     },
