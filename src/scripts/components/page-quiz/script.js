@@ -6,6 +6,7 @@ import Quiz from 'Config/quiz'
 
 import GameTypeManager from 'Components/game-type-manager'
 import GameScoreManager from 'Components/game-score-manager'
+import GameTimeManager from 'Components/game-time-manager'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -23,7 +24,8 @@ export default
         QuizEmoji,
         QuizVideo,
         GameTypeManager,
-        GameScoreManager
+        GameScoreManager,
+        GameTimeManager
     },
 
     data()

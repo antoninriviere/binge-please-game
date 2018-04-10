@@ -135,6 +135,7 @@ export default {
         onEnterFrame()
         {
             eventHub.$emit('application:enterframe')
+
             requestAnimationFrame(this.onEnterFrame)
         }
     }

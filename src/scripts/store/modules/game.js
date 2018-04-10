@@ -1,7 +1,8 @@
-import { INCREMENT_SCORE } from 'MutationTypes'
+import { INCREMENT_SCORE, SET_CURRENT_TIME } from 'MutationTypes'
 
 const state = {
-    score: 0
+    score: 0,
+    currentTime: 0
 }
 
 const getters = {
@@ -12,6 +13,10 @@ const mutations = {
     [INCREMENT_SCORE](state)
     {
         state.score ++
+    },
+    [SET_CURRENT_TIME](state, time)
+    {
+        state.currentTime = time
     }
 }
 

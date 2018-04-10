@@ -24,7 +24,7 @@ class GUI extends ControlKit
     {
         return super.addPanel({
             align: 'right',
-            position: [20, 0],
+            position: [100, 0],
             width: 275,
             ratio: 20,
             fixed: false,

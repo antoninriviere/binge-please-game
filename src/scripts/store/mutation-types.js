@@ -2,6 +2,7 @@
 export const INCREMENT_SCORE = 'INCREMENT_SCORE'
 export const DECREMENT_SCORE = 'DECREMENT_SCORE'
 export const SET_SCORE = 'SET_SCORE'
+export const SET_CURRENT_TIME = 'SET_CURRENT_TIME'
 // QUIZ
 export const SET_QUIZ = 'SET_QUIZ'
 export const SET_PROGRESS = 'SET_PROGRESS'
