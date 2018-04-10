@@ -1,6 +1,6 @@
 <div class="page-quiz">
     <game-score-manager></game-score-manager>
-    <div v-if="quizObject.type === '2d'" :is="quizObject.componentId" :image="quizObject.props.image"></div>
+    <div v-if="quizObject.type === '2d'" :is="quizObject.componentId" v-bind="quizObject.props"></div>
     <game-type-manager></game-type-manager>
     <game-time-manager></game-time-manager>
 </div>

@@ -72,5 +72,16 @@ export default
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'
+    },
+    {
+        type: '2d',
+        props: {
+            name: 'the-crown-svg'
+        },
+        name: 'The crown',
+        answers: ['the crown'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        ambientSound: 'ambient3'
     }
 ]

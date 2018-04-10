@@ -13,6 +13,7 @@ import GameTimeManager from 'Components/game-time-manager'
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
 import QuizVideo from 'Components/quiz-video'
+import QuizCustom from 'Components/quiz-custom'
 
 import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
 
@@ -25,6 +26,7 @@ export default
         QuizDom,
         QuizEmoji,
         QuizVideo,
+        QuizCustom,
         GameTypeManager,
         GameScoreManager,
         GameTimeManager
