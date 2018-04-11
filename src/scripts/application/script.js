@@ -13,6 +13,7 @@ import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
 
 import Mouse from 'Utils/Mouse.js'
+import Time from 'Utils/Time.js'
 
 export default {
     name: 'app',
@@ -35,6 +36,7 @@ export default {
                 height: window.innerHeight
             },
             isTouchDevice: Config.isTouchDevice,
+            stepTime: 0,
             componentId: '',
             quizId: 0,
             maxQuestions: ConfigQuiz.length
@@ -51,6 +53,7 @@ export default {
         this.$html = document.documentElement
         this.$body = document.body
 
+        this.time = new Time()
         this.mouse = new Mouse(this.windowObj.width, this.windowObj.height)
 
         window.addEventListener('resize', this.onResize)
@@ -145,8 +148,9 @@ export default {
 
         onEnterFrame()
         {
+            this.time.tick()
+            TWEEN.update(this.time.elapsed)
             eventHub.$emit('application:enterframe')
-
             requestAnimationFrame(this.onEnterFrame)
         }
     }
