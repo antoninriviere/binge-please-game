@@ -12,6 +12,8 @@ import logger from 'Utils/logger'
 import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
 
+import Time from 'Utils/Time.js'
+
 export default {
     name: 'app',
 
@@ -33,6 +35,7 @@ export default {
                 height: window.innerHeight
             },
             isTouchDevice: Config.isTouchDevice,
+            stepTime: 0,
             componentId: '',
             quizId: 0,
             maxQuestions: ConfigQuiz.length
@@ -46,6 +49,8 @@ export default {
 
     created()
     {
+        this.time = new Time()
+
         this.$html = document.documentElement
         this.$body = document.body
 
@@ -134,8 +139,8 @@ export default {
 
         onEnterFrame()
         {
+            this.time.tick()
             eventHub.$emit('application:enterframe')
-
             requestAnimationFrame(this.onEnterFrame)
         }
     }

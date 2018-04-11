@@ -1,5 +1,3 @@
-import Time from 'Utils/Time.js'
-
 import eventHub from 'Application/event-hub'
 
 export default
@@ -14,15 +12,13 @@ export default
     data()
     {
         return {
-            globalTime: 0,
-            stepTime: 0
+            globalTime: 0
         }
     },
 
     created()
     {
         eventHub.$on('application:enterframe', this.onTick)
-        this.time = new Time()
     },
 
     mounted()
@@ -39,9 +35,8 @@ export default
     {
         onTick()
         {
-            this.time.tick()
             this.globalTime = 0
-            this.globalTime =  Math.round(this.time.elapsed / 100) / 10
+            this.globalTime =  Math.round(this.$root.time.elapsed / 100) / 10
         }
     }
 }
