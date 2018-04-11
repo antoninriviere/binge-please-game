@@ -12,6 +12,8 @@ import logger from 'Utils/logger'
 import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
 
+import Mouse from 'Utils/Mouse.js'
+
 export default {
     name: 'app',
 
@@ -49,8 +51,11 @@ export default {
         this.$html = document.documentElement
         this.$body = document.body
 
+        this.mouse = new Mouse(this.windowObj.width, this.windowObj.height)
+
         window.addEventListener('resize', this.onResize)
         window.addEventListener('keydown', this.onKeyPress)
+        window.addEventListener('mousemove', this.onMouseMove)
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
         eventHub.$on('page:enable-scroll', this.onEnableScroll)
@@ -73,6 +78,7 @@ export default {
         onResize()
         {
             this.windowObj = { width: window.innerWidth, height: window.innerHeight }
+            this.mouse.onResize(this.windowObj.width, this.windowObj.height)
             eventHub.$emit('window:resize', this.windowObj)
         },
 
@@ -105,6 +111,11 @@ export default {
                 this.quizId = id
                 this.$router.push(`/quiz/${this.quizId}`)
             }
+        },
+
+        onMouseMove(event)
+        {
+            this.mouse.onMove(event)
         },
 
         onDisableScroll()
