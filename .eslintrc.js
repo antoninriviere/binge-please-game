@@ -87,5 +87,8 @@ module.exports = {
     'prefer-spread': 1,
     'prefer-template': 0,
     'template-curly-spacing': [1, 'never']
+  },
+  'globals': {
+      TWEEN: true
   }
 }

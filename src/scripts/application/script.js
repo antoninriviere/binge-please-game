@@ -140,6 +140,7 @@ export default {
         onEnterFrame()
         {
             this.time.tick()
+            TWEEN.update(this.time.elapsed)
             eventHub.$emit('application:enterframe')
             requestAnimationFrame(this.onEnterFrame)
         }

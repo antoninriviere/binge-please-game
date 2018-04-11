@@ -12,6 +12,7 @@
         "postbuild": "npm run uncss"
     },
     "dependencies": {
+        "@tweenjs/tween.js": "^17.2.0",
         "controlkit": "^0.1.9",
         "glob": "^7.1.2",
         "glsl-fxaa": "^3.0.0",
