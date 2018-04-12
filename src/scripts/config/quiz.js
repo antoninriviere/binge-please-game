@@ -82,6 +82,6 @@ export default
         answers: ['the crown'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        ambientSound: 'ambient3'
+        ambientSound: 'ambient5'
     }
 ]

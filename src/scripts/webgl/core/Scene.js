@@ -88,7 +88,8 @@ class SceneObj extends Scene
         this.composer.addPass(this.renderPass)
 
         let passObject
-        GUI.panel.addGroup({ label: 'Postprocessing' })
+        if(this.options.postProcessing.gui)
+            GUI.panel.addGroup({ label: 'Postprocessing' })
 
         this.options.postProcessing.passes.forEach((pass) =>
         {

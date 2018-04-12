@@ -8,6 +8,7 @@ export default {
     },
     postProcessing: {
         active: true,
+        gui: false,
         passes: [
             {
                 name: 'BloomPass',

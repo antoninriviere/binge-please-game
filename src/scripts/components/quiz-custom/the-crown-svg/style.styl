@@ -25,8 +25,26 @@
         .st2{fill:#ead8ca}
         .st3{fill:#5b5b5b}
 
+        $size = 25vh
+
+        position absolute
+
+        top "calc(50vh - %s)" % ($size / 2)
+        left "calc(50vw - %s)" % ($size / 2)
+
+        height $size
+        width $size
+
+        z-index 2
+
         svg {
-            height 25%
+            opacity 0
+            transform scale3d(0, 0 ,0)
+            transition all 0.15s $ease-out-back
+            &.has-appeared {
+                opacity 1
+                transform scale3d(1, 1 ,1)
+            }
         }
     }
 }
