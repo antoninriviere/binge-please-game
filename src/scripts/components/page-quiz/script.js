@@ -58,7 +58,7 @@ export default
     mounted()
     {
         if(this.quizObject.type === '3d')
-            this.setupWebGLGroup()
+            this.setupWebGLGroup(this.quizObject.id)
 
         if(this.quizObject.ambientSound)
             this.setupAmbientSound(this.quizObject.ambientSound)
@@ -85,7 +85,7 @@ export default
                 this.$store.commit(WEBGL_CLEAR_GROUP)
 
             if(nextQuizObject.type === '3d')
-                this.setupWebGLGroup()
+                this.setupWebGLGroup(nextQuizObject.id)
 
             if(nextQuizObject.ambientSound)
                 this.setupAmbientSound(nextQuizObject.ambientSound)
@@ -102,9 +102,9 @@ export default
             })
         },
 
-        setupWebGLGroup()
+        setupWebGLGroup(id)
         {
-            this.$store.commit(WEBGL_ADD_GROUP, 'mouse-move-rotate')
+            this.$store.commit(WEBGL_ADD_GROUP, id)
         }
     }
 }

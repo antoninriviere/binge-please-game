@@ -4,6 +4,7 @@ import Config from 'WebGLConfig'
 import camelcase from 'lodash.camelcase'
 
 import MouseMoveRotate from './interactions/mouse-move-rotate'
+import ThirteenReasonsWhy from './interactions/13-reasons-why'
 
 class App
 {
@@ -37,7 +38,9 @@ class App
         switch(id)
         {
             case 'mouse-move-rotate':
-                return new MouseMoveRotate()
+                return new MouseMoveRotate(this.scene)
+            case '13_reasons_why':
+                return new ThirteenReasonsWhy(this.scene)
         }
     }
 

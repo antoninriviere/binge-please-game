@@ -1,15 +1,14 @@
 export default
 [
     {
-        id: 'stranger_things',
+        id: '13_reasons_why',
         type: '3d',
         props: {
             model: '',
             interaction: ''
         },
-        name: 'Stranger Things',
-        answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
-        componentId: 'quiz-video',
+        name: '13 reasons why',
+        answers: ['13 reasons why', '13 reason why'],
         elapsedTime: 0,
         ambientSound: 'ambient1'
     },

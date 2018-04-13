@@ -4,7 +4,8 @@ import FXAAPass from '../passes/FXAA'
 export default {
     debug: {
         stats: true,
-        orbitControls: false
+        orbitControls: true,
+        axes: true
     },
     postProcessing: {
         active: true,

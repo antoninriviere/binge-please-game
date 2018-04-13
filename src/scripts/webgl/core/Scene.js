@@ -1,4 +1,4 @@
-import { Scene, PerspectiveCamera, WebGLRenderer, Vector3 } from 'three'
+import { Scene, PerspectiveCamera, WebGLRenderer, PCFSoftShadowMap, Vector3, AxesHelper } from 'three'
 import Stats from 'stats-js'
 import OrbitControls from 'orbit-controls'
 import { EffectComposer, RenderPass } from 'postprocessing'
@@ -40,6 +40,8 @@ class SceneObj extends Scene
         this.renderer = new WebGLRenderer(this.options.renderer)
         this.renderer.setSize(this.width, this.height)
         this.renderer.setClearAlpha(0)
+        this.renderer.shadowMap.enabled = true
+        this.renderer.shadowMap.type = PCFSoftShadowMap
 
         this.container.appendChild(this.renderer.domElement)
 
@@ -54,14 +56,19 @@ class SceneObj extends Scene
 
         if(this.options.debug.orbitControls)
             this.initControls()
+
+        if(this.options.debug.axes)
+        {
+            const axes = new AxesHelper(10)
+            this.add(axes)
+        }
     }
 
     initControls()
     {
         this.controls = new OrbitControls({
             position: this.camera.position.toArray(),
-            parent: this.renderer.domElement,
-            distanceBounds: [10, 20]
+            parent: this.renderer.domElement
         })
         this.target = new Vector3()
         this.camera.lookAt(this.target)
