@@ -8,6 +8,8 @@ import PageHome from '../components/page-home'
 import PageQuiz from '../components/page-quiz'
 import AppWebglCanvas from '../components/app-webgl-canvas'
 
+import Moment from 'moment'
+
 import logger from 'Utils/logger'
 import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'

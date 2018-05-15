@@ -1,5 +1,9 @@
 import eventHub from 'Application/event-hub'
 
+import Moment from 'moment'
+import MomentDurationFormatSetup from 'moment-duration-format'
+MomentDurationFormatSetup(Moment)
+
 export default
 {
     name: 'game-time-manager',
@@ -35,8 +39,7 @@ export default
     {
         onTick()
         {
-            this.globalTime = 0
-            this.globalTime =  Math.round(this.$root.time.elapsed / 100) / 10
+            this.globalTime =  Moment.duration(this.$root.time.elapsed).format('mm:ss', { trim: false })
         }
     }
 }
