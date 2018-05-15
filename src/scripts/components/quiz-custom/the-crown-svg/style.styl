@@ -16,6 +16,10 @@
         svg {
             height 75%
         }
+
+        .movingHand {
+            transform rotate3d(10deg, 0, 0)
+        }
     }
 
     .corgi {
@@ -44,6 +48,23 @@
             &.has-appeared {
                 opacity 1
                 transform scale3d(1, 1 ,1)
+            }
+        }
+
+        .tongue {
+            animation-name tongue
+            animation-duration 0.3s
+            animation-iteration-count infinite
+            animation-direction alternate
+            // animation-fill-mode both
+        }
+
+        @keyframes tongue {
+            from {
+                transform translate3d(0, 0, 0)
+            }
+            to {
+                transform translate3d(0, -2%, 0)
             }
         }
     }

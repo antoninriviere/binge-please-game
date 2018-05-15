@@ -1,86 +1,161 @@
 export default
 [
     {
-        id: '13_reasons_why',
-        type: '3d',
-        props: {
-            model: '',
-            interaction: ''
-        },
-        name: '13 reasons why',
-        answers: ['13 reasons why', '13 reason why'],
-        elapsedTime: 0,
-        ambientSound: 'ambient1'
-    },
-    {
-        id: 'good_place',
-        type: '2d',
-        props: {
-            image: 'good-place.jpg'
-        },
-        name: 'Good place',
-        answers: ['the good place', 'good place'],
-        componentId: 'quiz-dom',
-        elapsedTime: 0,
-        ambientSound: 'ambient2'
-    },
-    {
-        id: 'breaking_bad',
-        type: '2d',
-        props: {
-            image: 'breaking-bad.jpg'
-        },
-        name: 'Breaking Bad',
-        answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
-        componentId: 'quiz-dom',
-        elapsedTime: 0,
-        ambientSound: 'ambient3'
-    },
-    {
         id: 'stranger_things',
         type: '2d',
         props: {
-            image: 'stranger-things.jpg'
+            image: 'StrangerThings2.jpg'
         },
         name: 'Stranger Things',
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
         componentId: 'quiz-dom',
-        elapsedTime: 0,
-        ambientSound: 'ambient4'
+        elapsedTime: 0
+        // ambientSound: 'ambient4'
     },
     {
-        id: 'peaky_blinders',
+        name: 'Peaky Blinders',
         type: '2d',
         props: {
-            image: 'peaky-blinders.jpg'
+            image: 'PeakyBlinders.jpg'
         },
-        name: 'Peaky Blinders',
         answers: ['peaky blinders'],
         componentId: 'quiz-dom',
-        elapsedTime: 0,
-        ambientSound: 'ambient5'
+        elapsedTime: 0
+        // ambientSound: 'ambient5'
     },
     {
-        id: 'casa_de_papel',
+        name: 'Casa de papel',
         type: '2d',
         props: {
-            image: 'casa-papel.jpg'
+            image: 'CasaDePapel.jpg'
         },
-        name: 'Casa de papel',
         answers: ['casa de papel'],
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'
     },
     {
+        name: 'Altered Carbon',
         type: '2d',
         props: {
-            name: 'the-crown-svg'
+            image: 'AlteredCarbon.png'
         },
-        name: 'The crown',
-        answers: ['the crown'],
-        componentId: 'quiz-custom',
+        answers: ['altered carbon'],
+        componentId: 'quiz-dom',
         elapsedTime: 0,
-        ambientSound: 'ambient5'
+        ambientSound: 'ambient6'
+    },
+    {
+        name: 'Friends',
+        type: '2d',
+        props: {
+            image: 'friends.png'
+        },
+        answers: ['friends', 'friend'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
+    },
+    {
+        name: 'Black Mirror',
+        type: '2d',
+        props: {
+            image: 'BlackMirror.jpg'
+        },
+        answers: ['black mirror', 'black miror'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
+    },
+    {
+        name: 'Riverdale',
+        type: '2d',
+        props: {
+            image: 'Riverdale.jpg'
+        },
+        answers: ['riverdale'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
+    },
+    {
+        name: 'Rick & Morty',
+        type: '2d',
+        props: {
+            image: 'RickMorty.jpg'
+        },
+        answers: ['rick morty', 'rick et morty', 'rick and morty', 'rickmorty', 'ricketmorty', 'rick&morty', 'rick & morty'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
+    },
+    {
+        name: 'The end of the fucking world',
+        type: '2d',
+        props: {
+            image: 'TheEndOfTheFuckingWorld.jpg'
+        },
+        answers: ['the end of the fucking world', 'theendofthefuckingworld', 'fucking world', 'the end of fucking world', 'theend of the fucking world', 'end of the fucking world', 'end of fucking world'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
+    },
+    {
+        name: 'Daredevil',
+        type: '2d',
+        props: {
+            image: 'Daredevil.jpg'
+        },
+        answers: ['daredevil', 'dardevil', 'daredevile', 'dardevile', 'dard des villes'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
     }
+    // {
+    //     id: '13_reasons_why',
+    //     type: '3d',
+    //     props: {
+    //         model: '',
+    //         interaction: ''
+    //     },
+    //     name: '13 reasons why',
+    //     answers: ['13 reasons why', '13 reason why'],
+    //     elapsedTime: 0,
+    //     ambientSound: 'ambient1'
+    // },
+    // {
+    //     id: 'good_place',
+    //     type: '2d',
+    //     props: {
+    //         image: 'good-place.jpg'
+    //     },
+    //     name: 'Good place',
+    //     answers: ['the good place', 'good place'],
+    //     componentId: 'quiz-dom',
+    //     elapsedTime: 0,
+    //     ambientSound: 'ambient2'
+    // },
+    // {
+    //     id: 'breaking_bad',
+    //     type: '2d',
+    //     props: {
+    //         image: 'breaking-bad.jpg'
+    //     },
+    //     name: 'Breaking Bad',
+    //     answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
+    //     componentId: 'quiz-dom',
+    //     elapsedTime: 0,
+    //     ambientSound: 'ambient3'
+    // },
+    // {
+    //     type: '2d',
+    //     props: {
+    //         name: 'the-crown-svg'
+    //     },
+    //     name: 'The crown',
+    //     answers: ['the crown'],
+    //     componentId: 'quiz-custom',
+    //     elapsedTime: 0,
+    //     ambientSound: 'ambient5'
+    // }
 ]

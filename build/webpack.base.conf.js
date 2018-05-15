@@ -77,10 +77,5 @@ module.exports = {
             'glslify'
             ]
         }]
-    },
-    plugins: [
-        new webpack.ProvidePlugin({
-            TWEEN: '@tweenjs/tween.js'
-        })
-    ]
+    }
 }

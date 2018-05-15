@@ -2,6 +2,8 @@ import eventHub from 'Application/event-hub'
 import { randomInRange, randomSign } from 'Utils/Numbers'
 import AudioManager from 'Utils/AudioManager'
 
+import { TweenMax, Circ } from 'gsap'
+
 export default
 {
     name: 'the-crown-svg',
@@ -49,6 +51,16 @@ export default
         }
         this.corgis.push(this.corgi)
         this.$el.removeChild(this.$refs.corgi)
+
+        TweenMax.set(this.$refs.hand, {rotation: -10, transformOrigin:"50% 100%"})
+        TweenMax.to(this.$refs.hand, 0.3,
+        {
+            rotation: 10,
+            yoyo: true,
+            repeat: -1,
+            transformOrigin:"50% 100%",
+            ease: Circ.easeInOut
+        })
     },
 
     destroyed()

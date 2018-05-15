@@ -89,6 +89,6 @@ module.exports = {
     'template-curly-spacing': [1, 'never']
   },
   'globals': {
-      TWEEN: true
+
   }
 }
