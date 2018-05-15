@@ -4,8 +4,6 @@ import eventHub from 'Application/event-hub'
 
 import Quiz from 'Config/quiz'
 
-import AudioManager from 'Utils/AudioManager'
-
 import GameTypeManager from 'Components/game-type-manager'
 import GameScoreManager from 'Components/game-score-manager'
 import GameTimeManager from 'Components/game-time-manager'
@@ -48,7 +46,6 @@ export default
 
     created()
     {
-        this.audioManager = new AudioManager()
         this.$store.commit(SET_QUIZ, Quiz)
         this.$store.commit(SET_PROGRESS, this.id - 1)
 
@@ -95,7 +92,7 @@ export default
 
         setupAmbientSound(soundId)
         {
-            this.ambientSound = this.audioManager.create({
+            this.ambientSound = this.$root.audioManager.create({
                 url: `../static/sounds/${soundId}.mp3`,
                 autoplay: true,
                 loop: true
