@@ -17,6 +17,7 @@ import ConfigQuiz from 'Config/quiz'
 
 import Mouse from 'Utils/Mouse.js'
 import Time from 'Utils/Time.js'
+import AudioManager from 'Utils/AudioManager'
 
 import firebase from 'firebase/app'
 import 'firebase/database'
@@ -65,6 +66,7 @@ export default {
 
         this.time = new Time()
         this.mouse = new Mouse(this.windowObj.width, this.windowObj.height)
+        this.audioManager = new AudioManager()
 
         window.addEventListener('resize', this.onResize)
         window.addEventListener('keydown', this.onKeyPress)
