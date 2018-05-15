@@ -2,11 +2,14 @@ export default class Time
 {
     constructor()
     {
-        this.start = Date.now()
-        this.current = this.start
         this.elapsed = 0
         this.delta = 0
+    }
 
+    start()
+    {
+        this.start = Date.now()
+        this.current = this.start
         this.tick()
     }
 

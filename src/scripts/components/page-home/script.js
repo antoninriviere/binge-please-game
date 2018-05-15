@@ -37,9 +37,9 @@ export default
     {
         onPlayClick()
         {
-            console.log('click')
             this.$root.audioManager.resumeContext()
             this.$router.push('/quiz/1')
+            this.$root.time.start()
         }
     }
 }
