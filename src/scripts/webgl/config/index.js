@@ -5,7 +5,7 @@ export default {
     debug: {
         stats: true,
         orbitControls: true,
-        axes: true
+        axes: false
     },
     postProcessing: {
         active: true,

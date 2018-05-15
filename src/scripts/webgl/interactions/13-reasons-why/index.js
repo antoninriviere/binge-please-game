@@ -68,7 +68,7 @@ export default class ThirteenReasonsWhy extends Group
                 this.walkman = object
                 this.add(this.walkman)
                 this.addListeners()
-                this.initGUI()
+                // this.initGUI()
             }
         )
     }
@@ -99,7 +99,6 @@ export default class ThirteenReasonsWhy extends Group
         GUI.panel
             .addGroup({ label: '13 Reasons why' })
             .addSlider(this.playButton.position, 'y', 'range', { label: 'play button y' })
-
     }
 
     onMouseMove = (e) =>
@@ -126,7 +125,7 @@ export default class ThirteenReasonsWhy extends Group
         this.scene.add(helper)
     }
 
-    update(dt)
+    update()
     {
     }
 

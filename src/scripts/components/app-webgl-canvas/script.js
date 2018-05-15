@@ -35,10 +35,12 @@ export default
             if(interactionId === '')
             {
                 this.webGLApp.clearGroup()
+                this.$el.classList.remove('is-active')
             }
             else
             {
                 this.webGLApp.addGroup(interactionId)
+                this.$el.classList.add('is-active')
             }
         }
     }
