@@ -6,6 +6,7 @@ import eventHub from 'Application/event-hub'
 
 import PageHome from '../components/page-home'
 import PageQuiz from '../components/page-quiz'
+import PageScore from '../components/page-score'
 import AppWebglCanvas from '../components/app-webgl-canvas'
 
 import Moment from 'moment'
@@ -17,6 +18,9 @@ import ConfigQuiz from 'Config/quiz'
 import Mouse from 'Utils/Mouse.js'
 import Time from 'Utils/Time.js'
 
+import firebase from 'firebase/app'
+import 'firebase/database'
+
 export default {
     name: 'app',
 
@@ -27,6 +31,7 @@ export default {
     {
         PageHome,
         PageQuiz,
+        PageScore,
         AppWebglCanvas
     },
 
@@ -54,6 +59,9 @@ export default {
     {
         this.$html = document.documentElement
         this.$body = document.body
+
+        firebase.initializeApp(Config.firebase)
+        this.database = firebase.database()
 
         this.time = new Time()
         this.mouse = new Mouse(this.windowObj.width, this.windowObj.height)

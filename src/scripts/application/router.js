@@ -24,6 +24,13 @@ const routes = [
         meta: {
             componentId: 'page-quiz'
         }
+    },
+    {
+        path: '/score',
+        name: 'score',
+        meta: {
+            componentId: 'page-score'
+        }
     }
 ]
 

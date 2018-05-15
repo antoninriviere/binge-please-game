@@ -13,6 +13,7 @@
     },
     "dependencies": {
         "controlkit": "^0.1.9",
+        "firebase": "^5.0.2",
         "glob": "^7.1.2",
         "glsl-fxaa": "^3.0.0",
         "gsap": "^1.20.4",
