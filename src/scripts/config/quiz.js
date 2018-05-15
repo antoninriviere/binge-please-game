@@ -29,7 +29,7 @@ export default
         props: {
             image: 'CasaDePapel.jpg'
         },
-        answers: ['casa de papel'],
+        answers: ['la casa de papel', 'casa de papel'],
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'

@@ -9,8 +9,6 @@ import PageQuiz from '../components/page-quiz'
 import PageScore from '../components/page-score'
 import AppWebglCanvas from '../components/app-webgl-canvas'
 
-import Moment from 'moment'
-
 import logger from 'Utils/logger'
 import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
@@ -69,7 +67,7 @@ export default {
         this.audioManager = new AudioManager()
 
         window.addEventListener('resize', this.onResize)
-        window.addEventListener('keydown', this.onKeyPress)
+        // window.addEventListener('keydown', this.onKeyPress)
         window.addEventListener('mousemove', this.onMouseMove)
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)

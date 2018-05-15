@@ -48,6 +48,7 @@ export default
     {
         this.$store.commit(SET_QUIZ, Quiz)
         this.$store.commit(SET_PROGRESS, this.id - 1)
+        this.$store.watch(this.$store.getters.getCurrentProgress, this.onProgressChange)
 
         eventHub.$on('application:route-change', this.onRouteChange)
     },
@@ -101,6 +102,11 @@ export default
                 this.setupAmbientSound(nextQuizObject.ambientSound)
 
             this.$store.commit(SET_PROGRESS, currentId)
+        },
+
+        onProgressChange(progress)
+        {
+            this.$router.push(`/quiz/${progress + 1}`)
         },
 
         setupAmbientSound(soundId)

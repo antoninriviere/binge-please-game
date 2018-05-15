@@ -2,12 +2,13 @@ import { SET_QUIZ, SET_PROGRESS, INCREMENT_PROGRESS, INCREMENT_SCORE } from 'Mut
 
 const state = {
     quiz: [],
-    progress: 0
+    progress: 1
 }
 
 const getters = {
     getQuiz: (state) => () => state.quiz,
     getCurrentQuestion: (state) => () => state.quiz[state.progress],
+    getCurrentProgress: (state) => () => state.progress,
     getQuestion: (state) => (index) => state.quiz[index]
 }
 
