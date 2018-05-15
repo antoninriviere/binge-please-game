@@ -1,4 +1,4 @@
-import { INCREMENT_SCORE } from 'MutationTypes'
+// import { INCREMENT_SCORE } from 'MutationTypes'
 
 export default
 {
@@ -16,9 +16,9 @@ export default
     },
 
     computed: {
-        score()
+        progress()
         {
-            return this.$store.getters.getScore()
+            return this.$root.quizId
         }
     },
 

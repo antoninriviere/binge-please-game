@@ -3,4 +3,8 @@
     <div v-if="quizObject.type === '2d'" :is="quizObject.componentId" v-bind="quizObject.props"></div>
     <game-type-manager></game-type-manager>
     <game-time-manager></game-time-manager>
+
+    <div class="page-quiz__skip" @click="onClickSkip">
+        SKIP
+    </div>
 </div>

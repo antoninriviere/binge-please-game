@@ -74,6 +74,19 @@ export default
 
     methods:
     {
+        // Events
+        onClickSkip()
+        {
+            eventHub.$emit('quiz:skip-question')
+            const id = parseInt(this.$root.quizId) + 1
+
+            if(id < this.$root.maxQuestions)
+            {
+                this.$root.quizId = id
+                this.$root.$router.push(`/quiz/${this.$root.quizId}`)
+            }
+        },
+
         onRouteChange(id)
         {
             if(this.ambientSound)

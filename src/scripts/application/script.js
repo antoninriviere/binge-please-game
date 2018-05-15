@@ -72,6 +72,7 @@ export default {
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
         eventHub.$on('page:enable-scroll', this.onEnableScroll)
+        eventHub.$on('quiz:skip-question', this.onSkipQuestion)
     },
 
     mounted()
@@ -141,6 +142,11 @@ export default {
         {
             this.$body.classList.remove('overflow-h')
             this.$html.classList.remove('overflow-h')
+        },
+
+        onSkipQuestion()
+        {
+            this.time.start -= 7000
         },
 
         scrollTo(value = 0)
