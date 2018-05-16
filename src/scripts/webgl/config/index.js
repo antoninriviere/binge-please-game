@@ -3,7 +3,7 @@ import { BloomPass } from 'postprocessing'
 import FXAAPass from '../passes/FXAA'
 export default {
     debug: {
-        stats: true,
+        stats: false,
         orbitControls: true,
         axes: false
     },
