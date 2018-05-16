@@ -49,7 +49,7 @@ export default
         this.$store.commit(SET_QUIZ, Quiz)
         this.$store.commit(SET_PROGRESS, this.id - 1)
         this.$store.watch(this.$store.getters.getCurrentProgress, this.onProgressChange)
-
+        this.$store.watch(this.$store.getters.getQuizStatus, this.onQuizStatusChange)
         eventHub.$on('application:route-change', this.onRouteChange)
     },
 
@@ -64,8 +64,8 @@ export default
 
     destroyed()
     {
-        // this.ambientSound.destroy()
-        eventHub.$off('application:route-change', this.onRouteChange)
+        if(this.ambientSound)
+            this.ambientSound.destroy()
     },
 
     mixins: [appPage],
@@ -77,7 +77,6 @@ export default
         {
             eventHub.$emit('quiz:skip-question')
             const id = parseInt(this.$root.quizId) + 1
-
             if(id < this.$root.maxQuestions)
             {
                 this.$root.quizId = id
@@ -87,10 +86,16 @@ export default
 
         onRouteChange(id)
         {
-            if(this.ambientSound)
-                this.ambientSound.destroy()
             const currentId = id - 1
             const nextQuizObject = this.$store.getters.getQuestion(currentId)
+            this.clearQuiz(nextQuizObject)
+            this.$store.commit(SET_PROGRESS, currentId)
+        },
+
+        clearQuiz(nextQuizObject)
+        {
+            if(this.ambientSound)
+                this.ambientSound.destroy()
 
             if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d')
                 this.$store.commit(WEBGL_CLEAR_GROUP)
@@ -100,13 +105,21 @@ export default
 
             if(nextQuizObject.ambientSound)
                 this.setupAmbientSound(nextQuizObject.ambientSound)
-
-            this.$store.commit(SET_PROGRESS, currentId)
         },
 
         onProgressChange(progress)
         {
             this.$router.push(`/quiz/${progress + 1}`)
+        },
+
+        onQuizStatusChange(hasFinished)
+        {
+            if(hasFinished)
+            {
+                eventHub.$off('application:route-change', this.onRouteChange)
+                this.clearQuiz()
+                this.$router.push('/score')
+            }
         },
 
         setupAmbientSound(soundId)
