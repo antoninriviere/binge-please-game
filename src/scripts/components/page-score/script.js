@@ -13,6 +13,11 @@ export default
     {
         return {
 
+            scoreObject: {
+                pseudo: 'michel michel',
+                total: '00:00',
+                totalMilliseconds: 0
+            }
         }
     },
 
@@ -20,22 +25,7 @@ export default
 
     created()
     {
-        this.scoreObject = {
-            pseudo: 'jean marie',
-            score: {
-                total: 0,
-                steps: [
-                    {
-                        id: 'test-1',
-                        score: '4.2'
-                    },
-                    {
-                        id: 'test-2',
-                        score: '7.8'
-                    }
-                ]
-            }
-        }
+
     },
 
     mounted()
@@ -61,15 +51,15 @@ export default
 
         onQuizHasFinished()
         {
-            console.log('on quizz has finished')
             this.$root.time.stop()
-            this.scoreObject.score.total = this.$root.time.globaTime
+            this.scoreObject.total = this.$root.time.globalTime
+            this.scoreObject.totalMilliseconds = this.$root.time.elapsed
         },
 
         onSubmitPseudo()
         {
-            console.log('submit', this.scoreObject.score.total)
             this.updateDatabase()
+            this.$router.push('/leaderboard')
         }
     }
 }

@@ -7,6 +7,7 @@ import eventHub from 'Application/event-hub'
 import PageHome from '../components/page-home'
 import PageQuiz from '../components/page-quiz'
 import PageScore from '../components/page-score'
+import PageLeaderboard from '../components/page-leaderboard'
 import AppWebglCanvas from '../components/app-webgl-canvas'
 
 import logger from 'Utils/logger'
@@ -31,6 +32,7 @@ export default {
         PageHome,
         PageQuiz,
         PageScore,
+        PageLeaderboard,
         AppWebglCanvas
     },
 

@@ -31,6 +31,13 @@ const routes = [
         meta: {
             componentId: 'page-score'
         }
+    },
+    {
+        path: '/leaderboard',
+        name: 'leaderboard',
+        meta: {
+            componentId: 'page-leaderboard'
+        }
     }
 ]
 

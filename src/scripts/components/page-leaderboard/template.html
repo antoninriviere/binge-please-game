@@ -1,0 +1,7 @@
+<div class="page-leaderboard">
+    <div class="page-leaderboard__content">
+        <div v-for="(score, index) in scores">
+            {{ index + 1 }} / {{ score.pseudo }} : {{ score.total }}
+        </div>
+    </div>
+</div>
