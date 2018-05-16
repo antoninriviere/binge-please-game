@@ -19,7 +19,7 @@ export default
         props: {
             image: 'PeakyBlinders.jpg'
         },
-        answers: ['peaky blinders'],
+        answers: ['peaky blinders', 'peaky blinder'],
         componentId: 'quiz-dom',
         elapsedTime: 0
         // ambientSound: 'ambient5'
@@ -31,7 +31,7 @@ export default
         props: {
             image: 'CasaDePapel.jpg'
         },
-        answers: ['la casa de papel', 'casa de papel'],
+        answers: ['la casa de papel', 'casa de papel', 'el casa de papel', 'casa de pepel', 'la casa de pepel'],
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'
@@ -43,7 +43,7 @@ export default
         props: {
             image: 'AlteredCarbon.png'
         },
-        answers: ['altered carbon'],
+        answers: ['altered carbon', 'alter carbon', 'alteredcarbon'],
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'
@@ -79,7 +79,7 @@ export default
         props: {
             image: 'Riverdale.jpg'
         },
-        answers: ['riverdale'],
+        answers: ['riverdale', 'riverdal'],
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'
@@ -103,7 +103,7 @@ export default
         props: {
             image: 'TheEndOfTheFuckingWorld.jpg'
         },
-        answers: ['the end of the fucking world', 'theendofthefuckingworld', 'fucking world', 'the end of fucking world', 'theend of the fucking world', 'end of the fucking world', 'end of fucking world'],
+        answers: ['the end of the fucking world', 'the end of f*****ck', 'the end of the f *** ing world', 'the end of the f***ing world', 'the end of the fckg world', 'fucking world', 'the end of fucking world', 'theend of the fucking world', 'end of the fucking world', 'end of fucking world'],
         componentId: 'quiz-dom',
         elapsedTime: 0,
         ambientSound: 'ambient6'
@@ -113,7 +113,7 @@ export default
         name: 'Daredevil',
         type: '2d',
         props: {
-            image: 'Daredevil.jpg'
+            image: 'Daredevil.png'
         },
         answers: ['daredevil', 'dardevil', 'daredevile', 'dardevile', 'dard des villes'],
         componentId: 'quiz-dom',
