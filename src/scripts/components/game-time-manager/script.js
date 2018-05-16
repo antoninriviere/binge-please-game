@@ -40,6 +40,7 @@ export default
         onTick()
         {
             this.globalTime =  Moment.duration(this.$root.time.elapsed).format('mm:ss', { trim: false })
+            this.$root.time.globalTime = this.globalTime
         }
     }
 }

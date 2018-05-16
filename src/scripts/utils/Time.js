@@ -4,6 +4,7 @@ export default class Time
     {
         this.elapsed = 0
         this.delta = 0
+        this.globalTime = 0
     }
 
     start()

@@ -20,12 +20,27 @@ export default
 
     created()
     {
-
+        this.scoreObject = {
+            pseudo: 'jean marie',
+            score: {
+                total: 0,
+                steps: [
+                    {
+                        id: 'test-1',
+                        score: '4.2'
+                    },
+                    {
+                        id: 'test-2',
+                        score: '7.8'
+                    }
+                ]
+            }
+        }
     },
 
     mounted()
     {
-
+        this.onQuizHasFinished()
     },
 
     destroyed()
@@ -35,29 +50,26 @@ export default
 
     methods:
     {
-        saveScore()
+        updateDatabase()
         {
             const newScoreKey = this.$root.database.ref().child('scores').push().key
             const updates = {}
             const uri = '/scores/' + newScoreKey
-            const scoreObject = {
-                pseudo: 'Antonain',
-                score: {
-                    total: 29.3,
-                    steps: [
-                        {
-                            id: 'test-1',
-                            score: 4.2
-                        },
-                        {
-                            id: 'test-2',
-                            score: 3.1
-                        }
-                    ]
-                }
-            }
-            updates[uri] = scoreObject
+            updates[uri] = this.scoreObject
             this.$root.database.ref().update(updates)
+        },
+
+        onQuizHasFinished()
+        {
+            console.log('on quizz has finished')
+            this.$root.time.stop()
+            this.scoreObject.score.total = this.$root.time.globaTime
+        },
+
+        onSubmitPseudo()
+        {
+            console.log('submit', this.scoreObject.score.total)
+            this.updateDatabase()
         }
     }
 }
