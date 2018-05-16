@@ -75,13 +75,7 @@ export default
         // Events
         onClickSkip()
         {
-            eventHub.$emit('quiz:skip-question')
-            const id = parseInt(this.$root.quizId) + 1
-            if(id < this.$root.maxQuestions)
-            {
-                this.$root.quizId = id
-                this.$root.$router.push(`/quiz/${this.$root.quizId}`)
-            }
+            this.$store.dispatch('skipQuestion', this.quizObject.id)
         },
 
         onRouteChange(id)
@@ -92,7 +86,7 @@ export default
             this.$store.commit(SET_PROGRESS, currentId)
         },
 
-        clearQuiz(nextQuizObject)
+        clearQuiz(nextQuizObject = {})
         {
             if(this.ambientSound)
                 this.ambientSound.destroy()

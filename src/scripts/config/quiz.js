@@ -13,6 +13,7 @@ export default
         // ambientSound: 'ambient4'
     },
     {
+        id: 'peaky_blinders',
         name: 'Peaky Blinders',
         type: '2d',
         props: {
@@ -24,6 +25,7 @@ export default
         // ambientSound: 'ambient5'
     },
     {
+        id: 'la_casa_de_papel',
         name: 'Casa de papel',
         type: '2d',
         props: {
@@ -35,6 +37,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'altered_carbon',
         name: 'Altered Carbon',
         type: '2d',
         props: {
@@ -46,6 +49,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'friends',
         name: 'Friends',
         type: '2d',
         props: {
@@ -57,6 +61,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'black_mirror',
         name: 'Black Mirror',
         type: '2d',
         props: {
@@ -68,6 +73,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'riverdale',
         name: 'Riverdale',
         type: '2d',
         props: {
@@ -79,6 +85,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'rick_and_morty',
         name: 'Rick & Morty',
         type: '2d',
         props: {
@@ -90,6 +97,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'the_end_of_the_fucking_world',
         name: 'The end of the fucking world',
         type: '2d',
         props: {
@@ -101,6 +109,7 @@ export default
         ambientSound: 'ambient6'
     },
     {
+        id: 'daredevil',
         name: 'Daredevil',
         type: '2d',
         props: {

@@ -72,7 +72,8 @@ export default {
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
         eventHub.$on('page:enable-scroll', this.onEnableScroll)
-        eventHub.$on('quiz:skip-question', this.onSkipQuestion)
+        // eventHub.$on('quiz:skip-question', this.onSkipQuestion)
+        this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
     },
 
     mounted()

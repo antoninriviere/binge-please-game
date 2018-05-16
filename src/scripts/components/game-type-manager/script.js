@@ -19,6 +19,7 @@ export default
     created()
     {
         window.addEventListener('keydown', this.onKeyBoardEnter)
+        this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
     },
 
     mounted()
@@ -61,6 +62,11 @@ export default
 
     methods:
     {
+        onSkipQuestion()
+        {
+            this.currentType = ''
+            this.isActive = false
+        },
         onKeyBoardEnter(ev)
         {
             const entry = ev.keyCode || ev.which
@@ -84,7 +90,7 @@ export default
                     case 13 :
                         this.$store.dispatch('submitAnswer', this.currentType.toLowerCase())
                         this.currentType = ''
-                        this.isActive = ''
+                        this.isActive = false
                         break
                     // Backspace
                     case 8 :

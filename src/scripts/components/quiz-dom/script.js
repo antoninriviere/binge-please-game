@@ -35,7 +35,6 @@ export default
 
     mounted()
     {
-        console.log('mounted quiz dom')
     },
 
     destroyed()
