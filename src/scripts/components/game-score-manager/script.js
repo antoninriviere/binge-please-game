@@ -1,5 +1,3 @@
-// import { INCREMENT_SCORE } from 'MutationTypes'
-
 export default
 {
     name: 'game-score-manager',
