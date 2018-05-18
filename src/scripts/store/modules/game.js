@@ -10,9 +10,10 @@ const getters = {
 }
 
 const mutations = {
-    [INCREMENT_SCORE](state)
+    [INCREMENT_SCORE](state, increment)
     {
-        state.score ++
+        console.log('increment score', increment)
+        state.score += increment
     },
     [SET_CURRENT_TIME](state, time)
     {

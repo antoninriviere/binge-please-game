@@ -16,18 +16,22 @@ export default
     data()
     {
         return {
-            globalTime: 0
+            time: {
+                enabled: false,
+                current: 0
+            }
         }
     },
 
     created()
     {
         eventHub.$on('application:enterframe', this.onTick)
+        this.$root.$store.watch(this.$root.$store.getters.getCurrentProgress, this.onUpdateProgress)
     },
 
     mounted()
     {
-
+        this.startTime()
     },
 
     destroyed()
@@ -37,10 +41,39 @@ export default
 
     methods:
     {
+        startTime()
+        {
+            this.time.current = 0
+            this.time.enabled = true
+            this.$root.time.startTime()
+        },
+
+        stopTime()
+        {
+            this.time.enabled = false
+            this.$root.time.stopTime()
+        },
+
+        onUpdateProgress(progress)
+        {
+            this.stopTime()
+            this.startTime()
+        },
+
         onTick()
         {
-            this.globalTime =  Moment.duration(this.$root.time.elapsed).format('mm:ss', { trim: false })
-            this.$root.time.globalTime = this.globalTime
+            if(this.time.enabled)
+            {
+                this.$root.time.tick()
+
+                if(this.$root.time.currentTime < 0)
+                {
+                    this.stopTime()
+                    this.$parent.onClickSkip()
+                }
+
+                this.time.current = Moment.duration(this.$root.time.currentTime).format('mm:ss', { trim: false })
+            }
         }
     }
 }

@@ -10,6 +10,7 @@ export default
     data()
     {
         return {
+            score: 0
         }
     },
 
@@ -22,6 +23,7 @@ export default
 
     created()
     {
+        this.$root.$store.watch(this.$root.$store.getters.getScore, this.onUpdateScore)
     },
 
     mounted()
@@ -34,5 +36,10 @@ export default
 
     methods:
     {
+        onUpdateScore(score)
+        {
+            console.log('score updated', score)
+            this.score = score
+        }
     }
 }

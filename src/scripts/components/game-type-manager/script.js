@@ -88,7 +88,7 @@ export default
                 {
                     // Enter
                     case 13 :
-                        this.$store.dispatch('submitAnswer', this.currentType.toLowerCase())
+                        this.$store.dispatch('submitAnswer', {answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
                         this.currentType = ''
                         this.isActive = false
                         break

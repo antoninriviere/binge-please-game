@@ -38,11 +38,11 @@ export default
         getLeaderBoardDatas()
         {
             this.scores = []
-            this.$root.database.ref('/scores/').orderByChild('totalMilliseconds').once('value').then((snapshot) =>
+            this.$root.database.ref('/scores/').orderByChild('total').once('value').then((snapshot) =>
             {
                 snapshot.forEach((child) =>
                 {
-                    this.scores.push(child.val())
+                    this.scores.unshift(child.val())
                 })
             })
             console.log(this.scores)

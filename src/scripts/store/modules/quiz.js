@@ -3,7 +3,8 @@ import {
     SET_PROGRESS,
     INCREMENT_PROGRESS,
     QUIZ_HAS_FINISHED,
-    SKIP_QUESTION
+    SKIP_QUESTION,
+    INCREMENT_SCORE
 } from 'MutationTypes'
 
 const state = {
@@ -62,16 +63,22 @@ const actions = {
         }
         else return
     },
-    submitAnswer({ state, commit, dispatch }, answer)
+    submitAnswer({ state, commit, dispatch }, answerObj)
     {
         const currentQuestion = state.quiz[state.progress]
         console.log('SUBMIT ANSWER', currentQuestion)
 
         for(let i = 0; i < currentQuestion.answers.length; i++)
         {
-            if(answer === currentQuestion.answers[i])
+            if(answerObj.answer === currentQuestion.answers[i])
             {
-                console.log('WIN')
+                console.log('win', answerObj.time)
+
+                // TODO better max time
+                const timePoints = Math.round(answerObj.time / 15000 * 100)
+                const totalPoints = 100 + timePoints
+
+                commit(INCREMENT_SCORE, totalPoints)
                 dispatch('testQuizState')
             }
         }

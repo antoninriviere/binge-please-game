@@ -15,7 +15,7 @@ import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
 
 import Mouse from 'Utils/Mouse.js'
-import Time from 'Utils/Time.js'
+import GameTime from './GameTime.js'
 import AudioManager from 'Utils/AudioManager'
 
 import firebase from 'firebase/app'
@@ -64,7 +64,7 @@ export default {
         firebase.initializeApp(Config.firebase)
         this.database = firebase.database()
 
-        this.time = new Time()
+        this.time = new GameTime()
         this.mouse = new Mouse(this.windowObj.width, this.windowObj.height)
         this.audioManager = new AudioManager()
 
@@ -74,8 +74,6 @@ export default {
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
         eventHub.$on('page:enable-scroll', this.onEnableScroll)
-        // eventHub.$on('quiz:skip-question', this.onSkipQuestion)
-        this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
     },
 
     mounted()
@@ -147,11 +145,6 @@ export default {
             this.$html.classList.remove('overflow-h')
         },
 
-        onSkipQuestion()
-        {
-            this.time.start -= 7000
-        },
-
         scrollTo(value = 0)
         {
             window.scrollTo(0, value)
@@ -167,7 +160,6 @@ export default {
 
         onEnterFrame()
         {
-            this.time.tick()
             eventHub.$emit('application:enterframe')
             requestAnimationFrame(this.onEnterFrame)
         }

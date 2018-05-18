@@ -14,9 +14,8 @@ export default
         return {
 
             scoreObject: {
-                pseudo: 'michel michel',
-                total: '00:00',
-                totalMilliseconds: 0
+                pseudo: 'jean-marie',
+                total: 0
             }
         }
     },
@@ -31,6 +30,14 @@ export default
     mounted()
     {
         this.onQuizHasFinished()
+    },
+
+    computed:
+    {
+        score()
+        {
+            return this.$store.getters.getScore()
+        }
     },
 
     destroyed()
@@ -52,8 +59,7 @@ export default
         onQuizHasFinished()
         {
             this.$root.time.stop()
-            this.scoreObject.total = this.$root.time.globalTime
-            this.scoreObject.totalMilliseconds = this.$root.time.elapsed
+            this.scoreObject.total = this.score
         },
 
         onSubmitPseudo()
