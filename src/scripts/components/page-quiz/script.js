@@ -2,6 +2,7 @@ import appPage from 'Mixins/app-page'
 
 import eventHub from 'Application/event-hub'
 
+import Config from 'Config'
 import Quiz from 'Config/quiz'
 
 import GameTypeManager from 'Components/game-type-manager'
@@ -12,6 +13,9 @@ import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
 import QuizVideo from 'Components/quiz-video'
 import QuizCustom from 'Components/quiz-custom'
+
+import { getDebugParams } from 'Utils/Url'
+import findIndex from 'lodash.findindex'
 
 import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
 
@@ -47,7 +51,18 @@ export default
     created()
     {
         this.$store.commit(SET_QUIZ, Quiz)
-        this.$store.commit(SET_PROGRESS, this.id - 1)
+        const debugParams = getDebugParams()
+        const isDebug = Object.keys(debugParams).length > 0
+        if(isDebug && Config.environment === 'dev')
+        {
+            const debugXpId = debugParams.debug
+            const debugXpIndex = findIndex(Quiz, { id: debugXpId })
+            this.$store.commit(SET_PROGRESS, debugXpIndex)
+        }
+        else
+        {
+            this.$store.commit(SET_PROGRESS, this.id - 1)
+        }
         this.$store.watch(this.$store.getters.getCurrentProgress, this.onProgressChange)
         this.$store.watch(this.$store.getters.getQuizStatus, this.onQuizStatusChange)
         eventHub.$on('application:route-change', this.onRouteChange)

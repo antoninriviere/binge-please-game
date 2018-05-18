@@ -25,8 +25,7 @@ const getters = {
 }
 
 const mutations = {
-    [SET_QUIZ](state,
-        quiz)
+    [SET_QUIZ](state, quiz)
     {
         state.quiz = quiz
         state.maxQuestions = quiz.length

@@ -1,4 +1,5 @@
 import TheCrownSvg from './the-crown-svg'
+import BreakingBadSvg from './breaking-bad-svg'
 
 export default
 {
@@ -6,7 +7,8 @@ export default
 
     components:
     {
-        TheCrownSvg
+        TheCrownSvg,
+        BreakingBadSvg
     },
 
     props: {
@@ -29,7 +31,6 @@ export default
 
     created()
     {
-        console.log(this.audioManager)
     },
 
     mounted()

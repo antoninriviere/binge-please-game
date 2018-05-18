@@ -1,0 +1,46 @@
+.xp-container {
+    background-color #5934A5
+
+    .xp-item {
+        $size = 20vh
+        $padding = 2vh
+
+        position absolute
+
+        width $size + $padding
+        height $size + $padding
+        padding $padding
+
+        z-index 3
+
+        opacity 0
+        transition all 0.3s $ease-out-back
+
+        &.has-appeared {
+            opacity 1
+        }
+        &:nth-child(1){
+            top 52%
+            left 28%
+        }
+        &:nth-child(2){
+            top 26%
+            left 45%
+            z-index 0
+        }
+        &:nth-child(3){
+            top 54%
+            left 56%
+        }
+        &:nth-child(4){
+            top 31%
+            left 12%
+            z-index 0
+        }
+        &:nth-child(5){
+            top 32%
+            left 71%
+            z-index 0
+        }
+    }
+}

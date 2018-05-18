@@ -1,5 +1,5 @@
 import eventHub from 'Application/event-hub'
-import { randomInRange, randomSign } from 'Utils/Numbers'
+import { randomInRange } from 'Utils/Numbers'
 import AudioManager from 'Utils/AudioManager'
 
 import { TweenMax, Circ } from 'gsap'
@@ -52,13 +52,12 @@ export default
         this.corgis.push(this.corgi)
         this.$el.removeChild(this.$refs.corgi)
 
-        TweenMax.set(this.$refs.hand, {rotation: -10, transformOrigin:"50% 100%"})
-        TweenMax.to(this.$refs.hand, 0.3,
-        {
+        TweenMax.set(this.$refs.hand, { rotation: -10, transformOrigin: '50% 100%' })
+        TweenMax.to(this.$refs.hand, 0.3, {
             rotation: 10,
             yoyo: true,
             repeat: -1,
-            transformOrigin:"50% 100%",
+            transformOrigin: '50% 100%',
             ease: Circ.easeInOut
         })
     },
@@ -92,7 +91,7 @@ export default
             this.corgis.push(corgi)
             const index = this.corgis.length
             const radiusShift = this.baseRadius * 0.25
-            const radius = this.baseRadius + ( radiusShift * ( index % 4 ) )
+            const radius = this.baseRadius + (radiusShift * (index % 4))
             const pos = {
                 x: radius * randomInRange(0.4, 1) * Math.cos((index * 3) * 0.1 * Math.PI * 2),
                 y: radius * randomInRange(0.4, 1) * Math.sin((index * 3) * 0.1 * Math.PI * 2)

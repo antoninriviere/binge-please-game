@@ -238,7 +238,19 @@ export default
         },
         answers: ['twin peaks', 'tween peaks', 'twin peeks', 'tween piks'],
         componentId: 'quiz-dom',
-        elapsedTime: 0
-        // ambientSound: 'ambient6'
+        elapsedTime: 0,
+        ambientSound: 'ambient6'
+    },
+    {
+        id: 'breaking-bad',
+        type: '2d',
+        props: {
+            name: 'breaking-bad-svg'
+        },
+        name: 'Breaking Bad',
+        answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        ambientSound: 'ambient5'
     }
 ]
