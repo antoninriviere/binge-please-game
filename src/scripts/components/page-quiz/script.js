@@ -52,8 +52,8 @@ export default
     {
         this.$store.commit(SET_QUIZ, Quiz)
         const debugParams = getDebugParams()
-        const isDebug = Object.keys(debugParams).length > 0
-        if(isDebug && Config.environment === 'dev')
+        this.isDebug = Object.keys(debugParams).length > 0
+        if(this.isDebug && Config.environment === 'dev')
         {
             const debugXpId = debugParams.debug
             const debugXpIndex = findIndex(Quiz, { id: debugXpId })
@@ -75,6 +75,9 @@ export default
 
         if(this.quizObject.ambientSound)
             this.setupAmbientSound(this.quizObject.ambientSound)
+
+        if(!this.isDebug)
+            this.$refs.timeManager.startTime()
     },
 
     destroyed()

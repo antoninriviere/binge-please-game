@@ -29,11 +29,6 @@ export default
         this.$root.$store.watch(this.$root.$store.getters.getCurrentProgress, this.onUpdateProgress)
     },
 
-    mounted()
-    {
-        this.startTime()
-    },
-
     destroyed()
     {
         eventHub.$off('application:enterframe', this.onTick)
@@ -54,7 +49,7 @@ export default
             this.$root.time.stopTime()
         },
 
-        onUpdateProgress(progress)
+        onUpdateProgress()
         {
             this.stopTime()
             this.startTime()
