@@ -1,59 +1,19 @@
 .the-crown-svg {
-    background-color: #f7e0DF
+    background-color #5934A5
     height 100vh
 
     .queen {
 
-        .st0{fill:#5f6a9b}
-        .st2{fill:#fff}
-        .st3{fill:#606060}
-        .st5{fill:#494949}
-        .st12{fill:#5b5b5b}
-        .st13{fill:#f0e5db}
-        .st18{fill:#d3cac2}
-        .st19{fill:#515151}
-
         svg {
             height 75%
         }
-
-        .movingHand {
-            transform rotate3d(10deg, 0, 0)
-        }
     }
 
-    .corgi {
-
-        .st0{fill:#fdfcf8}
-        .st1{fill:#ffcb83}
-        .st2{fill:#ead8ca}
-        .st3{fill:#5b5b5b}
-
-        $size = 25vh
-
-        position absolute
-
-        top "calc(50vh - %s)" % ($size / 2)
-        left "calc(50vw - %s)" % ($size / 2)
-
-        height $size
-        width $size
-
-        z-index 2
-
-        svg {
-            opacity 0
-            transform scale3d(0, 0 ,0)
-            transition all 0.15s $ease-out-back
-            &.has-appeared {
-                opacity 1
-                transform scale3d(1, 1 ,1)
-            }
-        }
+    #corgi {
 
         .tongue {
             animation-name tongue
-            animation-duration 0.3s
+            animation-duration 0.4s
             animation-iteration-count infinite
             animation-direction alternate
             // animation-fill-mode both
@@ -64,7 +24,7 @@
                 transform translate3d(0, 0, 0)
             }
             to {
-                transform translate3d(0, -2%, 0)
+                transform translate3d(0, -1%, 0)
             }
         }
     }
