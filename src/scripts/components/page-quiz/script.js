@@ -121,6 +121,7 @@ export default
 
         onProgressChange(progress)
         {
+            console.log(progress)
             this.$router.push(`/quiz/${progress + 1}`)
             // this.$root.time.start()
         },

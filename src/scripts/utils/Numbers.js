@@ -13,3 +13,4 @@ export const randomSign = () =>
     return Math.round(Math.random()) * 2 - 1
 }
 
+export const DegToRad = (deg) => deg * Math.PI / 180

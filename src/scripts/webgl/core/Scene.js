@@ -11,7 +11,7 @@ class SceneObj extends Scene
         super()
         const defaultOptions = {
             camera: {
-                fov: 45,
+                fov: 15,
                 near: 1,
                 far: 1000,
                 position: new Vector3(0, 0, 10)
@@ -45,7 +45,7 @@ class SceneObj extends Scene
 
         this.container.appendChild(this.renderer.domElement)
 
-        this.camera = new PerspectiveCamera(this.options.fov, this.width / this.height, this.options.near, this.options.far)
+        this.camera = new PerspectiveCamera(this.options.camera.fov, this.width / this.height, this.options.near, this.options.far)
         this.camera.position.copy(this.options.camera.position)
 
         if(this.options.postProcessing.active)
@@ -62,6 +62,20 @@ class SceneObj extends Scene
             const axes = new AxesHelper(10)
             this.add(axes)
         }
+    }
+
+    initCameraGUI()
+    {
+        this.camera.position.range = [0, 50]
+        this.camera.rotation.range = [-Math.PI, Math.PI]
+        GUI.panel
+            .addGroup({ label: 'Camera' })
+                .addSlider(this.camera.rotation, 'x', 'range', { label: 'rX', step: 0.001 })
+                .addSlider(this.camera.rotation, 'y', 'range', { label: 'rY', step: 0.001 })
+                .addSlider(this.camera.rotation, 'z', 'range', { label: 'rZ', step: 0.001 })
+                .addSlider(this.camera.position, 'x', 'range', { label: 'X', step: 0.01 })
+                .addSlider(this.camera.position, 'y', 'range', { label: 'Y', step: 0.01 })
+                .addSlider(this.camera.position, 'z', 'range', { label: 'Z', step: 0.01 })
     }
 
     initControls()
