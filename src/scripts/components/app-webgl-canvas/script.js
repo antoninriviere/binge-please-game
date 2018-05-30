@@ -15,6 +15,7 @@ export default
     created()
     {
         eventHub.$on('window:resize', this.onResize)
+        window.addEventListener('mousemove', this.onMouseMove)
         this.$store.watch(this.$store.getters.getWebGLGroup, this.onGroupUpdate)
     },
 
@@ -28,6 +29,11 @@ export default
         onResize()
         {
             this.webGLApp.resize()
+        },
+
+        onMouseMove(event)
+        {
+            this.webGLApp.mouseMove(event)
         },
 
         onGroupUpdate(interactionId)

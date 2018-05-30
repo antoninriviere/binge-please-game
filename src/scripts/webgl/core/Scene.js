@@ -110,7 +110,7 @@ class SceneObj extends Scene
         })
         passObject.renderToScreen = true
     }
-    render(dt)
+    render(time)
     {
         if(this.options.debug.orbitControls)
         {
@@ -122,7 +122,7 @@ class SceneObj extends Scene
 
         if(this.options.postProcessing.active)
         {
-            this.composer.render(dt)
+            this.composer.render(time.delta)
         }
         else
         {

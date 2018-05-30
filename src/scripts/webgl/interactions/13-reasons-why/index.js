@@ -6,7 +6,6 @@ import {
     DirectionalLight,
     DirectionalLightHelper,
     DoubleSide,
-    Vector2,
     Raycaster
 } from 'three'
 import OBJLoader from 'WebGLUtils/OBJLoader'
@@ -15,14 +14,14 @@ import GUI from 'WebGLUtils/GUI'
 
 export default class ThirteenReasonsWhy extends Group
 {
-    constructor(scene)
+    constructor(options)
     {
         super()
-        this.scene = scene
+        this.scene = options.scene
         this.name = '13ReasonsWhy'
         this.initMeshes()
         this.initLights()
-        this.mouse = new Vector2()
+        this.mouse = options.mouse
         this.raycaster = new Raycaster()
     }
 
@@ -68,7 +67,7 @@ export default class ThirteenReasonsWhy extends Group
                 this.walkman = object
                 this.add(this.walkman)
                 this.addListeners()
-                // this.initGUI()
+                this.initGUI()
             }
         )
     }
@@ -101,12 +100,6 @@ export default class ThirteenReasonsWhy extends Group
             .addSlider(this.playButton.position, 'y', 'range', { label: 'play button y' })
     }
 
-    onMouseMove = (e) =>
-    {
-        this.mouse.x = (e.clientX / window.innerWidth) * 2 - 1
-        this.mouse.y = - (e.clientY / window.innerHeight) * 2 + 1
-    }
-
     onMouseDown = () =>
     {
         this.raycaster.setFromCamera(this.mouse, this.scene.camera)
@@ -127,6 +120,17 @@ export default class ThirteenReasonsWhy extends Group
 
     update()
     {
+
+    }
+
+    onMove(mouse)
+    {
+        this.mouse = mouse
+    }
+
+    resize(mouse)
+    {
+        this.mouse = mouse
     }
 
     clear()

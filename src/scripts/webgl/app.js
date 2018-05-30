@@ -3,8 +3,12 @@ import SceneObj from 'WebGLCore/scene'
 import Config from 'WebGLConfig'
 import camelcase from 'lodash.camelcase'
 
+import Time from 'Utils/Time'
+import Mouse from 'Utils/Mouse'
+
 import MouseMoveRotate from './interactions/mouse-move-rotate'
 import ThirteenReasonsWhy from './interactions/13-reasons-why'
+import StrangerThings from './interactions/stranger-things'
 
 class App
 {
@@ -20,8 +24,10 @@ class App
         this.group = undefined
         this.interactionId = undefined
 
-        this.DELTA_TIME = 0
-        this.LAST_TIME = Date.now()
+        this.time = new Time()
+        this.time.start()
+
+        this.mouse = new Mouse(window.innerWidth, window.innerHeight)
 
         this.update()
     }
@@ -38,9 +44,11 @@ class App
         switch(id)
         {
             case 'mouse-move-rotate':
-                return new MouseMoveRotate(this.scene)
+                return new MouseMoveRotate({ scene: this.scene, mouse: this.mouse })
             case '13_reasons_why':
-                return new ThirteenReasonsWhy(this.scene)
+                return new ThirteenReasonsWhy({ scene: this.scene, mouse: this.mouse })
+            case 'stranger-things':
+                return new StrangerThings({ scene: this.scene, mouse: this.mouse })
         }
     }
 
@@ -55,19 +63,29 @@ class App
 
     update = () =>
     {
-        this.DELTA_TIME = Date.now() - this.LAST_TIME
-        this.LAST_TIME = Date.now()
+        this.time.tick()
 
-        if(this.group) this.group.update(this.DELTA_TIME)
+        if(this.group) this.group.update(this.time)
 
-        this.scene.render(this.DELTA_TIME)
+        this.scene.render(this.time)
         raf(this.update)
+    }
+
+    mouseMove = (event) =>
+    {
+        this.mouse.onMove(event)
+
+        if(this.group) this.group.onMove(this.mouse)
     }
 
     resize = () =>
     {
         this.width = window.innerWidth
         this.height = window.innerHeight
+
+        this.mouse.onResize(this.width, this.height)
+
+        if(this.group) this.group.resize(this.mouse)
 
         this.scene.resize(this.width, this.height)
     }
