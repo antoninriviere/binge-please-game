@@ -4,7 +4,7 @@ import FXAAPass from '../passes/FXAA'
 export default {
     debug: {
         stats: false,
-        orbitControls: true,
+        orbitControls: false,
         axes: false
     },
     postProcessing: {
@@ -13,13 +13,13 @@ export default {
         passes: [
             {
                 name: 'BloomPass',
-                active: false,
+                active: true,
                 gui: false,
                 constructor: () =>
                 {
                     return new BloomPass({
                         resolutionScale: 0.5,
-                        intensity: 2.0,
+                        intensity: 0.5,
                         distinction: 1.0
                     })
                 }

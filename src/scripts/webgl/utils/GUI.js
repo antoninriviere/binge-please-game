@@ -7,17 +7,11 @@ class GUI extends ControlKit
         super(options)
 
         this.panel = this.addPanel()
-        setTimeout(() =>
+        const dom = document.querySelector('#controlKit')
+        dom.addEventListener('mousedown', (e) =>
         {
-            const doms = document.querySelectorAll('.wrap')
-            for(const dom of doms)
-            {
-                dom.addEventListener('mousedown', (e) =>
-                {
-                    e.stopPropagation()
-                }, false)
-            }
-        }, 500)
+            e.stopPropagation()
+        }, false)
     }
 
     addPanel(options = {})

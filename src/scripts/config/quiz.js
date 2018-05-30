@@ -40,7 +40,6 @@ export default
         id: 'stranger-things',
         type: '3d',
         props: {
-
         },
         name: 'Stranger Things',
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],

@@ -65,9 +65,12 @@ class App
     {
         this.time.tick()
 
-        if(this.group) this.group.update(this.time)
+        if(this.group)
+        {
+            this.group.update(this.time)
+            this.scene.render(this.time)
+        }
 
-        this.scene.render(this.time)
         raf(this.update)
     }
 

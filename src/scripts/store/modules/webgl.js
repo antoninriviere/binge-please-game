@@ -14,6 +14,7 @@ const mutations = {
     },
     [WEBGL_CLEAR_GROUP](state)
     {
+        console.log('clear state')
         state.webglGroup = ''
     }
 }

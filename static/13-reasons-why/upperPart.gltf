@@ -1,0 +1,265 @@
+{
+  "accessors": [
+    {
+      "name": "Walkman-Porte-Mesh_positions",
+      "componentType": 5126,
+      "count": 143,
+      "min": [
+        -40.78269958496094,
+        10.288493156433105,
+        -66
+      ],
+      "max": [
+        20.001310348510742,
+        45.45288848876953,
+        42.97792434692383
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 0
+    },
+    {
+      "name": "Walkman-Porte-Mesh_normals",
+      "componentType": 5126,
+      "count": 143,
+      "min": [
+        -0.9998676776885986,
+        -0.7183656692504883,
+        -0.9851001501083374
+      ],
+      "max": [
+        0.7624905705451965,
+        0.9780631065368652,
+        0.9795774221420288
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 1764
+    },
+    {
+      "name": "Walkman-Porte-Mesh_texcoords",
+      "componentType": 5126,
+      "count": 143,
+      "min": [
+        0,
+        0
+      ],
+      "max": [
+        1,
+        0.5
+      ],
+      "type": "VEC2",
+      "bufferView": 1,
+      "byteOffset": 0
+    },
+    {
+      "name": "Walkman-Porte-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 477,
+      "min": [
+        0
+      ],
+      "max": [
+        142
+      ],
+      "type": "SCALAR",
+      "bufferView": 2,
+      "byteOffset": 0
+    },
+    {
+      "name": "Vitre-Mesh_positions",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        -21.37305450439453,
+        23.382654190063477,
+        -43.041893005371094
+      ],
+      "max": [
+        0.8341272473335266,
+        35.54903030395508,
+        22.326231002807617
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 1716
+    },
+    {
+      "name": "Vitre-Mesh_normals",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        -0.48047560453414917,
+        0.8770080804824829,
+        0
+      ],
+      "max": [
+        -0.48047560453414917,
+        0.8770080804824829,
+        0
+      ],
+      "type": "VEC3",
+      "bufferView": 0,
+      "byteOffset": 3480
+    },
+    {
+      "name": "Vitre-Mesh_texcoords",
+      "componentType": 5126,
+      "count": 4,
+      "min": [
+        0,
+        0
+      ],
+      "max": [
+        0.5,
+        0.5
+      ],
+      "type": "VEC2",
+      "bufferView": 1,
+      "byteOffset": 1144
+    },
+    {
+      "name": "Vitre-Mesh_0_indices",
+      "componentType": 5123,
+      "count": 6,
+      "min": [
+        0
+      ],
+      "max": [
+        3
+      ],
+      "type": "SCALAR",
+      "bufferView": 2,
+      "byteOffset": 956
+    }
+  ],
+  "asset": {
+    "generator": "obj2gltf",
+    "version": "2.0"
+  },
+  "buffers": [
+    {
+      "name": "Vitre",
+      "byteLength": 5672,
+      "uri": "data:application/octet-stream;base64,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AAAAAAAAAAAAAAAAAAAAPwAAAAAAAAA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwAAAAAAAAA/AAAAAAAAAAAAAIA/wHr8PVRS+D7Aevw9AAAAAAAAAD8AAAA/AAAAPwAAAD8AAAA/AAAAPwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAPwAAAAAAAAAAAAAAAAAAAAAAAAA/AAAAPwAAAAAAAAAAAAAAAAAAAD8AAAAAAAAAAAAAAAAAAAAAAAAAPwAAAD8AAAA/AAABAAIAAwAEAAEABQAGAAQABwAIAAYACQAKAAgACwAAAAwADQADAAAADgAFAAMADwAHAAUADwAQAAcAEQALABIAEwANAAsAFAAOAA0AFQAPAA4AFQAWAA8AFwARABgAGQATABEAGgAUABMAGwAVABQAGwAcABUAHQAXAB4AHwAZABcAIAAaABkAIQAbABoAIQAiABsAIwAdACQAJQAfAB0AJgAgAB8AJwAhACAAJwAoACEAKQAqACsALAAtACoALgAvAC0AMAAxAC8AMgAzADEANAA1ADYANwA4ADkAOgA3ADsAPAA6AD0AOAA8ADMAPgA/AEAAQQA+AEIAQwBBAEQAPwBDAEUARgBHAEgASQBKAEsATABNAE4ATwBQAFEAUgBTAFQAVQBWAFcAWABZAFoAWwBcAEcAXQBeAFwAXwBgAF4AYQBiAGAAYwBkAEoAZQBmAGQAZwBoAGYAaQA0AGgAagBrAE0AXgBsAGsAYABtAGwAYgBuAG0AbwBwAHEAcgBlAHAAcwBnAGUAdABpAGcAdQB2AFAAbAB3AHYAbQB4AHcAbgB5AHgAegB7AHwAfQByAHsANgBzAHIANQB0AHMAfgB/AFYAdwBdAH8AeABfAF0AeQBhAF8AgACBAFkAZgB9AIEAaAA2AH0ADAAAAAIAAAADAAEAAwAFAAQABQAHAAYABwAJAAgAEgALAAwACwANAAAADQAOAAMADgAPAAUAGAARABIAEQATAAsAEwAUAA0AFAAVAA4AHgAXABgAFwAZABEAGQAaABMAGgAbABQAJAAdAB4AHQAfABcAHwAgABkAIAAhABoAggAjACQAIwAlAB0AJQAmAB8AJgAnACAAgwApACsAKQAsACoALAAuAC0ALgAwAC8AMAAyADEAaAA0ADYAOwA3ADkAPQA6ADsAMwA8AD0AOQA4ADMAQgA+AEAARABBAEIARQBDAEQAQAA/AEUAhABGAEgANwCFADgAhgBMAE4AhwBPAFEAiACJAIoAiwBVAFcAjABYAFoARgBbAEcAWwBdAFwAXQBfAF4AXwBhAGAASQBjAEoAYwBlAGQAZQBnAGYAZwBpAGgATABqAE0AagBeAGsAXgBgAGwAYABiAG0AjQBvAHEAbwByAHAAcgBzAGUAcwB0AGcATwB1AFAAdQBsAHYAbABtAHcAbQBuAHgAjgB6AHwAegB9AHsAfQA2AHIANgA1AHMAVQB+AFYAfgB3AH8AdwB4AF0AeAB5AF8AWACAAFkAgABmAIEAZgBoAH0AAAAAAAEAAgADAAAAAgA="
+    }
+  ],
+  "bufferViews": [
+    {
+      "name": "bufferView_0",
+      "buffer": 0,
+      "byteLength": 3528,
+      "byteOffset": 0,
+      "byteStride": 12,
+      "target": 34962
+    },
+    {
+      "name": "bufferView_1",
+      "buffer": 0,
+      "byteLength": 1176,
+      "byteOffset": 3528,
+      "byteStride": 8,
+      "target": 34962
+    },
+    {
+      "name": "bufferView_2",
+      "buffer": 0,
+      "byteLength": 968,
+      "byteOffset": 4704,
+      "target": 34963
+    }
+  ],
+  "materials": [
+    {
+      "name": "Mat.2",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE",
+      "doubleSided": false
+    },
+    {
+      "name": "Glas 001",
+      "pbrMetallicRoughness": {
+        "baseColorFactor": [
+          0.5,
+          0.5,
+          0.5,
+          1
+        ],
+        "metallicFactor": 0,
+        "roughnessFactor": 1
+      },
+      "emissiveFactor": [
+        0,
+        0,
+        0
+      ],
+      "alphaMode": "OPAQUE",
+      "doubleSided": false
+    }
+  ],
+  "meshes": [
+    {
+      "name": "Walkman-Porte-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 0,
+            "NORMAL": 1,
+            "TEXCOORD_0": 2
+          },
+          "indices": 3,
+          "material": 0,
+          "mode": 4
+        }
+      ]
+    },
+    {
+      "name": "Vitre-Mesh",
+      "primitives": [
+        {
+          "attributes": {
+            "POSITION": 4,
+            "NORMAL": 5,
+            "TEXCOORD_0": 6
+          },
+          "indices": 7,
+          "material": 1,
+          "mode": 4
+        }
+      ]
+    }
+  ],
+  "nodes": [
+    {
+      "name": "Walkman-Porte",
+      "mesh": 0
+    },
+    {
+      "name": "Vitre",
+      "mesh": 1
+    }
+  ],
+  "scene": 0,
+  "scenes": [
+    {
+      "nodes": [
+        0,
+        1
+      ]
+    }
+  ]
+}

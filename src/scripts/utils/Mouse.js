@@ -32,6 +32,9 @@ export default class Mouse
         this.x = event.clientX
         this.y = event.clientY
 
+        this.nX = 2 * (this.x / this.winWidth) - 1
+        this.nY = -2 * (this.y / this.winHeight) + 1
+
         this.ratio.x = this.x / this.winWidth
         this.ratio.y = this.y / this.winHeight
 
