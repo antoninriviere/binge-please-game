@@ -58,9 +58,12 @@ class App
         this.DELTA_TIME = Date.now() - this.LAST_TIME
         this.LAST_TIME = Date.now()
 
-        if(this.group) this.group.update(this.DELTA_TIME)
+        if(this.group)
+        {
+            this.group.update(this.DELTA_TIME)
+            this.scene.render(this.DELTA_TIME)
+        }
 
-        this.scene.render(this.DELTA_TIME)
         raf(this.update)
     }
 

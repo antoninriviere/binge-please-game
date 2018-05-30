@@ -70,6 +70,7 @@ export default
 
     mounted()
     {
+        this.lastQuizObject = this.quizObject
         if(this.quizObject.type === '3d')
             this.setupWebGLGroup(this.quizObject.id)
 
@@ -98,30 +99,31 @@ export default
 
         onRouteChange(id)
         {
+            this.clearQuiz()
             const currentId = id - 1
-            const nextQuizObject = this.$store.getters.getQuestion(currentId)
-            this.clearQuiz(nextQuizObject)
             this.$store.commit(SET_PROGRESS, currentId)
         },
 
-        clearQuiz(nextQuizObject = {})
+        clearQuiz()
         {
             if(this.ambientSound)
                 this.ambientSound.destroy()
 
-            if(this.quizObject.type === '3d' && nextQuizObject.type !== '3d')
+            if(this.lastQuizObject.type === '3d' && this.quizObject.type !== '3d')
                 this.$store.commit(WEBGL_CLEAR_GROUP)
 
-            if(nextQuizObject.type === '3d')
-                this.setupWebGLGroup(nextQuizObject.id)
+            if(this.quizObject.type === '3d')
+                this.setupWebGLGroup(this.quizObject.id)
 
-            if(nextQuizObject.ambientSound)
-                this.setupAmbientSound(nextQuizObject.ambientSound)
+            if(this.quizObject.ambientSound)
+                this.setupAmbientSound(this.quizObject.ambientSound)
+
+            this.lastQuizObject = this.quizObject
         },
 
         onProgressChange(progress)
         {
-            console.log(progress)
+            // this.clearQuiz()
             this.$router.push(`/quiz/${progress + 1}`)
             // this.$root.time.start()
         },

@@ -277,7 +277,7 @@ export default class ThirteenReasonsWhy extends Group
         this.add(this.upperPart)
         this.add(this.cable)
         this.add(this.playButtonGlow)
-        this.initGUI()
+        // this.initGUI()
         this.addListeners()
     }
 
@@ -394,7 +394,7 @@ export default class ThirteenReasonsWhy extends Group
     {
         this.children.forEach((child) =>
         {
-            child.clear()
+            this.scene.remove(child)
         })
         this.tapeSound.destroy()
         window.removeEventListener('mousemove', this.onMouseMove)
