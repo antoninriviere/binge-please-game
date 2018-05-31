@@ -9,6 +9,7 @@ import {
     ShaderMaterial,
     DoubleSide,
     Mesh,
+    PointLight,
     DirectionalLight,
     DirectionalLightHelper
 } from 'three'
@@ -36,7 +37,19 @@ export default class StrangerThings extends Object3D
         this.initMeshes()
         this.initLights()
 
+        this.setupCamera()
+
         this.initGUI()
+    }
+
+    setupCamera()
+    {
+        this.scene.camera.position.x = 0
+        this.scene.camera.position.y = 0
+        this.scene.camera.position.z = 250
+        this.scene.camera.rotation.x = 0
+        this.scene.camera.rotation.y = 0
+        this.scene.camera.rotation.z = 0
     }
 
     initMeshes()
@@ -76,12 +89,16 @@ export default class StrangerThings extends Object3D
 
     initLights()
     {
-        this.directionalLight = new DirectionalLight(0xffffff, 1)
-        this.directionalLight.castShadow = true
-        this.directionalLight.position.set(5, 5, 10)
-        const helper = new DirectionalLightHelper(this.directionalLight, 5)
-        this.scene.add(this.directionalLight)
-        this.scene.add(helper)
+        // this.directionalLight = new DirectionalLight(0xffffff, 1)
+        // this.directionalLight.castShadow = true
+        // this.directionalLight.position.set(5, 5, 10)
+        // const helper = new DirectionalLightHelper(this.directionalLight, 5)
+        // this.scene.add(this.directionalLight)
+        // this.scene.add(helper)
+
+        this.light = new PointLight(0xff0000, 1, 0)
+        this.light.position.set(50, 50, 50)
+        this.scene.add(this.light)
     }
 
     update(time)
