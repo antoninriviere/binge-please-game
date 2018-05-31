@@ -78,7 +78,7 @@ class App
     {
         this.mouse.onMove(event)
 
-        if(this.group) this.group.onMove(this.mouse)
+        if(this.group) this.group.onMouseMove(this.mouse)
     }
 
     resize = () =>

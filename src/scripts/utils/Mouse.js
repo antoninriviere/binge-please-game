@@ -5,6 +5,9 @@ export default class Mouse
         this.x = 0
         this.y = 0
 
+        this.nX = 0
+        this.nY = 0
+
         this.fromCenter = {}
         this.fromCenter.x = 0
         this.fromCenter.y = 0

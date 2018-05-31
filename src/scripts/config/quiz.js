@@ -10,7 +10,7 @@ export default
         name: '13 reasons why',
         answers: ['13 reasons why', '13 reason why'],
         elapsedTime: 0,
-        ambientSound: 'ambient1'
+        ambientSound: ''
     },
     {
         id: 'the-crown-svg',
