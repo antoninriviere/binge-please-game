@@ -10,6 +10,7 @@ export default
         name: '13 reasons why',
         answers: ['13 reasons why', '13 reason why'],
         elapsedTime: 0,
+        color: '#e2c1c0',
         ambientSound: ''
     },
     {
@@ -22,6 +23,7 @@ export default
         answers: ['the crown'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
+        color: '#5934A5',
         ambientSound: 'ambient5'
     },
     {
@@ -34,6 +36,7 @@ export default
         answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
+        color: '#5934A5',
         ambientSound: 'ambient5'
     },
     {
@@ -45,6 +48,7 @@ export default
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
+        color: '#000000',
         ambientSound: 'ambient5'
     }
 ]

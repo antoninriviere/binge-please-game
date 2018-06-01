@@ -4,7 +4,8 @@ import {
     INCREMENT_PROGRESS,
     QUIZ_HAS_FINISHED,
     SKIP_QUESTION,
-    INCREMENT_SCORE
+    INCREMENT_SCORE,
+    START_TRANSITION
 } from 'MutationTypes'
 
 const state = {
@@ -12,6 +13,7 @@ const state = {
     maxQuestions: undefined,
     skippedQuestions: [],
     progress: 1,
+    transition: 1,
     hasFinished: false
 }
 
@@ -19,6 +21,7 @@ const getters = {
     getQuiz: (state) => () => state.quiz,
     getCurrentQuestion: (state) => () => state.quiz[state.progress],
     getCurrentProgress: (state) => () => state.progress,
+    getTransitionProgress: (state) => () => state.transition,
     getQuestion: (state) => (index) => state.quiz[index],
     getQuizStatus: (state) => () => state.hasFinished,
     getSkippedQuestions: (state) => () => state.skippedQuestions
@@ -38,6 +41,10 @@ const mutations = {
     {
         state.progress++
     },
+    [START_TRANSITION](state)
+    {
+        state.transition++
+    },
     [SKIP_QUESTION](state, questionId)
     {
         state.skippedQuestions.push(questionId)
@@ -54,7 +61,7 @@ const actions = {
         const id = state.progress + 1
         if(id < state.maxQuestions)
         {
-            commit(INCREMENT_PROGRESS)
+            commit(START_TRANSITION)
         }
         else if(id === state.maxQuestions)
         {

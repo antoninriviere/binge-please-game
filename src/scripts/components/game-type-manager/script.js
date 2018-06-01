@@ -1,3 +1,5 @@
+import { TweenMax } from 'gsap'
+
 export default
 {
     name: 'game-type-manager',
@@ -74,8 +76,8 @@ export default
     {
         onSkipQuestion()
         {
-            this.currentType = ''
-            this.isActive = false
+            // this.currentType = ''
+            // this.isActive = false
         },
         onKeyBoardEnter(ev)
         {
@@ -98,9 +100,9 @@ export default
                 {
                     // Enter
                     case 13 :
-                        this.$store.dispatch('submitAnswer', {answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
-                        this.currentType = ''
-                        this.isActive = false
+                        this.$store.dispatch('submitAnswer', { answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
+                        // this.currentType = ''
+                        // this.isActive = false
                         break
                     // Backspace
                     case 8 :
@@ -120,6 +122,28 @@ export default
                         break
                 }
             }
+        },
+        transitionOut()
+        {
+            const bounds = this.$refs.text.getBoundingClientRect()
+            const xEnd = Math.ceil(bounds.x + bounds.width) * 1.5
+            TweenMax.set(this.$refs.text, { skewX: '0deg', transformOrigin: '50% 50%' })
+            return new Promise((resolve) =>
+            {
+                TweenMax.to(this.$refs.text, 0.6, {
+                    x: -xEnd,
+                    skewX: '-18deg',
+                    letterSpacing: '3.5vw',
+                    ease: Power3.easeOut,
+                    clearProps: 'all',
+                    onComplete: () =>
+                    {
+                        this.currentType = ''
+                        this.isActive = false
+                        resolve()
+                    }
+                })
+            })
         }
     }
 }

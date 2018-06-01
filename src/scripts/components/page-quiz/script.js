@@ -8,6 +8,7 @@ import Quiz from 'Config/quiz'
 import GameTypeManager from 'Components/game-type-manager'
 import GameScoreManager from 'Components/game-score-manager'
 import GameTimeManager from 'Components/game-time-manager'
+import GameTransitionManager from 'Components/game-transition-manager'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -17,7 +18,7 @@ import QuizCustom from 'Components/quiz-custom'
 import { getDebugParams } from 'Utils/Url'
 import findIndex from 'lodash.findindex'
 
-import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
+import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP, INCREMENT_PROGRESS } from 'MutationTypes'
 
 export default
 {
@@ -31,7 +32,8 @@ export default
         QuizCustom,
         GameTypeManager,
         GameScoreManager,
-        GameTimeManager
+        GameTimeManager,
+        GameTransitionManager
     },
 
     data()
@@ -63,6 +65,7 @@ export default
         {
             this.$store.commit(SET_PROGRESS, this.id - 1)
         }
+        this.$store.watch(this.$store.getters.getTransitionProgress, this.onTransitionStart)
         this.$store.watch(this.$store.getters.getCurrentProgress, this.onProgressChange)
         this.$store.watch(this.$store.getters.getQuizStatus, this.onQuizStatusChange)
         eventHub.$on('application:route-change', this.onRouteChange)
@@ -121,11 +124,26 @@ export default
             this.lastQuizObject = this.quizObject
         },
 
+        onTransitionStart()
+        {
+            this.$refs.typeManager.transitionOut()
+            const options = {
+                color: this.quizObject.color
+            }
+            this.$refs.transitionManager.startTransition(options).then(() =>
+            {
+                console.log('ended')
+                // TODO Clear for prod
+                if(this.isDebug && Config.environment === 'dev')
+                    return
+                this.$store.commit(INCREMENT_PROGRESS)
+            })
+        },
+
         onProgressChange(progress)
         {
-            // this.clearQuiz()
+            console.log('progress change')
             this.$router.push(`/quiz/${progress + 1}`)
-            // this.$root.time.start()
         },
 
         onQuizStatusChange(hasFinished)
@@ -134,7 +152,12 @@ export default
             {
                 eventHub.$off('application:route-change', this.onRouteChange)
                 this.clearQuiz()
-                this.$router.push('/score')
+                this.$refs.typeManager.transitionOut()
+                this.$refs.transitionManager.startTransition().then(() =>
+                {
+                    console.log('ended')
+                    this.$router.push('/score')
+                })
             }
         },
 

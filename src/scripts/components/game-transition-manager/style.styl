@@ -1,0 +1,13 @@
+.game-transition-manager {
+    z-index -1
+    transition transform 0.3s $ease-out-sine
+    will-change transform
+
+    circle {
+        transform-origin 50% 50%
+    }
+
+    &.is-active {
+        z-index 5
+    }
+}
