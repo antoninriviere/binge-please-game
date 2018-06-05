@@ -35,7 +35,7 @@ export default
         props: {
             name: 'breaking-bad-svg'
         },
-        name: 'Victoire is the new black',
+        name: 'Breaking Bad',
         answers: ['breaking bad'],
         componentId: 'quiz-custom',
         elapsedTime: 0,

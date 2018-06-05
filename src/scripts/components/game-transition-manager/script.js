@@ -1,5 +1,6 @@
 import eventHub from 'Application/event-hub'
 import { TweenMax, TimelineMax } from 'gsap'
+import successWellDone from 'Components/game-success-transitions/well-done'
 export default
 {
     name: 'game-transition-manager',
@@ -21,7 +22,8 @@ export default
                 radius: 0,
                 color: '#000000'
             },
-            answer: ''
+            answer: '',
+            successComponent: undefined
         }
     },
 
@@ -67,9 +69,14 @@ export default
             TweenMax.set(this.$refs.circle, { scale: 0 })
 
             if(questionState === 'success')
-                return this.playSuccessTransition()
+            {
+                this.successComponent = successWellDone
+                return this.$nextTick().then(() => this.playSuccessTransition())
+            }
             else
+            {
                 return this.$nextTick().then(() => this.playFailedTransition(options.titleColor))
+            }
         },
         playSuccessTransition()
         {
@@ -83,8 +90,13 @@ export default
                         delay: 0.15,
                         onComplete: () =>
                         {
-                            this.$refs.container.classList.remove('is-active')
-                            resolve()
+                            console.log('success', this.$refs.successComponent)
+                            this.$refs.successComponent.play().then(() =>
+                            {
+                                this.successComponent = undefined
+                                this.$refs.container.classList.remove('is-active')
+                                resolve()
+                            })
                         }
                     }
                 )
@@ -99,7 +111,7 @@ export default
             const answerChars = new SplitText(answerClone, { type: 'chars, words' }).chars
             TweenMax.set(answerChars, { opacity: 0 })
             this.$refs.container.classList.add('is-active')
-            this.$refs.popin.style.opacity = 1
+            TweenMax.set(this.$refs.popin, { opacity: 1 })
             const scale = (answerClone.getBoundingClientRect().width / window.innerHeight * 0.4).toFixed(2)
             return new Promise((resolve) =>
             {

@@ -1,8 +1,5 @@
 .game-transition-manager {
     z-index -1
-    // z-index 5
-    transition transform 0.3s $ease-out-sine
-    will-change transform
 
     circle {
         transform-origin 50% 50%
@@ -37,5 +34,9 @@
         letter-spacing 0.8vw
         font-size 20vh
         line-height 1
+    }
+
+    &__success {
+        opacity 0
     }
 }
