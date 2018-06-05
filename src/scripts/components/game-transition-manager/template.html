@@ -2,8 +2,8 @@
     <svg :width="windowW" :height="windowH" :viewBox="viewBox">
         <circle :cx="circle.cx" :cy="circle.cy" :r="circle.radius" :fill="circle.color" ref="circle"></circle>
     </svg>
-    <div class="game-transition-manager__popin pos-abs-tl fit center-flex" ref="popin" v-show="isFailed">
-        <p class="game-transition-manager__title color--yellow overflow-h">
+    <div class="game-transition-manager__popin pos-abs-tl fit center-flex" ref="popin">
+        <p class="game-transition-manager__title overflow-h">
             <span class="display-inline-block" ref="title">Time is over</span>
         </p>
         <p class="game-transition-manager__info color--white uppercase" ref="info">Good Answer</p>

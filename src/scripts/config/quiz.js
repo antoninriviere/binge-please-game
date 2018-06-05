@@ -11,6 +11,7 @@ export default
         answers: ['13 reasons why', 'thirteen reasons why'],
         elapsedTime: 0,
         color: '#e2c1c0',
+        titleColor: '#F73E39',
         backgroundColor: '#f0d9d8',
         ambientSound: ''
     },
@@ -34,8 +35,8 @@ export default
         props: {
             name: 'breaking-bad-svg'
         },
-        name: 'Breaking Bad',
-        answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
+        name: 'Victoire is the new black',
+        answers: ['breaking bad'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
         color: '#412789',
@@ -48,7 +49,7 @@ export default
         props: {
         },
         name: 'Stranger Things',
-        answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
+        answers: ['stranger things'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
         color: '#000000',

@@ -21,7 +21,6 @@ export default
                 radius: 0,
                 color: '#000000'
             },
-            isFailed: false,
             answer: ''
         }
     },
@@ -61,7 +60,7 @@ export default
             this.circle.cy = windowObj.height / 2
             this.circle.radius = windowObj.height * 1.5
         },
-        startTransition(options = { color: '#000000', answer: '' }, questionState)
+        startTransition(options = { color: '#000000', titleColor: '#F7C046', answer: '' }, questionState)
         {
             this.circle.color = options.color
             this.answer = options.answer
@@ -70,7 +69,7 @@ export default
             if(questionState === 'success')
                 return this.playSuccessTransition()
             else
-                return this.$nextTick().then(() => this.playFailedTransition())
+                return this.$nextTick().then(() => this.playFailedTransition(options.titleColor))
         },
         playSuccessTransition()
         {
@@ -91,15 +90,17 @@ export default
                 )
             })
         },
-        playFailedTransition()
+        playFailedTransition(titleColor)
         {
             const answerClone = this.$refs.answerInner.cloneNode(true)
             TweenMax.set(this.$refs.answerInner, { display: 'none' })
+            TweenMax.set(this.$refs.title, { color: titleColor })
             this.$refs.answer.appendChild(answerClone)
             const answerChars = new SplitText(answerClone, { type: 'chars, words' }).chars
             TweenMax.set(answerChars, { opacity: 0 })
             this.$refs.container.classList.add('is-active')
-            this.isFailed = true
+            this.$refs.popin.style.opacity = 1
+            const scale = (answerClone.getBoundingClientRect().width / window.innerHeight * 0.4).toFixed(2)
             return new Promise((resolve) =>
             {
                 const tl = new TimelineMax({
@@ -109,12 +110,12 @@ export default
                         TweenMax.set([this.$refs.title, this.$refs.info, this.$refs.popin], { clearProps: 'all' })
                         answerClone.remove()
                         TweenMax.set(this.$refs.answerInner, { clearProps: 'all' })
-                        this.isFailed = false
+                        this.$refs.popin.style.opacity = 0
                         resolve()
                     }
                 })
                 tl.to(this.$refs.circle, 0.4, {
-                    scale: 0.3,
+                    scale: scale,
                     ease: Power3.easeOut
                 }, this.failedAnimDelay + 0.15)
                 tl.to(this.$refs.title, 0.3, {

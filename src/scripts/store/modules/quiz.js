@@ -10,7 +10,7 @@ import {
 } from 'MutationTypes'
 import Fuzzyset from 'fuzzyset.js'
 
-const fuzzyMinScore = 0.7
+const fuzzyMinScore = 0.9
 
 const state = {
     quiz: [],

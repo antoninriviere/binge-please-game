@@ -173,7 +173,7 @@ export default
                     }
                 })
                 tl.to(this.$refs.text, 0.3, {
-                    color: '#c32c2d',
+                    color: '#F73E39',
                     ease: Power3.easeOut,
                     clearProps: 'all'
                 }, 0)
