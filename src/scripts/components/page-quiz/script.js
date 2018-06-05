@@ -147,8 +147,8 @@ export default
                 // TODO Clear for prod
                 if(this.isDebug && Config.environment === 'dev')
                     return
-                    this.$store.commit(INCREMENT_PROGRESS)
-                    this.setBackgroundColor()
+                this.$store.commit(INCREMENT_PROGRESS)
+                this.setBackgroundColor()
             })
         },
 
@@ -182,6 +182,7 @@ export default
                 }
                 this.$refs.transitionManager.startTransition(options, this.questionState).then(() =>
                 {
+                    this.$refs.typeManager.isTypeable = true
                     resolve()
                 })
             })

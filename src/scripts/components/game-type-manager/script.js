@@ -13,6 +13,7 @@ export default
     {
         return {
             isActive: false,
+            isTypeable: true,
             currentType: '',
             answer: ''
         }
@@ -22,10 +23,12 @@ export default
     {
         window.addEventListener('keydown', this.onKeyBoardEnter)
         this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
+        this.$store.watch(this.$store.getters.getTypeErrors, this.onTypeError)
     },
 
     mounted()
     {
+        this.$app = document.querySelector('#app')
         this.keyCodeLetters =
         [
             { code: 48 , letter: '0' },
@@ -76,11 +79,16 @@ export default
     {
         onSkipQuestion()
         {
-            // this.currentType = ''
-            // this.isActive = false
+            this.isTypeable = false
+        },
+        onTypeError()
+        {
+            this.playFailedTransition()
         },
         onKeyBoardEnter(ev)
         {
+            if(!this.isTypeable)
+                return
             const entry = ev.keyCode || ev.which
 
             if(!this.isActive)
@@ -156,10 +164,7 @@ export default
         {
             return new Promise((resolve) =>
             {
-                TweenMax.to(this.$refs.text, 0.3, {
-                    color: '#c32c2d',
-                    ease: Power3.easeOut,
-                    clearProps: 'all',
+                const tl = new TimelineMax({
                     onComplete: () =>
                     {
                         this.currentType = ''
@@ -167,6 +172,19 @@ export default
                         resolve()
                     }
                 })
+                tl.to(this.$refs.text, 0.3, {
+                    color: '#c32c2d',
+                    ease: Power3.easeOut,
+                    clearProps: 'all'
+                }, 0)
+                tl.fromTo(this.$app, 0.05, {
+                    rotation: '-2deg'
+                }, {
+                    rotation: '2deg',
+                    repeat: 2,
+                    yoyo: true,
+                    clearProps: 'all'
+                }, 0)
             })
         }
     }

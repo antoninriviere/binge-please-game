@@ -5,7 +5,8 @@ import {
     QUIZ_HAS_FINISHED,
     SKIP_QUESTION,
     INCREMENT_SCORE,
-    START_TRANSITION
+    START_TRANSITION,
+    SHOW_TYPE_ERROR
 } from 'MutationTypes'
 
 const state = {
@@ -15,7 +16,8 @@ const state = {
     progress: 1,
     transition: 1,
     hasFinished: false,
-    questionState: undefined
+    questionState: undefined,
+    typeErrors: 0
 }
 
 const getters = {
@@ -26,7 +28,8 @@ const getters = {
     getQuestion: (state) => (index) => state.quiz[index],
     getQuizStatus: (state) => () => state.hasFinished,
     getSkippedQuestions: (state) => () => state.skippedQuestions,
-    getQuestionState: (state) => () => state.questionState
+    getQuestionState: (state) => () => state.questionState,
+    getTypeErrors: (state) => () => state.typeErrors
 }
 
 const mutations = {
@@ -56,6 +59,10 @@ const mutations = {
     {
         state.hasFinished = true
         state.questionState = questionState
+    },
+    [SHOW_TYPE_ERROR](state)
+    {
+        state.typeErrors++
     }
 }
 
@@ -77,11 +84,12 @@ const actions = {
     {
         const currentQuestion = state.quiz[state.progress]
         console.log('SUBMIT ANSWER', currentQuestion)
-
+        let success = false
         for(let i = 0; i < currentQuestion.answers.length; i++)
         {
             if(answerObj.answer === currentQuestion.answers[i])
             {
+                success = true
                 console.log('win', answerObj.time)
 
                 // TODO better max time
@@ -92,6 +100,8 @@ const actions = {
                 dispatch('testQuizState', 'success')
             }
         }
+        if(!success)
+            commit(SHOW_TYPE_ERROR)
     },
     skipQuestion({ state, commit, dispatch }, questionId)
     {

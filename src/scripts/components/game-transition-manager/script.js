@@ -43,7 +43,6 @@ export default
         this.circle.cy = window.innerHeight / 2
         this.circle.radius = window.innerHeight * 1.5
         TweenMax.set(this.$refs.circle, { scale: 0 })
-        this.$app = document.querySelector('#app')
         this.failedAnimDelay = 0.5
     },
 
@@ -66,7 +65,6 @@ export default
         {
             this.circle.color = options.color
             this.answer = options.answer
-            console.log(this.answer)
             TweenMax.set(this.$refs.circle, { scale: 0 })
 
             if(questionState === 'success')
@@ -114,14 +112,6 @@ export default
                         this.isFailed = false
                         resolve()
                     }
-                })
-                tl.fromTo(this.$app, 0.05, {
-                    rotation: '-2deg'
-                }, {
-                    rotation: '2deg',
-                    repeat: 2,
-                    yoyo: true,
-                    clearProps: 'all'
                 })
                 tl.to(this.$refs.circle, 0.4, {
                     scale: 0.3,
