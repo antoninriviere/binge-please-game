@@ -123,17 +123,41 @@ export default
                 }
             }
         },
-        transitionOut()
+        transitionOut(questionState)
+        {
+            if(questionState === 'success')
+                return this.playSuccessTransition()
+            else
+                return this.playFailedTransition()
+        },
+        playSuccessTransition()
         {
             const bounds = this.$refs.text.getBoundingClientRect()
             const xEnd = Math.ceil(bounds.x + bounds.width) * 1.5
             TweenMax.set(this.$refs.text, { skewX: '0deg', transformOrigin: '50% 50%' })
             return new Promise((resolve) =>
             {
-                TweenMax.to(this.$refs.text, 0.6, {
+                TweenMax.to(this.$refs.text, 0.7, {
                     x: -xEnd,
                     skewX: '-18deg',
-                    letterSpacing: '3.5vw',
+                    letterSpacing: '7.5vw',
+                    ease: Power3.easeOut,
+                    clearProps: 'all',
+                    onComplete: () =>
+                    {
+                        this.currentType = ''
+                        this.isActive = false
+                        resolve()
+                    }
+                })
+            })
+        },
+        playFailedTransition()
+        {
+            return new Promise((resolve) =>
+            {
+                TweenMax.to(this.$refs.text, 0.3, {
+                    color: '#c32c2d',
                     ease: Power3.easeOut,
                     clearProps: 'all',
                     onComplete: () =>

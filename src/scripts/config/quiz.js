@@ -11,6 +11,7 @@ export default
         answers: ['13 reasons why', '13 reason why'],
         elapsedTime: 0,
         color: '#e2c1c0',
+        backgroundColor: '#f0d9d8',
         ambientSound: ''
     },
     {
@@ -23,7 +24,8 @@ export default
         answers: ['the crown'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        color: '#5934A5',
+        color: '#412789',
+        backgroundColor: '#5934a5',
         ambientSound: 'ambient5'
     },
     {
@@ -36,7 +38,8 @@ export default
         answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        color: '#5934A5',
+        color: '#412789',
+        backgroundColor: '#5934a5',
         ambientSound: 'ambient5'
     },
     {
@@ -49,6 +52,7 @@ export default
         componentId: 'quiz-custom',
         elapsedTime: 0,
         color: '#000000',
+        backgroundColor: '#000000',
         ambientSound: 'ambient5'
     }
 ]

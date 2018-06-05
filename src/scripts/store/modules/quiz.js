@@ -14,7 +14,8 @@ const state = {
     skippedQuestions: [],
     progress: 1,
     transition: 1,
-    hasFinished: false
+    hasFinished: false,
+    questionState: undefined
 }
 
 const getters = {
@@ -24,7 +25,8 @@ const getters = {
     getTransitionProgress: (state) => () => state.transition,
     getQuestion: (state) => (index) => state.quiz[index],
     getQuizStatus: (state) => () => state.hasFinished,
-    getSkippedQuestions: (state) => () => state.skippedQuestions
+    getSkippedQuestions: (state) => () => state.skippedQuestions,
+    getQuestionState: (state) => () => state.questionState
 }
 
 const mutations = {
@@ -41,31 +43,33 @@ const mutations = {
     {
         state.progress++
     },
-    [START_TRANSITION](state)
+    [START_TRANSITION](state, questionState)
     {
         state.transition++
+        state.questionState = questionState
     },
     [SKIP_QUESTION](state, questionId)
     {
         state.skippedQuestions.push(questionId)
     },
-    [QUIZ_HAS_FINISHED](state)
+    [QUIZ_HAS_FINISHED](state, questionState)
     {
         state.hasFinished = true
+        state.questionState = questionState
     }
 }
 
 const actions = {
-    testQuizState({ state, commit })
+    testQuizState({ state, commit }, questionState)
     {
         const id = state.progress + 1
         if(id < state.maxQuestions)
         {
-            commit(START_TRANSITION)
+            commit(START_TRANSITION, questionState)
         }
         else if(id === state.maxQuestions)
         {
-            commit(QUIZ_HAS_FINISHED)
+            commit(QUIZ_HAS_FINISHED, questionState)
         }
         else return
     },
@@ -85,14 +89,14 @@ const actions = {
                 const totalPoints = 100 + timePoints
 
                 commit(INCREMENT_SCORE, totalPoints)
-                dispatch('testQuizState')
+                dispatch('testQuizState', 'success')
             }
         }
     },
     skipQuestion({ state, commit, dispatch }, questionId)
     {
         commit(SKIP_QUESTION, questionId)
-        dispatch('testQuizState')
+        dispatch('testQuizState', 'failed')
     }
 }
 

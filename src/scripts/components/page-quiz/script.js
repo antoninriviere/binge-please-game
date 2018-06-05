@@ -39,7 +39,8 @@ export default
     data()
     {
         return {
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            isSkipping: false
         }
     },
 
@@ -47,6 +48,10 @@ export default
         quizObject()
         {
             return this.$store.getters.getCurrentQuestion()
+        },
+        questionState()
+        {
+            return this.$store.getters.getQuestionState()
         }
     },
 
@@ -74,6 +79,7 @@ export default
     mounted()
     {
         this.lastQuizObject = this.quizObject
+        this.setBackgroundColor()
         if(this.quizObject.type === '3d')
             this.setupWebGLGroup(this.quizObject.id)
 
@@ -94,9 +100,17 @@ export default
 
     methods:
     {
+        setBackgroundColor()
+        {
+            this.$root.$body.style.backgroundColor = this.quizObject.backgroundColor
+        },
+
         // Events
         onClickSkip()
         {
+            if(this.isSkipping)
+                return
+            this.isSkipping = true
             this.$store.dispatch('skipQuestion', this.quizObject.id)
         },
 
@@ -126,23 +140,20 @@ export default
 
         onTransitionStart()
         {
-            this.$refs.typeManager.transitionOut()
-            const options = {
-                color: this.quizObject.color
-            }
-            this.$refs.transitionManager.startTransition(options).then(() =>
+            this.transitionOut().then(() =>
             {
                 console.log('ended')
+                this.isSkipping = false
                 // TODO Clear for prod
                 if(this.isDebug && Config.environment === 'dev')
                     return
-                this.$store.commit(INCREMENT_PROGRESS)
+                    this.$store.commit(INCREMENT_PROGRESS)
+                    this.setBackgroundColor()
             })
         },
 
         onProgressChange(progress)
         {
-            console.log('progress change')
             this.$router.push(`/quiz/${progress + 1}`)
         },
 
@@ -152,13 +163,28 @@ export default
             {
                 eventHub.$off('application:route-change', this.onRouteChange)
                 this.clearQuiz()
-                this.$refs.typeManager.transitionOut()
-                this.$refs.transitionManager.startTransition().then(() =>
+                this.transitionOut().then(() =>
                 {
                     console.log('ended')
                     this.$router.push('/score')
                 })
             }
+        },
+
+        transitionOut()
+        {
+            return new Promise((resolve) =>
+            {
+                this.$refs.typeManager.transitionOut(this.questionState)
+                const options = {
+                    color: this.quizObject.color,
+                    answer: this.quizObject.name
+                }
+                this.$refs.transitionManager.startTransition(options, this.questionState).then(() =>
+                {
+                    resolve()
+                })
+            })
         },
 
         setupAmbientSound(soundId)

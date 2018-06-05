@@ -17,6 +17,7 @@ import ConfigQuiz from 'Config/quiz'
 import Mouse from 'Utils/Mouse.js'
 import GameTime from './GameTime.js'
 import AudioManager from 'Utils/AudioManager'
+import 'Utils/SplitText'
 
 import firebase from 'firebase/app'
 import 'firebase/database'
