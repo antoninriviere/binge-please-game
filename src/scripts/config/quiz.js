@@ -8,7 +8,7 @@ export default
             interaction: ''
         },
         name: '13 reasons why',
-        answers: ['13 reasons why', '13 reason why'],
+        answers: ['13 reasons why', 'thirteen reasons why'],
         elapsedTime: 0,
         color: '#e2c1c0',
         backgroundColor: '#f0d9d8',

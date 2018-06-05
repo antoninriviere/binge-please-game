@@ -8,6 +8,9 @@ import {
     START_TRANSITION,
     SHOW_TYPE_ERROR
 } from 'MutationTypes'
+import Fuzzyset from 'fuzzyset.js'
+
+const fuzzyMinScore = 0.7
 
 const state = {
     quiz: [],
@@ -17,7 +20,8 @@ const state = {
     transition: 1,
     hasFinished: false,
     questionState: undefined,
-    typeErrors: 0
+    typeErrors: 0,
+    fuzzyset: undefined
 }
 
 const getters = {
@@ -32,6 +36,16 @@ const getters = {
     getTypeErrors: (state) => () => state.typeErrors
 }
 
+const setFuzzyset = (answers) =>
+{
+    const fuzzyset = new Fuzzyset()
+    answers.forEach((answer) =>
+    {
+        fuzzyset.add(answer)
+    })
+    return fuzzyset
+}
+
 const mutations = {
     [SET_QUIZ](state, quiz)
     {
@@ -41,10 +55,12 @@ const mutations = {
     [SET_PROGRESS](state, progress)
     {
         state.progress = progress
+        state.fuzzyset = setFuzzyset(state.quiz[state.progress].answers)
     },
     [INCREMENT_PROGRESS](state)
     {
         state.progress++
+        state.fuzzyset = setFuzzyset(state.quiz[state.progress].answers)
     },
     [START_TRANSITION](state, questionState)
     {
@@ -84,24 +100,32 @@ const actions = {
     {
         const currentQuestion = state.quiz[state.progress]
         console.log('SUBMIT ANSWER', currentQuestion)
-        let success = false
-        for(let i = 0; i < currentQuestion.answers.length; i++)
+        const fuzzyResults = state.fuzzyset.get(answerObj.answer)
+        let maxScore = 0
+        if(fuzzyResults)
         {
-            if(answerObj.answer === currentQuestion.answers[i])
+            fuzzyResults.forEach((result) =>
             {
-                success = true
-                console.log('win', answerObj.time)
-
-                // TODO better max time
-                const timePoints = Math.round(answerObj.time / 15000 * 100)
-                const totalPoints = 100 + timePoints
-
-                commit(INCREMENT_SCORE, totalPoints)
-                dispatch('testQuizState', 'success')
-            }
+                console.log(result[0])
+                if(result[0] > maxScore)
+                    maxScore = result[0]
+            })
         }
-        if(!success)
+        if(maxScore > fuzzyMinScore)
+        {
+            console.log('win', answerObj.time)
+
+            // TODO better max time
+            const timePoints = Math.round(answerObj.time / 15000 * 100)
+            const totalPoints = 100 + timePoints
+
+            commit(INCREMENT_SCORE, totalPoints)
+            dispatch('testQuizState', 'success')
+        }
+        else
+        {
             commit(SHOW_TYPE_ERROR)
+        }
     },
     skipQuestion({ state, commit, dispatch }, questionId)
     {
