@@ -44,6 +44,20 @@ export default
         ambientSound: 'ambient5'
     },
     {
+        id: 'house-of-cards',
+        type: '2d',
+        props: {
+            name: 'house-of-cards'
+        },
+        name: 'House of Cards',
+        answers: ['house of cards'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        color: '#412789',
+        backgroundColor: '#034E6D',
+        ambientSound: ''
+    },
+    {
         id: 'friends',
         type: '2d',
         props: {
