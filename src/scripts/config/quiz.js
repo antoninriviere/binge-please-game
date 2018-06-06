@@ -44,6 +44,22 @@ export default
         ambientSound: 'ambient5'
     },
     {
+        id: 'friends',
+        type: '2d',
+        props: {
+            name: 'friends',
+            image: 'dance.gif',
+            width: '50vw'
+        },
+        name: 'Friends',
+        answers: ['friends'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        color: '#034e6d',
+        backgroundColor: '#B7D3D7',
+        ambientSound: ''
+    },
+    {
         id: 'stranger-things',
         type: '3d',
         props: {

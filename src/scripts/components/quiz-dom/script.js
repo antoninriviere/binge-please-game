@@ -11,6 +11,10 @@ export default
         image: {
             type: String,
             required: false
+        },
+        width: {
+            type: String,
+            required: false
         }
     },
 
@@ -24,13 +28,13 @@ export default
     data()
     {
         return {
-
+            wrapperWidth: this.width ? this.width : '60vw'
         }
     },
 
     created()
     {
-
+        console.log(this.width)
     },
 
     mounted()

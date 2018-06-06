@@ -62,12 +62,11 @@ export default
             this.circle.cy = windowObj.height / 2
             this.circle.radius = windowObj.height * 1.5
         },
-        startTransition(options = { color: '#000000', titleColor: '#F7C046', answer: '' }, questionState)
+        startTransition(options, questionState)
         {
             this.circle.color = options.color
             this.answer = options.answer
             TweenMax.set(this.$refs.circle, { scale: 0 })
-
             if(questionState === 'success')
             {
                 this.successComponent = successWellDone
@@ -111,7 +110,8 @@ export default
             TweenMax.set(answerChars, { opacity: 0 })
             this.$refs.container.classList.add('is-active')
             TweenMax.set(this.$refs.popin, { opacity: 1 })
-            const scale = (answerClone.getBoundingClientRect().width / window.innerHeight * 0.4).toFixed(2)
+            let scale = (answerClone.getBoundingClientRect().width / window.innerHeight * 0.4).toFixed(2)
+            scale = Math.max(0.2, scale)
             return new Promise((resolve) =>
             {
                 const tl = new TimelineMax({

@@ -187,7 +187,7 @@ export default
                 this.$refs.typeManager.transitionOut(this.questionState)
                 const options = {
                     color: this.quizObject.color,
-                    titleColor: this.quizObject.titleColor,
+                    titleColor: this.quizObject.titleColor ? this.quizObject.titleColor : '#F7C046',
                     answer: this.quizObject.name
                 }
                 this.$refs.transitionManager.startTransition(options, this.questionState).then(() =>
