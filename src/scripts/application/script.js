@@ -156,7 +156,11 @@ export default {
             if(to.name === 'quiz')
                 this.quizId = to.params.id
             this.componentId = to.meta.componentId
-            eventHub.$emit('application:route-change', to.params.id)
+            const newRoute = {
+                name: to.name,
+                id: to.params.id
+            }
+            eventHub.$emit('application:route-change', newRoute)
         },
 
         onEnterFrame()

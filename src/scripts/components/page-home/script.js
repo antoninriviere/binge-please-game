@@ -1,4 +1,5 @@
 import appPage from 'Mixins/app-page'
+import AppLogo from 'Components/app-logo'
 
 export default
 {
@@ -6,7 +7,7 @@ export default
 
     components:
     {
-
+        AppLogo
     },
 
     data()

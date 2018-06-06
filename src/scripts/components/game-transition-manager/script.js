@@ -90,7 +90,6 @@ export default
                         delay: 0.15,
                         onComplete: () =>
                         {
-                            console.log('success', this.$refs.successComponent)
                             this.$refs.successComponent.play().then(() =>
                             {
                                 this.successComponent = undefined

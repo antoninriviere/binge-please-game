@@ -55,8 +55,9 @@ exports.cssLoaders = options => {
             loader: 'stylus-resources-loader',
             options: {
                 resources: [
-                  'src/styles/base/colors.styl',
-                  'src/styles/utils/easing.styl'
+                    'src/styles/base/colors.styl',
+                    'src/styles/utils/easing.styl',
+                    'src/styles/utils/variables.styl'
                 ]
             }
         }),

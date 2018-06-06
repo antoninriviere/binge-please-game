@@ -9,6 +9,7 @@ import GameTypeManager from 'Components/game-type-manager'
 import GameScoreManager from 'Components/game-score-manager'
 import GameTimeManager from 'Components/game-time-manager'
 import GameTransitionManager from 'Components/game-transition-manager'
+import AppLogo from 'Components/app-logo'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -33,7 +34,8 @@ export default
         GameTypeManager,
         GameScoreManager,
         GameTimeManager,
-        GameTransitionManager
+        GameTransitionManager,
+        AppLogo
     },
 
     data()
@@ -114,11 +116,15 @@ export default
             this.$store.dispatch('skipQuestion', this.quizObject.id)
         },
 
-        onRouteChange(id)
+        onRouteChange(newRoute)
         {
             this.clearQuiz()
-            const currentId = id - 1
-            this.$store.commit(SET_PROGRESS, currentId)
+            if(newRoute.name === 'quiz')
+            {
+                this.setupNextQuestion()
+                const currentId = newRoute.id - 1
+                this.$store.commit(SET_PROGRESS, currentId)
+            }
         },
 
         clearQuiz()
@@ -126,9 +132,12 @@ export default
             if(this.ambientSound)
                 this.ambientSound.destroy()
 
-            if(this.lastQuizObject.type === '3d' && this.quizObject.type !== '3d')
+            if(this.lastQuizObject.type === '3d')
                 this.$store.commit(WEBGL_CLEAR_GROUP)
+        },
 
+        setupNextQuestion()
+        {
             if(this.quizObject.type === '3d')
                 this.setupWebGLGroup(this.quizObject.id)
 
