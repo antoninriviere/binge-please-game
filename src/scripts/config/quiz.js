@@ -53,7 +53,7 @@ export default
         answers: ['house of cards'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        color: '#412789',
+        color: '#fcdfde',
         backgroundColor: '#034E6D',
         ambientSound: ''
     },
