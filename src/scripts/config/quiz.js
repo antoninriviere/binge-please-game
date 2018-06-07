@@ -85,5 +85,18 @@ export default
         color: '#000000',
         backgroundColor: '#000000',
         ambientSound: 'ambient5'
+    },
+    {
+        id: 'orange-is-the-new-black',
+        type: '3d',
+        props: {
+        },
+        name: 'Orange is the new black',
+        answers: ['orange is the new black'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        color: '#000000',
+        backgroundColor: '#000000',
+        ambientSound: ''
     }
 ]
