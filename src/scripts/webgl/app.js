@@ -29,6 +29,11 @@ class App
 
         this.mouse = new Mouse(window.innerWidth, window.innerHeight)
 
+        this.windowObj = {
+            width: window.innerWidth,
+            height: window.innerHeight
+        }
+
         this.update()
     }
 
@@ -48,7 +53,7 @@ class App
             case '13_reasons_why':
                 return new ThirteenReasonsWhy({ scene: this.scene, mouse: this.mouse })
             case 'stranger-things':
-                return new StrangerThings({ scene: this.scene, mouse: this.mouse })
+                return new StrangerThings({ scene: this.scene, mouse: this.mouse, windowObj: this.windowObj })
         }
     }
 
@@ -88,7 +93,10 @@ class App
 
         this.mouse.onResize(this.width, this.height)
 
-        if(this.group) this.group.resize(this.mouse)
+        this.windowObj.width = this.width
+        this.windowObj.height = this.height
+
+        if(this.group) this.group.resize(this.mouse, this.windowObj)
 
         this.scene.resize(this.width, this.height)
     }

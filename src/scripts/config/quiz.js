@@ -45,6 +45,6 @@ export default
         answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        ambientSound: 'ambient5'
+        ambientSound: 'stranger_things'
     }
 ]

@@ -7,13 +7,15 @@ uniform float uParallaxe;
 varying vec2 vUv;
 
 void main() {
-    float map = texture2D(uMap, vUv).r;
+    vec2 st = gl_FragCoord.xy / uResolution.xy;
+
+    float map = texture2D(uMap, st).r;
 
     // parallaxe value
     float parallaxe = 0.05;
     vec2 parPos = vec2(uParallaxe * uMouse.x, uParallaxe * uMouse.y);
 
-    vec4 color = texture2D(uTexture, vec2(vUv.x + parPos.x * map, -parPos.y * map + vUv.y));
+    vec4 color = texture2D(uTexture, vec2(st.x + parPos.x * map, -parPos.y * map + st.y));
 
     gl_FragColor = color;
 }

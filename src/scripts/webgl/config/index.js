@@ -19,7 +19,7 @@ export default {
                 {
                     return new BloomPass({
                         resolutionScale: 0.5,
-                        intensity: 0.5,
+                        intensity: 1,
                         distinction: 1.0
                     })
                 }

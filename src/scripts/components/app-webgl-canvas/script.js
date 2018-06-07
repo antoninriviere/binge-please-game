@@ -26,9 +26,9 @@ export default
 
     methods:
     {
-        onResize()
+        onResize(windowObj)
         {
-            this.webGLApp.resize()
+            this.webGLApp.resize(windowObj)
         },
 
         onMouseMove(event)
