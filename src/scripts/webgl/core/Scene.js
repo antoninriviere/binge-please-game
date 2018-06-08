@@ -13,7 +13,7 @@ class SceneObj extends Scene
             camera: {
                 fov: 15,
                 near: 1,
-                far: 1000,
+                far: 5000,
                 position: new Vector3(0, 0, 10)
             },
             renderer: {
@@ -45,7 +45,7 @@ class SceneObj extends Scene
 
         this.container.appendChild(this.renderer.domElement)
 
-        this.camera = new PerspectiveCamera(this.options.camera.fov, this.width / this.height, this.options.near, this.options.far)
+        this.camera = new PerspectiveCamera(this.options.camera.fov, this.width / this.height, this.options.camera.near, this.options.camera.far)
         this.camera.position.copy(this.options.camera.position)
 
         if(this.options.postProcessing.active)
