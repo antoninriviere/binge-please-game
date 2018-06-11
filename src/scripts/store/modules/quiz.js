@@ -106,7 +106,7 @@ const actions = {
         {
             fuzzyResults.forEach((result) =>
             {
-                console.log(result[0])
+                console.log(`Answer close at ${result[0].toFixed(2) * 100}%`)
                 if(result[0] > maxScore)
                     maxScore = result[0]
             })

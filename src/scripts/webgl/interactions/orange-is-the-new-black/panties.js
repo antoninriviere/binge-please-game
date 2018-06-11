@@ -1,13 +1,13 @@
 import {
     Object3D,
-    Vector3,
-    Mesh
+    Vector3
 } from 'three'
+import { TweenMax } from 'gsap'
 import { randomInRange, randomIntInRange } from 'Utils/Numbers'
 
 export default class Panties extends Object3D
 {
-    constructor(geo, mat, index, start)
+    constructor(mesh, index, start)
     {
         super()
 
@@ -26,16 +26,20 @@ export default class Panties extends Object3D
 
         this.initPos = new Vector3(
             start,
-            350,
-            start * this.sign * 2
+            400,
+            start * this.sign * 0.5
         )
-        this.mesh = new Mesh(geo, mat)
-        this.mesh.position.set(this.initPos.x, randomIntInRange(-250, 250), this.initPos.z)
-        const delay = 200 * index
+        this.mesh = mesh
+        this.mesh.position.set(this.initPos.x, randomIntInRange(-150, 350), this.initPos.z)
+        const scale = randomIntInRange(60, 80)
+        this.mesh.scale.set(0, 0, 0)
+        this.mesh.rotation.set(randomInRange(-Math.PI, Math.PI), randomInRange(-Math.PI, Math.PI), randomInRange(-Math.PI, Math.PI))
+        const delay = 300 * index
         setTimeout(() =>
         {
             this.add(this.mesh)
             this.active = true
+            TweenMax.to(this.mesh.scale, 0.3, { x: scale, y: scale, z: scale, ease: Back.easeOut })
         }, delay)
     }
     animate(delta)
@@ -62,12 +66,12 @@ export default class Panties extends Object3D
         this.mesh.rotation.x += 0.005
         this.mesh.rotation.y += 0.005
         this.mesh.rotation.z += 0.005
-        if(this.mesh.position.y < -350)
+        if(this.mesh.position.y < -380)
         {
             this.mesh.position.set(this.initPos.x, this.initPos.y, this.initPos.z)
-            this.mesh.rotation.set(0, 0, 0)
-            this.vx = randomIntInRange(15, 30)
-            this.vy = randomIntInRange(15, 30)
+            // this.mesh.rotation.set(0, 0, 0)
+            this.vx = -randomIntInRange(5, 10)
+            this.vy = -randomIntInRange(5, 10)
             this.t = 0
         }
     }

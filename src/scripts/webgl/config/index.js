@@ -8,7 +8,7 @@ export default {
         axes: false
     },
     postProcessing: {
-        active: true,
+        active: false,
         gui: false,
         passes: [
             {

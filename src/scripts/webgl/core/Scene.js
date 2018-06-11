@@ -18,7 +18,7 @@ class SceneObj extends Scene
             },
             renderer: {
                 alpha: true,
-                antialias: false,
+                antialias: true,
                 pixelRatio: Math.max(1, Math.min(window.devicePixelRatio, 2))
             },
             debug: {

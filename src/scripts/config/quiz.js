@@ -92,11 +92,12 @@ export default
         props: {
         },
         name: 'Orange is the new black',
-        answers: ['orange is the new black'],
+        answers: ['orange is the new black', 'oitnb'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        color: '#000000',
-        backgroundColor: '#000000',
+        color: '#e2c1c0',
+        titleColor: '#F73E39',
+        backgroundColor: '#f0d9d8',
         ambientSound: ''
     }
 ]
