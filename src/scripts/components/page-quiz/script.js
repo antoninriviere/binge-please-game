@@ -8,6 +8,8 @@ import Quiz from 'Config/quiz'
 import GameTypeManager from 'Components/game-type-manager'
 import GameScoreManager from 'Components/game-score-manager'
 import GameTimeManager from 'Components/game-time-manager'
+import GameTransitionManager from 'Components/game-transition-manager'
+import AppLogo from 'Components/app-logo'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -17,7 +19,7 @@ import QuizCustom from 'Components/quiz-custom'
 import { getDebugParams } from 'Utils/Url'
 import findIndex from 'lodash.findindex'
 
-import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
+import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP, INCREMENT_PROGRESS } from 'MutationTypes'
 
 export default
 {
@@ -31,13 +33,16 @@ export default
         QuizCustom,
         GameTypeManager,
         GameScoreManager,
-        GameTimeManager
+        GameTimeManager,
+        GameTransitionManager,
+        AppLogo
     },
 
     data()
     {
         return {
-            id: this.$route.params.id
+            id: this.$route.params.id,
+            isSkipping: false
         }
     },
 
@@ -45,6 +50,10 @@ export default
         quizObject()
         {
             return this.$store.getters.getCurrentQuestion()
+        },
+        questionState()
+        {
+            return this.$store.getters.getQuestionState()
         }
     },
 
@@ -63,6 +72,7 @@ export default
         {
             this.$store.commit(SET_PROGRESS, this.id - 1)
         }
+        this.$store.watch(this.$store.getters.getTransitionProgress, this.onTransitionStart)
         this.$store.watch(this.$store.getters.getCurrentProgress, this.onProgressChange)
         this.$store.watch(this.$store.getters.getQuizStatus, this.onQuizStatusChange)
         eventHub.$on('application:route-change', this.onRouteChange)
@@ -71,6 +81,7 @@ export default
     mounted()
     {
         this.lastQuizObject = this.quizObject
+        this.setBackgroundColor()
         if(this.quizObject.type === '3d')
             this.setupWebGLGroup(this.quizObject.id)
 
@@ -91,17 +102,29 @@ export default
 
     methods:
     {
+        setBackgroundColor()
+        {
+            this.$root.$body.style.backgroundColor = this.quizObject.backgroundColor
+        },
+
         // Events
         onClickSkip()
         {
+            if(this.isSkipping)
+                return
+            this.isSkipping = true
             this.$store.dispatch('skipQuestion', this.quizObject.id)
         },
 
-        onRouteChange(id)
+        onRouteChange(newRoute)
         {
             this.clearQuiz()
-            const currentId = id - 1
-            this.$store.commit(SET_PROGRESS, currentId)
+            if(newRoute.name === 'quiz')
+            {
+                this.setupNextQuestion()
+                const currentId = newRoute.id - 1
+                this.$store.commit(SET_PROGRESS, currentId)
+            }
         },
 
         clearQuiz()
@@ -109,9 +132,12 @@ export default
             if(this.ambientSound)
                 this.ambientSound.destroy()
 
-            if(this.lastQuizObject.type === '3d' && this.quizObject.type !== '3d')
+            if(this.lastQuizObject.type === '3d')
                 this.$store.commit(WEBGL_CLEAR_GROUP)
+        },
 
+        setupNextQuestion()
+        {
             if(this.quizObject.type === '3d')
                 this.setupWebGLGroup(this.quizObject.id)
 
@@ -121,11 +147,23 @@ export default
             this.lastQuizObject = this.quizObject
         },
 
+        onTransitionStart()
+        {
+            this.transitionOut().then(() =>
+            {
+                console.log('ended')
+                this.isSkipping = false
+                // TODO Clear for prod
+                if(this.isDebug && Config.environment === 'dev')
+                    return
+                this.$store.commit(INCREMENT_PROGRESS)
+                this.setBackgroundColor()
+            })
+        },
+
         onProgressChange(progress)
         {
-            // this.clearQuiz()
             this.$router.push(`/quiz/${progress + 1}`)
-            // this.$root.time.start()
         },
 
         onQuizStatusChange(hasFinished)
@@ -134,8 +172,30 @@ export default
             {
                 eventHub.$off('application:route-change', this.onRouteChange)
                 this.clearQuiz()
-                this.$router.push('/score')
+                this.transitionOut().then(() =>
+                {
+                    console.log('ended')
+                    this.$router.push('/score')
+                })
             }
+        },
+
+        transitionOut()
+        {
+            return new Promise((resolve) =>
+            {
+                this.$refs.typeManager.transitionOut(this.questionState)
+                const options = {
+                    color: this.quizObject.color,
+                    titleColor: this.quizObject.titleColor ? this.quizObject.titleColor : '#F7C046',
+                    answer: this.quizObject.name
+                }
+                this.$refs.transitionManager.startTransition(options, this.questionState).then(() =>
+                {
+                    this.$refs.typeManager.isTypeable = true
+                    resolve()
+                })
+            })
         },
 
         setupAmbientSound(soundId)

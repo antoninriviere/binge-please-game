@@ -1,0 +1,15 @@
+<div class="game-transition-manager pos-abs-tl fit" ref="container">
+    <svg :width="windowW" :height="windowH" :viewBox="viewBox">
+        <circle :cx="circle.cx" :cy="circle.cy" :r="circle.radius" :fill="circle.color" ref="circle"></circle>
+    </svg>
+    <div class="game-transition-manager__popin pos-abs-tl fit center-flex" ref="popin">
+        <p class="game-transition-manager__title overflow-h">
+            <span class="display-inline-block" ref="title">Time is over</span>
+        </p>
+        <p class="game-transition-manager__info color--white uppercase" ref="info">Good Answer</p>
+        <p class="game-transition-manager__answer color--white uppercase" ref="answer">
+            <span ref="answerInner">{{ answer }}</span>
+        </p>
+    </div>
+    <component class="game-transition-manager__success" :is="successComponent" ref="successComponent"/>
+</div>

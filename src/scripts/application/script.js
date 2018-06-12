@@ -17,6 +17,7 @@ import ConfigQuiz from 'Config/quiz'
 import Mouse from 'Utils/Mouse.js'
 import GameTime from './GameTime.js'
 import AudioManager from 'Utils/AudioManager'
+import 'Utils/SplitText'
 
 import firebase from 'firebase/app'
 import 'firebase/database'
@@ -155,7 +156,11 @@ export default {
             if(to.name === 'quiz')
                 this.quizId = to.params.id
             this.componentId = to.meta.componentId
-            eventHub.$emit('application:route-change', to.params.id)
+            const newRoute = {
+                name: to.name,
+                id: to.params.id
+            }
+            eventHub.$emit('application:route-change', newRoute)
         },
 
         onEnterFrame()

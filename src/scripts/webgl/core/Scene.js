@@ -147,6 +147,12 @@ class SceneObj extends Scene
             this.stats.update()
     }
 
+    resetCamera()
+    {
+        this.camera.position.copy(this.options.camera.position)
+        this.camera.rotation.copy(this.options.camera.rotation)
+    }
+
     resize(newWidth, newHeight)
     {
         this.camera.aspect = newWidth / newHeight

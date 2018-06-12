@@ -1,5 +1,6 @@
+import AInteraction from '../AInteraction'
+import ARaycaster from 'WebGLUtils/ARaycaster'
 import {
-    Group,
     CatmullRomCurve3,
     Color,
     LoadingManager,
@@ -14,7 +15,6 @@ import {
     Vector2,
     Vector3,
     Object3D,
-    Raycaster,
     ShaderMaterial,
     FrontSide,
     AdditiveBlending,
@@ -32,15 +32,12 @@ import glslify from 'glslify'
 import playButtonVert from './shaders/playButtonVert.glsl'
 import playButtonFrag from './shaders/playButtonFrag.glsl'
 
-export default class ThirteenReasonsWhy extends Group
+export default class ThirteenReasonsWhy extends AInteraction
 {
     constructor(options)
     {
-        super()
-        this.scene = options.scene
+        super(options)
         this.name = '13ReasonsWhy'
-        this.mouse = options.mouse
-        this.raycaster = new Raycaster()
         this.resolution = new Vector2(window.innerWidth, window.innerHeight)
         this.SCALE = 0.05
         this.MODELS_COUNT = 0
@@ -130,17 +127,12 @@ export default class ThirteenReasonsWhy extends Group
             far: this.scene.camera.far
         })
         this.cable = new Mesh(line.geometry, material)
-        // this.cable.castShadow = true
         this.setupMesh(this.cable)
     }
 
     loadWalkman()
     {
         this.manager = new LoadingManager()
-        this.manager.onProgress = (url, itemsLoaded, itemsTotal) =>
-        {
-            console.log('Loading : ' + itemsLoaded + ' / ' + itemsTotal)
-        }
         this.gltfLoader = new GLTFLoader(this.manager)
         this.gltfLoader.load('/static/13-reasons-why/walkman.gltf', this.onWalkmanLoaded)
         this.gltfLoader.load('/static/13-reasons-why/tape.gltf', this.onTapeLoaded)
@@ -153,7 +145,6 @@ export default class ThirteenReasonsWhy extends Group
         let playButton = undefined
         this.walkman.traverse((child) =>
         {
-            // child.castShadow = true
             if(child.material && child.material.name !== 'default')
                 child.material = this.getMaterial(child.material.name)
             if(child.name === 'Bouton-Play')
@@ -192,17 +183,10 @@ export default class ThirteenReasonsWhy extends Group
         this.tape = object.scene
         this.tape.traverse((child) =>
         {
-            // child.castShadow = true
             if(child.material && child.material.name !== 'default')
                 child.material = this.getMaterial(child.material.name)
         })
         this.setupMesh(this.tape)
-
-        // const transparentMaterial = new MeshLambertMaterial({
-        //     transparent: true,
-        //     opacity: 0,
-        //     colorWrite: false,
-        // })
 
         this.tapeCloneUnder = this.tape.clone()
         this.tapeCloneUnder.position.set(0, -0.5, -10)
@@ -225,7 +209,6 @@ export default class ThirteenReasonsWhy extends Group
     onUpperPartLoaded = (object) =>
     {
         const upperObject = object.scene
-        // console.log(upperObject.children[0].material)
         upperObject.children[0].material = this.blackMaterial
         upperObject.children[0].material.side = DoubleSide
         upperObject.children[1].material = new MeshPhongMaterial({
@@ -256,7 +239,6 @@ export default class ThirteenReasonsWhy extends Group
 
     setupMesh(mesh, extraScale = 0)
     {
-        // mesh.scale.set(this.SCALE, this.SCALE, this.SCALE)
         mesh.scale.multiplyScalar(this.SCALE + extraScale)
         mesh.rotation.y = -Math.PI / 2
     }
@@ -278,7 +260,7 @@ export default class ThirteenReasonsWhy extends Group
         this.add(this.cable)
         this.add(this.playButtonGlow)
         // this.initGUI()
-        this.addListeners()
+        this.raycaster = new ARaycaster(this.scene.camera, [this.playButton], { callback: this.onPlayButtonClick, click: true })
     }
 
     addFloor()
@@ -312,7 +294,6 @@ export default class ThirteenReasonsWhy extends Group
         this.glowUniforms.p.range = [0, 6]
         GUI.panel
             .addGroup({ label: '13 Reasons why' })
-            // .addSlider(this.cable.position, 'y', 'range', { label: 'cable y' })
             .addSlider(this.glowUniforms.c, 'value', 'range', { label: 'button c', step: 0.01 })
             .addSlider(this.glowUniforms.p, 'value', 'range', { label: 'button p', step: 0.01 })
             .addColor(this, 'buttonGlowColor', { colorMode: 'hex', label: 'button glow', onChange: (v) =>
@@ -333,15 +314,6 @@ export default class ThirteenReasonsWhy extends Group
             {
                 this.floor.material.color = new Color(v)
             } })
-    }
-
-    onMouseDown = () =>
-    {
-        const mouse = new Vector2(this.mouse.nX, this.mouse.nY)
-        this.raycaster.setFromCamera(mouse, this.scene.camera)
-        const intersects = this.raycaster.intersectObjects([this.playButton])
-        if(intersects.length > 0)
-            this.onPlayButtonClick()
     }
 
     onPlayButtonClick = ()  =>
@@ -367,11 +339,9 @@ export default class ThirteenReasonsWhy extends Group
 
         this.directionalLightFront = new DirectionalLight(this.directionalLightColor, 1)
         this.directionalLightFront.position.set(-5, 5, 15.5)
-        // this.directionalLightFront.castShadow = true
 
         this.directionalLightBack = new DirectionalLight(this.directionalLightColor, 1)
         this.directionalLightBack.position.set(5, 5, -7.5)
-        // this.directionalLightBack.castShadow = true
 
         this.scene.add(this.directionalLightFront)
         this.scene.add(this.directionalLightBack)
@@ -379,6 +349,7 @@ export default class ThirteenReasonsWhy extends Group
 
     update(time)
     {
+        super.update()
         if(this.playButtonGlow)
         {
             this.glowUniforms.uViewVector.value = new Vector3().subVectors(this.scene.camera.position, this.playButtonGlow.position)
@@ -386,24 +357,15 @@ export default class ThirteenReasonsWhy extends Group
         }
     }
 
-    onMove(mouse)
+    onMouseMove(mouse)
     {
-        this.mouse = mouse
-    }
-
-    resize(mouse)
-    {
-        this.mouse = mouse
+        super.onMouseMove()
+        if(this.raycaster) this.raycaster.onMouseMove(mouse)
     }
 
     clear()
     {
-        this.children.forEach((child) =>
-        {
-            this.scene.remove(child)
-        })
+        super.clear()
         this.tapeSound.destroy()
-        window.removeEventListener('mousemove', this.onMouseMove)
-        window.removeEventListener('mousedown', this.onMouseDown)
     }
 }

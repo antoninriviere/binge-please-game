@@ -1,6 +1,20 @@
 export default
 [
     {
+        id: 'black-mirror',
+        type: '2d',
+        props: {
+            name: 'black-mirror'
+        },
+        name: 'Black Mirror',
+        answers: ['black mirror'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        ambientSound: '',
+        color: '#000000',
+        backgroundColor: '#000000'
+    },
+    {
         id: '13_reasons_why',
         type: '3d',
         props: {
@@ -8,9 +22,12 @@ export default
             interaction: ''
         },
         name: '13 reasons why',
-        answers: ['13 reasons why', '13 reason why'],
+        answers: ['13 reasons why', 'thirteen reasons why'],
         elapsedTime: 0,
-        ambientSound: 'ambient1'
+        color: '#e2c1c0',
+        titleColor: '#F73E39',
+        backgroundColor: '#f0d9d8',
+        ambientSound: ''
     },
     {
         id: 'the-crown-svg',
@@ -22,6 +39,8 @@ export default
         answers: ['the crown'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
+        color: '#412789',
+        backgroundColor: '#5934a5',
         ambientSound: 'ambient5'
     },
     {
@@ -31,10 +50,42 @@ export default
             name: 'breaking-bad-svg'
         },
         name: 'Breaking Bad',
-        answers: ['breaking bad', 'breakin bad', 'breaking bag', 'breakingbad'],
+        answers: ['breaking bad'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
+        color: '#412789',
+        backgroundColor: '#5934a5',
         ambientSound: 'ambient5'
+    },
+    {
+        id: 'house-of-cards',
+        type: '2d',
+        props: {
+            name: 'house-of-cards'
+        },
+        name: 'House of Cards',
+        answers: ['house of cards'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        color: '#412789',
+        backgroundColor: '#034E6D',
+        ambientSound: ''
+    },
+    {
+        id: 'friends',
+        type: '2d',
+        props: {
+            name: 'friends',
+            image: 'dance.gif',
+            width: '50vw'
+        },
+        name: 'Friends',
+        answers: ['friends'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        color: '#034e6d',
+        backgroundColor: '#B7D3D7',
+        ambientSound: ''
     },
     {
         id: 'stranger-things',
@@ -42,9 +93,11 @@ export default
         props: {
         },
         name: 'Stranger Things',
-        answers: ['stranger things', 'stranger thing', 'strangers things', 'strangers thing'],
+        answers: ['stranger things'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        ambientSound: 'stranger_things'
+        ambientSound: 'stranger_things',
+        color: '#000000',
+        backgroundColor: '#000000'
     }
 ]

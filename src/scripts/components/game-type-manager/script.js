@@ -1,3 +1,5 @@
+import { TweenMax } from 'gsap'
+
 export default
 {
     name: 'game-type-manager',
@@ -11,6 +13,7 @@ export default
     {
         return {
             isActive: false,
+            isTypeable: true,
             currentType: '',
             answer: ''
         }
@@ -20,10 +23,12 @@ export default
     {
         window.addEventListener('keydown', this.onKeyBoardEnter)
         this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
+        this.$store.watch(this.$store.getters.getTypeErrors, this.onTypeError)
     },
 
     mounted()
     {
+        this.$app = document.querySelector('#app')
         this.keyCodeLetters =
         [
             // { code: 48 , letter: '0' },
@@ -74,11 +79,16 @@ export default
     {
         onSkipQuestion()
         {
-            this.currentType = ''
-            this.isActive = false
+            this.isTypeable = false
+        },
+        onTypeError()
+        {
+            this.playFailedTransition()
         },
         onKeyBoardEnter(ev)
         {
+            if(!this.isTypeable)
+                return
             const entry = ev.keyCode || ev.which
 
             if(!this.isActive)
@@ -98,9 +108,9 @@ export default
                 {
                     // Enter
                     case 13 :
-                        this.$store.dispatch('submitAnswer', {answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
-                        this.currentType = ''
-                        this.isActive = false
+                        this.$store.dispatch('submitAnswer', { answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
+                        // this.currentType = ''
+                        // this.isActive = false
                         break
                     // Backspace
                     case 8 :
@@ -120,6 +130,62 @@ export default
                         break
                 }
             }
+        },
+        transitionOut(questionState)
+        {
+            if(questionState === 'success')
+                return this.playSuccessTransition()
+            else
+                return this.playFailedTransition()
+        },
+        playSuccessTransition()
+        {
+            const bounds = this.$refs.text.getBoundingClientRect()
+            const xEnd = Math.ceil(bounds.x + bounds.width) * 1.5
+            TweenMax.set(this.$refs.text, { skewX: '0deg', transformOrigin: '50% 50%' })
+            return new Promise((resolve) =>
+            {
+                TweenMax.to(this.$refs.text, 0.7, {
+                    x: -xEnd,
+                    skewX: '-18deg',
+                    letterSpacing: '7.5vw',
+                    ease: Power3.easeOut,
+                    clearProps: 'all',
+                    onComplete: () =>
+                    {
+                        this.currentType = ''
+                        this.isActive = false
+                        resolve()
+                    }
+                })
+            })
+        },
+        playFailedTransition()
+        {
+            return new Promise((resolve) =>
+            {
+                const tl = new TimelineMax({
+                    onComplete: () =>
+                    {
+                        this.currentType = ''
+                        this.isActive = false
+                        resolve()
+                    }
+                })
+                tl.to(this.$refs.text, 0.3, {
+                    color: '#F73E39',
+                    ease: Power3.easeOut,
+                    clearProps: 'all'
+                }, 0)
+                tl.fromTo(this.$app, 0.05, {
+                    rotation: '-2deg'
+                }, {
+                    rotation: '2deg',
+                    repeat: 2,
+                    yoyo: true,
+                    clearProps: 'all'
+                }, 0)
+            })
         }
     }
 }

@@ -1,7 +1,7 @@
+import AInteraction from '../AInteraction'
 import GUI from 'WebGLUtils/GUI'
 
 import {
-    Object3D,
     PlaneBufferGeometry,
     MeshBasicMaterial,
     TextureLoader,
@@ -22,16 +22,13 @@ import Bulbs from './bulbs.js'
 import fragmentShader from './shaders/frag.glsl'
 import vertexShader from './shaders/vert.glsl'
 
-export default class StrangerThings extends Object3D
+export default class StrangerThings extends AInteraction
 {
     constructor(options)
     {
-        super()
+        super(options)
 
-        this.scene = options.scene
         this.name = 'StrangerThings'
-
-        this.mouse = options.mouse
 
         this.parallaxe = {
             intensity : 0.025,
@@ -215,7 +212,6 @@ export default class StrangerThings extends Object3D
                 }
             })
         }
-
     }
 
     addListeners()
@@ -225,7 +221,6 @@ export default class StrangerThings extends Object3D
 
     initGUI()
     {
-        console.log('init GUI', GUI)
         this.parallaxe.range = [0, 0.1]
         GUI.panel
             .addSlider(this.parallaxe, 'intensity', 'range', { label: 'depth intensity' })
@@ -243,7 +238,7 @@ export default class StrangerThings extends Object3D
 
     update(time)
     {
-        // console.log(time.delta)
+        super.update()
         this.uniforms.uTime.value = time.elapsed
         this.uniforms.uMouse.value = new Vector2(this.mouse.ratio.fromCenter.x, this.mouse.ratio.fromCenter.y)
         this.uniforms.uParallaxe.value = this.parallaxe.intensity
@@ -294,6 +289,7 @@ export default class StrangerThings extends Object3D
 
     clear()
     {
+        super.clear()
         window.removeEventListener('mousemove', this.onMouseMove)
     }
 }

@@ -1,0 +1,22 @@
+.xp-container {
+    position relative
+    width 30%
+    height 60%
+    background-color $pink
+}
+.xp-item {
+    transform-origin 50% 20%
+    &:nth-child(3) {
+        transform scale(0.25)
+    }
+    &:nth-child(2) {
+        transform scale(0.08)
+    }
+    &:nth-child(1) {
+        transform scale(0)
+    }
+}
+.xp-image {
+    height 100%
+    max-width 100%
+}

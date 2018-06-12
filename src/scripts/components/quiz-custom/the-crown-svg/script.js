@@ -45,8 +45,7 @@ export default
         this.$sparkles =  Array.prototype.slice.call(this.$refs.sparkles.querySelectorAll('.sparkle'))
 
         // Offset corgi's width
-        console.log(this.$refs.pilow.getBoundingClientRect())
-        this.$refs.queen.style.transform = `translateX(${ -this.$refs.pilow.getBoundingClientRect().width / 2}px)`
+        this.$refs.queen.style.transform = `translateX(${-this.$refs.pilow.getBoundingClientRect().width / 2}px)`
 
         // Scalable elems
         const scalableElems = [this.$refs.crownBig, this.$refs.flag, this.$refs.pilow, this.$refs.corgi]
