@@ -1,5 +1,4 @@
 import { BloomPass } from 'postprocessing'
-// import WavesPass from '../passes/Waves'
 import FXAAPass from '../passes/FXAA'
 export default {
     debug: {

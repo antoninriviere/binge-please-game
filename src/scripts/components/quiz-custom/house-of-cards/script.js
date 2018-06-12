@@ -27,7 +27,6 @@ export default
         this.tweens.forEach((tween) =>
         {
             tween.kill()
-            tween.clear()
         })
     },
 

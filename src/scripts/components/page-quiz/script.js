@@ -174,8 +174,7 @@ export default
                 this.clearQuiz()
                 this.transitionOut().then(() =>
                 {
-                    console.log('ended')
-                    this.$router.push('/score')
+                    this.$router.push('/finish')
                 })
             }
         },
