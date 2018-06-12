@@ -1,11 +1,15 @@
 .game-time-manager {
     z-index 3
 
+    margin-left -3px
+
     &__progress {
         background-color $white
         opacity 0.3
         transform scaleX(0)
         transform-origin 0
+
+        will-change transform
     }
 
     &__container {

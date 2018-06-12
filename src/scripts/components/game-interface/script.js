@@ -1,5 +1,6 @@
 import GameScoreManager from 'Components/game-score-manager'
 import GameTimeManager from 'Components/game-time-manager'
+import GameProgressManager from 'Components/game-progress-manager'
 
 export default
 {
@@ -8,7 +9,8 @@ export default
     components:
     {
         GameScoreManager,
-        GameTimeManager
+        GameTimeManager,
+        GameProgressManager
     },
 
     props:
