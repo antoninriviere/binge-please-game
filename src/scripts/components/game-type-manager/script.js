@@ -1,3 +1,5 @@
+import eventHub from 'Application/event-hub'
+
 import { TweenMax } from 'gsap'
 
 export default
@@ -87,9 +89,13 @@ export default
         },
         onKeyBoardEnter(ev)
         {
+            const entry = ev.keyCode || ev.which
+
+            if(entry === 39)
+                eventHub.$emit('application:skip')
+
             if(!this.isTypeable)
                 return
-            const entry = ev.keyCode || ev.which
 
             if(!this.isActive)
             {

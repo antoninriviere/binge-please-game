@@ -5,9 +5,8 @@ import eventHub from 'Application/event-hub'
 import Config from 'Config'
 import Quiz from 'Config/quiz'
 
+import GameInterface from 'Components/game-interface'
 import GameTypeManager from 'Components/game-type-manager'
-import GameScoreManager from 'Components/game-score-manager'
-import GameTimeManager from 'Components/game-time-manager'
 import GameTransitionManager from 'Components/game-transition-manager'
 import AppLogo from 'Components/app-logo'
 
@@ -31,9 +30,8 @@ export default
         QuizEmoji,
         QuizVideo,
         QuizCustom,
+        GameInterface,
         GameTypeManager,
-        GameScoreManager,
-        GameTimeManager,
         GameTransitionManager,
         AppLogo
     },
@@ -42,6 +40,7 @@ export default
     {
         return {
             id: this.$route.params.id,
+            isDebug: false,
             isSkipping: false
         }
     },
@@ -59,6 +58,8 @@ export default
 
     created()
     {
+        eventHub.$on('application:skip', this.onSkip)
+
         this.$store.commit(SET_QUIZ, Quiz)
         const debugParams = getDebugParams()
         this.isDebug = Object.keys(debugParams).length > 0
@@ -87,13 +88,12 @@ export default
 
         if(this.quizObject.ambientSound)
             this.setupAmbientSound(this.quizObject.ambientSound)
-
-        if(!this.isDebug)
-            this.$refs.timeManager.startTime()
     },
 
     destroyed()
     {
+        eventHub.$off('application:skip', this.onSkip)
+
         if(this.ambientSound)
             this.ambientSound.destroy()
     },
@@ -108,7 +108,7 @@ export default
         },
 
         // Events
-        onClickSkip()
+        onSkip()
         {
             if(this.isSkipping)
                 return

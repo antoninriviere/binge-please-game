@@ -61,10 +61,13 @@ export default
             {
                 this.$root.time.tick()
 
+                const progress = Math.round(this.$root.time.elapsed / this.$root.time.maxTime * 1000) / 1000
+                this.$refs.progress.style.transform = `scaleX(${progress})`
+
                 if(this.$root.time.currentTime < 0)
                 {
                     this.stopTime()
-                    this.$parent.onClickSkip()
+                    eventHub.$emit('application:skip')
                 }
 
                 this.time.current = Moment.duration(this.$root.time.currentTime).format('mm:ss', { trim: false })

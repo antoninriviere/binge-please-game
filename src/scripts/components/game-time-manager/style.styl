@@ -1,9 +1,46 @@
 .game-time-manager {
-    position absolute
     z-index 3
-    left 50%
-    bottom 1vh
 
-    transform translate3d(-50%, 0, 0)
-    font-size 32px
+    &__progress {
+        background-color $white
+        opacity 0.3
+        transform scaleX(0)
+        transform-origin 0
+    }
+
+    &__container {
+        width 18vw
+        min-width 200px
+        max-width 300px
+
+        height 8vh
+        min-height 60px
+        border 3px solid $white
+
+        display flex
+        flex-wrap wrap
+        justify-content center
+        align-items center
+        flex-direction column
+    }
+
+    &__text {
+        font-family 'SharpGrotesk-Book15'
+        font-size 14px
+        font-size 1.7vh
+        line-height 1
+        letter-spacing 2.3px
+        text-align center
+    }
+
+    &__time {
+        font-family 'SharpGrotesk-SemiBold25'
+        font-size 30px
+        font-size 4vh
+        line-height 1
+        letter-spacing 0.7px
+        text-align center
+
+        margin-top 5px
+    }
 }

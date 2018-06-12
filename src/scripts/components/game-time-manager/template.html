@@ -1,3 +1,11 @@
-<div class="game-time-manager color--white">
-    {{ time.current }}
+<div class="game-time-manager pos-rel color--white">
+    <div class="game-time-manager__progress pos-abs fit" ref="progress"></div>
+    <div class="game-time-manager__container">
+        <div class="game-time-manager__text uppercase">
+            timer
+        </div>
+        <div class="game-time-manager__time uppercase">
+            {{ time.current }}
+        </div>
+    </div>
 </div>
