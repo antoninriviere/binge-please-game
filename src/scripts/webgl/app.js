@@ -9,6 +9,7 @@ import Mouse from 'Utils/Mouse'
 import MouseMoveRotate from './interactions/mouse-move-rotate'
 import ThirteenReasonsWhy from './interactions/13-reasons-why'
 import StrangerThings from './interactions/stranger-things'
+import OrangeIsTheNewBlack from './interactions/orange-is-the-new-black'
 
 class App
 {
@@ -54,6 +55,8 @@ class App
                 return new ThirteenReasonsWhy({ scene: this.scene, mouse: this.mouse })
             case 'stranger-things':
                 return new StrangerThings({ scene: this.scene, mouse: this.mouse, windowObj: this.windowObj })
+            case 'orange-is-the-new-black':
+                return new OrangeIsTheNewBlack({ scene: this.scene, mouse: this.mouse })
         }
     }
 

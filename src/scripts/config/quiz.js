@@ -67,7 +67,7 @@ export default
         answers: ['house of cards'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        color: '#412789',
+        color: '#fcdfde',
         backgroundColor: '#034E6D',
         ambientSound: ''
     },
@@ -99,5 +99,19 @@ export default
         ambientSound: 'stranger_things',
         color: '#000000',
         backgroundColor: '#000000'
+    },
+    {
+        id: 'orange-is-the-new-black',
+        type: '3d',
+        props: {
+        },
+        name: 'Orange is the new black',
+        answers: ['orange is the new black', 'oitnb'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        color: '#e2c1c0',
+        titleColor: '#F73E39',
+        backgroundColor: '#f0d9d8',
+        ambientSound: ''
     }
 ]
