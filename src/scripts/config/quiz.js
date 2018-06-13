@@ -12,7 +12,8 @@ export default
         elapsedTime: 0,
         ambientSound: '',
         color: '#000000',
-        backgroundColor: '#000000'
+        backgroundColor: '#000000',
+        tuto: 'hover'
     },
     {
         id: '13_reasons_why',
@@ -27,7 +28,8 @@ export default
         color: '#e2c1c0',
         titleColor: '#F73E39',
         backgroundColor: '#f0d9d8',
-        ambientSound: ''
+        ambientSound: '',
+        tuto: 'click'
     },
     {
         id: 'the-crown-svg',
@@ -41,7 +43,8 @@ export default
         elapsedTime: 0,
         color: '#412789',
         backgroundColor: '#5934a5',
-        ambientSound: 'ambient5'
+        ambientSound: 'ambient5',
+        tuto: 'click'
     },
     {
         id: 'breaking-bad',
@@ -55,7 +58,8 @@ export default
         elapsedTime: 0,
         color: '#412789',
         backgroundColor: '#5934a5',
-        ambientSound: 'ambient5'
+        ambientSound: 'ambient5',
+        tuto: 'hover'
     },
     {
         id: 'house-of-cards',
@@ -69,7 +73,8 @@ export default
         elapsedTime: 0,
         color: '#fcdfde',
         backgroundColor: '#034E6D',
-        ambientSound: ''
+        ambientSound: '',
+        tuto: 'none'
     },
     {
         id: 'friends',
@@ -85,7 +90,8 @@ export default
         elapsedTime: 0,
         color: '#034e6d',
         backgroundColor: '#B7D3D7',
-        ambientSound: ''
+        ambientSound: '',
+        tuto: 'none'
     },
     {
         id: 'stranger-things',
@@ -98,7 +104,8 @@ export default
         elapsedTime: 0,
         ambientSound: 'stranger_things',
         color: '#000000',
-        backgroundColor: '#000000'
+        backgroundColor: '#000000',
+        tuto: 'hover'
     },
     {
         id: 'orange-is-the-new-black',
@@ -112,6 +119,7 @@ export default
         color: '#e2c1c0',
         titleColor: '#F73E39',
         backgroundColor: '#f0d9d8',
-        ambientSound: ''
+        ambientSound: '',
+        tuto: 'none'
     }
 ]
