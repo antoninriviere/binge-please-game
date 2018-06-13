@@ -50,7 +50,7 @@ export default
                 delay: 0.7,
                 onComplete: () =>
                 {
-                    TweenMax.delayedCall(5, this.transitionOut)
+                    // TweenMax.delayedCall(5, this.transitionOut)
                 }
             })
             this.tl.from(this.$refs.kudos, 0.5, {
