@@ -21,10 +21,17 @@ class AInteraction extends Group
     }
     clear()
     {
-        this.children.forEach((child) =>
+        for(let i = this.children.length - 1; i >= 0; i--)
         {
-            this.scene.remove(child)
-        })
+            const child = this.children[i]
+            if(child.geometry)
+                child.geometry.dispose()
+            if(child.material)
+                child.material.dispose()
+
+            this.remove(child)
+        }
+        this.scene.resetCamera()
     }
     update(time)
     {

@@ -8,7 +8,7 @@ export default
     data()
     {
         return {
-
+            interactionId: undefined
         }
     },
 
@@ -38,9 +38,11 @@ export default
 
         onGroupUpdate(interactionId)
         {
+            if(this.interactionId)
+                this.webGLApp.clearGroup()
+            this.interactionId = interactionId
             if(interactionId === '')
             {
-                this.webGLApp.clearGroup()
                 this.$el.classList.remove('is-active')
             }
             else

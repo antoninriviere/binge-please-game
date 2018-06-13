@@ -202,7 +202,6 @@ export default
 
         animateDrop(drop, index)
         {
-            console.log('animate drop')
             if(this.isCoupleOver)
             {
                 TweenMax.set(drop,

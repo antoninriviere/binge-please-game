@@ -20,6 +20,7 @@ import {
     AdditiveBlending,
     Box3
 } from 'three'
+import { BloomPass } from 'postprocessing'
 import { MeshLine, MeshLineMaterial } from 'three.meshline'
 import { TimelineMax, Expo, Sine } from 'gsap'
 import GLTFLoader from 'WebGLUtils/GLTFLoader'
@@ -43,6 +44,7 @@ export default class ThirteenReasonsWhy extends AInteraction
         this.MODELS_COUNT = 0
         this.TAPE_PLAYED = false
         this.loadSounds()
+        this.setupPostProcessing()
         this.setupCamera()
         this.initMaterials()
         this.initMeshes()
@@ -59,6 +61,25 @@ export default class ThirteenReasonsWhy extends AInteraction
         })
     }
 
+    setupPostProcessing()
+    {
+        const passes = [
+            {
+                name: 'BloomPass',
+                gui: false,
+                constructor: () =>
+                {
+                    return new BloomPass({
+                        resolutionScale: 0.5,
+                        intensity: 1,
+                        distinction: 1.0
+                    })
+                }
+            }
+        ]
+        this.scene.initPostProcessing(passes)
+    }
+
     setupCamera()
     {
         this.scene.camera.position.x = 16.39
@@ -67,7 +88,7 @@ export default class ThirteenReasonsWhy extends AInteraction
         this.scene.camera.rotation.x = -0.61
         this.scene.camera.rotation.y = 0.43
         this.scene.camera.rotation.z = 0.24
-        this.scene.initCameraGUI()
+        // this.scene.initCameraGUI()
     }
 
     initMaterials()
@@ -231,7 +252,6 @@ export default class ThirteenReasonsWhy extends AInteraction
 
         this.upperPart = new Object3D()
         this.upperPart.position.set(pivotPoint.x, pivotPoint.y, pivotPoint.z)
-        // this.upperPart.rotation.x = DegToRad(-28)
         this.upperPart.add(upperObject)
 
         this.testIfModelsLoaded()
@@ -366,6 +386,9 @@ export default class ThirteenReasonsWhy extends AInteraction
     clear()
     {
         super.clear()
+        this.scene.remove(this.directionalLightFront)
+        this.scene.remove(this.directionalLightBack)
+        this.scene.clearPostProcessing()
         this.tapeSound.destroy()
     }
 }
