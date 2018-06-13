@@ -244,7 +244,7 @@ export default class StrangerThings extends AInteraction
         this.uniforms.uParallaxe.value = this.parallaxe.intensity
     }
 
-    onMove(mouse)
+    onMouseMove(mouse)
     {
         this.mouse = mouse
         const vMouse = new Vector2(this.mouse.nX, this.mouse.nY)
