@@ -58,7 +58,6 @@ export default
 
         onTutoChange()
         {
-            console.log('on tuto change', this.tutoAnim)
             switch(this.$props.tuto)
             {
                 case 'hover':

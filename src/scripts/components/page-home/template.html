@@ -1,5 +1,10 @@
 <div class="page-home">
-    <section class="page-home__wrapper fit center-flex">
+    <section class="page-home__intro fit pos-abs" ref="intro">
+        <video playsinline autoplay muted class="page-home__intro__video-elem" ref="video">
+            <source src="/static/video/intro_bingeplease.mp4" type="video/mp4">
+        </video>
+    </section>
+    <section class="page-home__wrapper fit center-flex" ref="home">
         <app-logo autoplay></app-logo>
         <p class="page-home__description color--white text-center">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate</p>
         <button class="page-home__button btn color--white" @click="onPlayClick">Play</button>

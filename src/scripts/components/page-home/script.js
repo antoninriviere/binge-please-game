@@ -26,7 +26,12 @@ export default
 
     mounted()
     {
-
+        this.$refs.video.addEventListener('ended', () =>
+        {
+            // only functional if "loop" is removed
+            this.$refs.home.classList.add('is-active')
+            this.$refs.intro.classList.add('is-hidden')
+        })
     },
 
     destroyed()
