@@ -28,7 +28,7 @@ export default class StrangerThings extends AInteraction
     {
         super(options)
 
-        this.name = 'StrangerThings'
+        this.name = 'strangerThings'
 
         this.parallaxe = {
             intensity : 0.025,

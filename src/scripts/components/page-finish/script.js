@@ -3,8 +3,7 @@ import {
     WEBGL_ADD_GROUP,
     WEBGL_CLEAR_GROUP
 } from 'MutationTypes'
-import { TimelineMax, TweenMax, Sine } from 'gsap'
-
+import { TimelineMax, TweenMax } from 'gsap'
 
 export default
 {
@@ -51,7 +50,7 @@ export default
                 delay: 0.7,
                 onComplete: () =>
                 {
-                    TweenMax.delayedCall(5, this.transitionOut)
+                    // TweenMax.delayedCall(5, this.transitionOut)
                 }
             })
             this.tl.from(this.$refs.kudos, 0.5, {
@@ -84,7 +83,7 @@ export default
                 ease: Expo.easeOut,
                 onComplete: () =>
                 {
-                    this.$router.push('/score')
+                    // this.$router.push('/score')
                 }
             })
         }

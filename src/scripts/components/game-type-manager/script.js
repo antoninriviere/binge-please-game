@@ -147,7 +147,7 @@ export default
         playSuccessTransition()
         {
             const bounds = this.$refs.text.getBoundingClientRect()
-            const xEnd = Math.ceil(bounds.x + bounds.width) * 1.5
+            const xEnd = Math.ceil(bounds.x + bounds.width) * 2
             TweenMax.set(this.$refs.text, { skewX: '0deg', transformOrigin: '50% 50%' })
             return new Promise((resolve) =>
             {

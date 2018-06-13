@@ -1,7 +1,7 @@
-import raf from 'raf'
+import eventHub from 'Application/event-hub'
+
 import SceneObj from 'WebGLCore/scene'
 import Config from 'WebGLConfig'
-import camelcase from 'lodash.camelcase'
 
 import Time from 'Utils/Time'
 import Mouse from 'Utils/Mouse'
@@ -17,7 +17,7 @@ class App
     constructor(container)
     {
         this.scene = new SceneObj({
-            container: container,
+            container,
             ...Config
         })
 
@@ -35,8 +35,6 @@ class App
             width: window.innerWidth,
             height: window.innerHeight
         }
-
-        this.update()
     }
 
     addGroup(id)
@@ -44,6 +42,7 @@ class App
         this.interactionId = id
         this.group = this.getInteractionGroup(id)
         this.scene.add(this.group)
+        eventHub.$on('application:enterframe', this.update)
     }
 
     getInteractionGroup(id)
@@ -63,11 +62,12 @@ class App
 
     clearGroup()
     {
-        const groupName = camelcase(this.interactionId)
-        const group = this.scene.getObjectByName(groupName)
-        group.clear()
-        this.scene.remove(group)
-        this.scene.renderer.dispose()
+        this.group.clear()
+        this.scene.remove(this.group)
+        this.group = undefined
+        // this.scene.renderer.dispose()
+        this.scene.renderer.clear()
+        eventHub.$off('application:enterframe', this.update)
     }
 
     update = () =>
@@ -75,19 +75,16 @@ class App
         this.time.tick()
 
         if(this.group)
-        {
             this.group.update(this.time)
-            this.scene.render(this.time)
-        }
-
-        raf(this.update)
+        this.scene.render(this.time)
     }
 
     mouseMove = (event) =>
     {
         this.mouse.onMove(event)
 
-        if(this.group) this.group.onMouseMove(this.mouse)
+        if(this.group)
+            this.group.onMouseMove(this.mouse)
     }
 
     resize = () =>
@@ -100,7 +97,8 @@ class App
         this.windowObj.width = this.width
         this.windowObj.height = this.height
 
-        if(this.group) this.group.resize(this.mouse, this.windowObj)
+        if(this.group)
+            this.group.resize(this.mouse, this.windowObj)
 
         this.scene.resize(this.width, this.height)
     }

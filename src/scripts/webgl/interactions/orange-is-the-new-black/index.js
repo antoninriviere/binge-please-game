@@ -67,7 +67,7 @@ export default class OrangeIsTheNewBlack extends AInteraction
     initLights()
     {
         this.hemisphereLight = new HemisphereLight(0xFF82BD, 0xFF82BD, 1)
-        this.add(this.hemisphereLight)
+        this.scene.add(this.hemisphereLight)
         // this.directionalLight = new DirectionalLight(0xffffff, 1)
         // this.directionalLight.position.set(5, 5, 10)
         // this.scene.add(this.directionalLight)
@@ -82,17 +82,10 @@ export default class OrangeIsTheNewBlack extends AInteraction
             panties.animate(time.delta)
         }
         super.update()
-
-        // const dx = this.targetPos.x - this.box.position.x
-        // const dy = this.targetPos.y - this.box.position.y
-        // const ax = dx * this.SPRING
-        // const ay = dy * this.SPRING
-        // this.vx += ax
-        // this.vy += ay
-        // this.vy += this.GRAVITY
-        // this.vx *= this.FRICTION
-        // this.vy *= this.FRICTION
-        // this.box.position.x += this.vx
-        // this.box.position.y += this.vy
+    }
+    clear()
+    {
+        super.clear()
+        this.scene.remove(this.hemisphereLight)
     }
 }

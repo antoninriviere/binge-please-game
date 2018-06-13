@@ -3,6 +3,7 @@ import Stats from 'stats-js'
 import OrbitControls from 'orbit-controls'
 import { EffectComposer, RenderPass } from 'postprocessing'
 import GUI from 'WebGLUtils/GUI'
+import FXAAPass from '../passes/FXAA'
 
 class SceneObj extends Scene
 {
@@ -14,7 +15,8 @@ class SceneObj extends Scene
                 fov: 15,
                 near: 1,
                 far: 5000,
-                position: new Vector3(0, 0, 10)
+                position: new Vector3(0, 0, 10),
+                rotation: new Vector3(0, 0, 0)
             },
             renderer: {
                 alpha: true,
@@ -48,8 +50,7 @@ class SceneObj extends Scene
         this.camera = new PerspectiveCamera(this.options.camera.fov, this.width / this.height, this.options.camera.near, this.options.camera.far)
         this.camera.position.copy(this.options.camera.position)
 
-        if(this.options.postProcessing.active)
-            this.initPostProcessing()
+        this.preparePostProcessing()
 
         if(this.options.debug.stats)
             this.initStats()
@@ -102,27 +103,36 @@ class SceneObj extends Scene
         this.container.appendChild(this.stats.domElement)
     }
 
-    initPostProcessing()
+    preparePostProcessing()
     {
         this.composer = new EffectComposer(this.renderer)
         this.renderPass = new RenderPass(this, this.camera)
         this.composer.addPass(this.renderPass)
-
+        this.passes = []
+    }
+    initPostProcessing(passes = [])
+    {
         let passObject
-        if(this.options.postProcessing.gui)
-            GUI.panel.addGroup({ label: 'Postprocessing' })
-
-        this.options.postProcessing.passes.forEach((pass) =>
+        passes.forEach((pass) =>
         {
-            if(pass.active)
-            {
-                passObject = pass.constructor()
-                this.composer.addPass(passObject)
-                if(pass.gui)
-                    passObject.initGUI()
-            }
+            passObject = pass.constructor()
+            this.passes.push(passObject)
+            this.composer.addPass(passObject)
+            if(pass.gui)
+                passObject.initGUI()
         })
+        passObject = new FXAAPass({})
+        this.composer.addPass(passObject)
         passObject.renderToScreen = true
+        this.options.postProcessing.active = true
+    }
+    clearPostProcessing()
+    {
+        this.passes.forEach((pass) =>
+        {
+            this.composer.removePass(pass)
+        })
+        this.options.postProcessing.active = false
     }
     render(time)
     {
@@ -149,8 +159,12 @@ class SceneObj extends Scene
 
     resetCamera()
     {
-        this.camera.position.copy(this.options.camera.position)
-        this.camera.rotation.copy(this.options.camera.rotation)
+        this.camera.position.x = this.options.camera.position.x
+        this.camera.position.y = this.options.camera.position.y
+        this.camera.position.z = this.options.camera.position.z
+        this.camera.rotation.x = this.options.camera.rotation.x
+        this.camera.rotation.y = this.options.camera.rotation.y
+        this.camera.rotation.z = this.options.camera.rotation.z
     }
 
     resize(newWidth, newHeight)
