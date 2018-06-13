@@ -26,6 +26,13 @@ const routes = [
         }
     },
     {
+        path: '/finish',
+        name: 'finish',
+        meta: {
+            componentId: 'page-finish'
+        }
+    },
+    {
         path: '/score',
         name: 'score',
         meta: {

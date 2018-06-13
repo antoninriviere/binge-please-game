@@ -1,0 +1,18 @@
+<div class="page-finish pos-abs-tl fit">
+    <div class="page-finish__banner">
+        <div class="page-finish__banner-line page-finish__banner-line--first">
+            <div class="page-finish__banner-item display-inline-block" v-for="count in bannerCount"><img src="/static/finish-screen/bravo.svg"></div>
+        </div>
+        <div class="page-finish__banner-line page-finish__banner-line--second">
+            <div class="page-finish__banner-item display-inline-block" v-for="count in bannerCount"><img src="/static/finish-screen/bravo.svg"></div>
+        </div>
+    </div>
+    <div class="page-finish__kudos text-right" ref="kudos">
+        <div class="page-finish__kudos-background" ref="kudosBg"></div>
+        <p class="page-finish__kudos-text display-inline-block uppercase color--white" ref="kudosText">kudos</p>
+    </div>
+    <div class="page-finish__congrats text-right overflow-h" ref="congrats">
+        <p class="page-finish__congrats-text display-inline-block uppercase color--white" ref="congratsText">congrats</p>
+    </div>
+    <div class="page-finish__transition-out pos-abs-tl fit" ref="transitionOut"></div>
+</div>
