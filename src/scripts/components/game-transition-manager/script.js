@@ -1,6 +1,7 @@
 import eventHub from 'Application/event-hub'
 import { TweenMax, TimelineMax } from 'gsap'
 import successWellDone from 'Components/game-success-transitions/well-done'
+import successYouWin from 'Components/game-success-transitions/you-win'
 export default
 {
     name: 'game-transition-manager',
@@ -69,7 +70,8 @@ export default
             TweenMax.set(this.$refs.circle, { scale: 0 })
             if(questionState === 'success')
             {
-                this.successComponent = successWellDone
+                // this.successComponent = successWellDone
+                this.successComponent = successYouWin
                 return this.$nextTick().then(() => this.playSuccessTransition())
             }
             else
