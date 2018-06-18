@@ -27,7 +27,8 @@ export default
 
     destroyed()
     {
-
+        this.tl.kill()
+        this.tl.clear()
     },
 
     methods:
@@ -36,30 +37,30 @@ export default
         {
             return new Promise((resolve) =>
             {
-                const tl = new TimelineMax({
+                this.tl = new TimelineMax({
                     onComplete: () =>
                     {
-                        tl.set(this.$refs.container, { clearProps: 'all' })
+                        this.tl.set(this.$refs.container, { clearProps: 'all' })
                         resolve()
                     }
                 })
                 let perc = 0
-                tl.set(this.$refs.container, { opacity: 1 }, 0)
-                tl.to(this.$refs.leftMask, 1, {
+                this.tl.set(this.$refs.container, { opacity: 1 }, 0)
+                this.tl.to(this.$refs.leftMask, 1, {
                     scaleX: 1,
                     xPercent: -105,
                     ease: Power3.easeInOut
                 }, 0)
-                tl.to(this.$refs.rightMask, 1, {
+                this.tl.to(this.$refs.rightMask, 1, {
                     scaleX: 1,
                     xPercent: 105,
                     ease: Power3.easeInOut
                 }, 0)
-                tl.to([this.$refs.leftText, this.$refs.rightText], 0.5, {
+                this.tl.to([this.$refs.leftText, this.$refs.rightText], 0.5, {
                     letterSpacing: '0.6vw',
                     ease: Power2.easeOut
                 }, 0.4)
-                tl.to(this, 0.4, {
+                this.tl.to(this, 0.4, {
                     clipProgress: 1,
                     onUpdate: () =>
                     {
@@ -75,7 +76,7 @@ export default
                     },
                     ease: Sine.easeOut
                 }, 0.4)
-                tl.timeScale(0.8)
+                this.tl.timeScale(0.8)
             })
         }
     }
