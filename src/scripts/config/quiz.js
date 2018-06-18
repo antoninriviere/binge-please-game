@@ -1,6 +1,21 @@
 export default
 [
     {
+        id: 'the-good-place',
+        type: '2d',
+        props: {
+            name: 'the-good-place'
+        },
+        name: 'The good place',
+        answers: ['the good place'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        ambientSound: '',
+        color: '#f7c046',
+        backgroundColor: '#f7c046',
+        tuto: 'click'
+    },
+    {
         id: 'black-mirror',
         type: '2d',
         props: {

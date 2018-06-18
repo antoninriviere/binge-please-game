@@ -2,6 +2,7 @@ import TheCrownSvg from './the-crown-svg'
 import BreakingBadSvg from './breaking-bad-svg'
 import HouseOfCards from './house-of-cards'
 import BlackMirror from './black-mirror'
+import TheGoodPlace from './the-good-place'
 
 export default
 {
@@ -12,7 +13,8 @@ export default
         TheCrownSvg,
         BreakingBadSvg,
         HouseOfCards,
-        BlackMirror
+        BlackMirror,
+        TheGoodPlace
     },
 
     props: {

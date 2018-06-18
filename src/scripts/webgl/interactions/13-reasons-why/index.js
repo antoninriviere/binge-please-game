@@ -71,7 +71,7 @@ export default class ThirteenReasonsWhy extends AInteraction
                 {
                     return new BloomPass({
                         resolutionScale: 0.5,
-                        intensity: 1,
+                        intensity: 0.5,
                         distinction: 1.0
                     })
                 }
