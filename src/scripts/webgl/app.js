@@ -9,6 +9,7 @@ import Mouse from 'Utils/Mouse'
 import ThirteenReasonsWhy from './interactions/13-reasons-why'
 import StrangerThings from './interactions/stranger-things'
 import OrangeIsTheNewBlack from './interactions/orange-is-the-new-black'
+import Narcos from './interactions/narcos'
 
 import FinishScreen from './interactions/finish'
 
@@ -31,6 +32,8 @@ class App
 
         this.mouse = new Mouse(window.innerWidth, window.innerHeight)
 
+        this.interactionConfig = { scene: this.scene, mouse: this.mouse }
+
         this.windowObj = {
             width: window.innerWidth,
             height: window.innerHeight
@@ -50,13 +53,15 @@ class App
         switch(id)
         {
             case '13_reasons_why':
-                return new ThirteenReasonsWhy({ scene: this.scene, mouse: this.mouse })
+                return new ThirteenReasonsWhy(this.interactionConfig)
             case 'stranger-things':
-                return new StrangerThings({ scene: this.scene, mouse: this.mouse, windowObj: this.windowObj })
+                return new StrangerThings({ ...this.interactionConfig, windowObj: this.windowObj })
             case 'orange-is-the-new-black':
-                return new OrangeIsTheNewBlack({ scene: this.scene, mouse: this.mouse })
+                return new OrangeIsTheNewBlack(this.interactionConfig)
+            case 'narcos':
+                return new Narcos({ ...this.interactionConfig, windowObj: this.windowObj })
             case 'finish-screen':
-                return new FinishScreen({ scene: this.scene, mouse: this.mouse })
+                return new FinishScreen(this.interactionConfig)
         }
     }
 

@@ -29,6 +29,10 @@ class SceneObj extends Scene
             },
             postProcessing: {
                 active: false
+            },
+            override: {
+                renderer: false,
+                aspect: false
             }
         }
 
@@ -169,13 +173,18 @@ class SceneObj extends Scene
 
     resize(newWidth, newHeight)
     {
-        this.camera.aspect = newWidth / newHeight
-        this.camera.updateProjectionMatrix()
+        if(!this.options.override.aspect)
+        {
+            this.camera.aspect = newWidth / newHeight
+            this.camera.updateProjectionMatrix()
+        }
+        if(!this.options.override.renderer)
+        {
+            this.renderer.setSize(newWidth, newHeight)
 
-        this.renderer.setSize(newWidth, newHeight)
-
-        if(this.composer)
-            this.composer.setSize(newWidth, newHeight)
+            if(this.composer)
+                this.composer.setSize(newWidth, newHeight)
+        }
     }
 }
 
