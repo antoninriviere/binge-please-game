@@ -21,7 +21,8 @@ export default
     data()
     {
         return {
-            animatedStickers: false
+            animatedStickers: false,
+            duration: 10
         }
     },
 
@@ -34,6 +35,8 @@ export default
 
     mounted()
     {
+        this.animateMustBinge()
+
         this.$stickers = this.$el.querySelectorAll('.sticker')
         this.stickersBoundingRect = []
 
@@ -68,19 +71,26 @@ export default
         animateStickers()
         {
             this.animatedStickers = true
+            window.removeEventListener('scroll', this.onScroll)
+
             for(let i = 0; i < this.$stickers.length; i++)
             {
                 const elem = this.$stickers[i]
                 const bound = this.stickersBoundingRect[i]
                 const randomOffset = randomInRange(100, 200)
+                const randomY = randomInRange(100, 200)
+                const randomSign = Math.random() > 0.5 ? 1 : -1
 
                 if(i % 2 < 1)
                 {
+                    console.log(elem)
                     const distance = bound.x + bound.width - randomOffset
 
                     TweenMax.to(elem, 0.4, {
                         x: -distance + 'px',
-                        ease: Power2.easeOut
+                        y: randomY * randomSign,
+                        ease: Expo.easeOut,
+                        delay: randomInRange(0, 0.2)
                     })
                 }
                 else
@@ -89,10 +99,50 @@ export default
 
                     TweenMax.to(elem, 0.4, {
                         x: distance + 'px',
-                        ease: Circ.easeOut
+                        y: randomY * randomSign,
+                        ease: Expo.easeOut,
+                        delay: randomInRange(0, 0.2)
                     })
                 }
             }
+        },
+
+        animateMustBinge()
+        {
+            console.log(this.$refs.mustBinge1)
+            this.tweenToLeft(this.$refs.mustBinge1)
+            this.tweenToMid(this.$refs.mustBinge2)
+        },
+
+        tweenToLeft(object)
+        {
+            TweenMax.to(object, this.duration, {
+                x: '-100%',
+                ease: Power0.easeNone,
+                onComplete: () =>
+                {
+                    TweenMax.set(object, {
+                        x: '100%'
+                    })
+                    this.tweenToMid(object)
+                }
+            })
+        },
+
+        tweenToMid(object)
+        {
+            TweenMax.fromTo(object, this.duration,
+                {
+                    x: '100%'
+                },
+                {
+                    x: '0%',
+                    ease: Power0.easeNone,
+                    onComplete: () =>
+                    {
+                        this.tweenToLeft(object)
+                    }
+                })
         }
     }
 }
