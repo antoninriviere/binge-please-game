@@ -1,7 +1,6 @@
 <div class="page-quiz">
     <game-interface :debug="isDebug"></game-interface>
     <div v-if="quizObject.type === '2d'" :is="quizObject.componentId" v-bind="quizObject.props"></div>
-    <game-type-manager ref="typeManager"></game-type-manager>
     <game-tuto-manager :tuto="quizObject.tuto"></game-tuto-manager>
     <app-logo></app-logo>
     <game-transition-manager ref="transitionManager"></game-transition-manager>

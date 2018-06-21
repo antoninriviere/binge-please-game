@@ -19,6 +19,13 @@ const routes = [
         }
     },
     {
+        path: '/tuto/:id',
+        name: 'tuto',
+        meta: {
+            componentId: 'page-tuto'
+        }
+    },
+    {
         path: '/quiz/:id',
         name: 'quiz',
         meta: {

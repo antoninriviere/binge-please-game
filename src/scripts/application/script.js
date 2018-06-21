@@ -5,13 +5,15 @@ import store from '../store'
 import eventHub from 'Application/event-hub'
 
 import PageHome from '../components/page-home'
+import PageTuto from '../components/page-tuto'
 import PageQuiz from '../components/page-quiz'
 import PageFinish from '../components/page-finish'
 import PageScore from '../components/page-score'
 import PageLeaderboard from '../components/page-leaderboard'
 import AppWebglCanvas from '../components/app-webgl-canvas'
+import GameTypeManager from 'Components/game-type-manager'
 
-import logger from 'Utils/logger'
+
 import Config from 'Config'
 import ConfigQuiz from 'Config/quiz'
 
@@ -32,11 +34,13 @@ export default {
     components:
     {
         PageHome,
+        PageTuto,
         PageQuiz,
         PageFinish,
         PageScore,
         PageLeaderboard,
-        AppWebglCanvas
+        AppWebglCanvas,
+        GameTypeManager
     },
 
     data()
@@ -72,7 +76,6 @@ export default {
         this.audioManager = new AudioManager()
 
         window.addEventListener('resize', this.onResize)
-        // window.addEventListener('keydown', this.onKeyPress)
         window.addEventListener('mousemove', this.onMouseMove)
 
         eventHub.$on('page:disable-scroll', this.onDisableScroll)
@@ -84,6 +87,7 @@ export default {
         this.onResize()
         this.onEnterFrame()
         this.onRouteChange(this.$route)
+        this.typeManager = this.$refs.typeManager
     },
 
     destroyed()
@@ -98,37 +102,6 @@ export default {
             this.windowObj = { width: window.innerWidth, height: window.innerHeight }
             this.mouse.onResize(this.windowObj.width, this.windowObj.height)
             eventHub.$emit('window:resize', this.windowObj)
-        },
-
-        onKeyPress(e)
-        {
-            e.preventDefault()
-            const char = e.which || e.keyCode
-            let id = this.quizId
-            switch(char)
-            {
-                case 37:
-                    if(id - 1 > 0)
-                    {
-                        logger('left', 'royalblue')
-                        id--
-                    }
-                    break
-                case 39:
-                    if(id < this.maxQuestions)
-                    {
-                        logger('right', 'royalblue')
-                        id++
-                    }
-                    break
-                default:
-                    break
-            }
-            if(this.quizId !== id)
-            {
-                this.quizId = id
-                this.$router.push(`/quiz/${this.quizId}`)
-            }
         },
 
         onMouseMove(event)
