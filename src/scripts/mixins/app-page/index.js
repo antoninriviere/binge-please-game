@@ -29,7 +29,7 @@ export default {
         console.log(`page ${this.$route.name} mounted`)
         this.ready = true
         this.$root.scrollTo(0, true)
-        eventHub.$emit('page:enable-scroll')
+        // eventHub.$emit('page:enable-scroll')
         this.onResize()
     },
 

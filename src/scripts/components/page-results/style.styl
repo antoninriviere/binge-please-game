@@ -1,0 +1,444 @@
+.page-results {
+    overflow-x hidden
+
+    min-height 200vh
+    background-color: $purple
+
+    .app-logo {
+        z-index 10
+        position fixed
+        top 0
+        left 0
+        width 15%
+    }
+
+    &__score {
+        z-index 10
+        position fixed
+        right 20px
+        top 20px
+
+        &__container {
+            width 18vw
+            min-width 200px
+            max-width 300px
+
+            height 14vh
+            min-height 60px
+            border 3px solid $white
+
+            display flex
+            flex-wrap wrap
+            justify-content center
+            align-items center
+            flex-direction column
+        }
+
+        &__text {
+            font-family 'SharpGrotesk-Book15'
+            color $white
+            font-size 14px
+            font-size 1.7vh
+            line-height 1
+            letter-spacing 2.3px
+            text-align center
+        }
+
+        &__number {
+            font-family 'SharpGrotesk-SemiBold25'
+            color $red
+            font-size 30px
+            font-size 5.5vh
+            line-height 1
+            letter-spacing 0.7px
+            text-align center
+
+            margin-top 5px
+        }
+    }
+
+    .container {
+        width 960px
+        margin 0 auto
+
+        display grid
+        grid-template-columns repeat(12, 1fr)
+    }
+
+    &__profile {
+        grid-column-start 2
+        grid-column-end span 10
+
+        margin-top: 40vh
+        position relative
+
+        &__text {
+            font-family 'SharpGrotesk-Book25'
+            font-size 5vh
+            letter-spacing 2px
+            line-height 1.5
+
+            color $white
+            text-align center
+
+            &--bold {
+                font-family 'SharpGrotesk-SemiBold25'
+            }
+        }
+    }
+
+    &__stickers {
+        position absolute
+        width 100%
+        height 100%
+        top 0
+    }
+
+    .sticker {
+        position absolute
+        display inline-block
+
+        &:before {
+            content ''
+            position absolute
+
+            height 100%
+            width 100%
+        }
+
+        &__text {
+            position relative
+
+            font-family 'SharpGrotesk-Bold10'
+            letter-spacing 0.06em
+            line-height 1
+        }
+    }
+
+    &__sticker {
+
+        &--1 {
+            z-index 5
+            padding 0 10px
+
+            transform translate3d(0, -50%, 0) rotate(-14deg)
+
+            top 43%
+            left 25%
+
+            &:before {
+                top -0.5vh
+                left -2px
+                background-color $blue-dark
+            }
+
+            &__text {
+                font-size 10vh
+                color $blue
+            }
+        }
+
+        &--2 {
+            z-index 4
+            padding 0 20px
+
+            transform translate3d(0, -50%, 0) rotate(-35deg)
+
+            top 40%
+            left 13%
+
+            &:before {
+                top -1.2vh
+                left -5px
+                background-color $yellow
+            }
+
+            &__text {
+                font-size 22vh
+                color $black
+            }
+        }
+
+        &--3 {
+            z-index 3
+            padding 0 20px
+
+            transform rotate(-15deg)
+
+            top 70%
+            right 10%
+
+            &:before {
+                top -0.8vh
+                left -4px
+                background-color $blue
+            }
+
+            &__text {
+                font-size 18vh
+                color $purple
+            }
+        }
+
+        &--4 {
+            z-index 2
+            padding 0 20px
+
+            transform rotate(14deg)
+
+            top -20%
+            right 10%
+
+            &:before {
+                top -0.7vh
+                left -3px
+                background-color $red
+            }
+
+            &__text {
+                font-size 14vh
+                color $pink
+            }
+        }
+
+        &--5 {
+            z-index 1
+            padding 0 22px
+
+            transform rotate(12deg)
+
+            top 0%
+            left 10%
+
+            &:before {
+                top -1.3vh
+                left -4px
+                background-color $pink
+            }
+
+            &__text {
+                font-size 24vh
+                color $yellow
+            }
+        }
+    }
+
+    &__rewards {
+        grid-column span 12
+
+        display flex
+        justify-content center
+
+        margin-top 300px
+    }
+
+    &__reward {
+        position relative
+        width 33%
+
+        &__title {
+            width 75%
+            position relative
+            z-index 2
+            margin-bottom 20px
+
+            font-family 'SharpGrotesk-Bold10'
+            font-size 60px
+            letter-spacing 3px
+            text-align center
+        }
+
+        &__badge {
+            position absolute
+            z-index 1
+            width 60%
+        }
+
+        &__text {
+            width 75%
+            position relative
+            z-index 2
+
+            font-family 'SharpGrotesk-Medium20'
+            color $white
+            word-spacing 8px
+            letter-spacing 1px
+            text-align center
+            line-height 1.75
+            font-size 18px
+        }
+
+        &:first-child {
+
+            .page-results__reward__title {
+                color $yellow
+            }
+
+            .page-results__reward__badge {
+                right -2%
+                top 6%
+            }
+        }
+
+        &:nth-child(2) {
+            .page-results__reward__title {
+                color $red
+                margin-left 20%
+            }
+
+            .page-results__reward__text {
+                margin-left 20%
+            }
+
+            .page-results__reward__badge {
+                right -20%
+                bottom -40%
+            }
+        }
+
+        &:last-child {
+            .page-results__reward__title {
+                color $white
+                margin-left 25%
+            }
+
+            .page-results__reward__text {
+                margin-left 25%
+            }
+
+            .page-results__reward__badge {
+                left 0%
+                top -38%
+            }
+        }
+    }
+
+    &__recos {
+        grid-column span 12
+
+        margin-top 300px
+
+        &__title {
+            font-family 'SharpGrotesk-Bold10'
+            font-size 400px
+            text-transform uppercase
+            color $yellow
+            white-space nowrap
+            letter-spacing 15px
+
+            transform translate3d(-10%, 0, 0)
+        }
+    }
+
+    &__reco {
+        position relative
+        margin-bottom 150px
+
+        &:nth-child(2) {
+            margin-top -200px
+        }
+
+        &__image {
+            width 50%
+
+            .is-right & {
+                margin-left 50%
+                text-align right
+            }
+
+            img {
+                width 100%
+            }
+        }
+
+        &__rate {
+            margin-left 10%
+
+            .is-right & {
+                margin-left 0
+                margin-right 10%
+            }
+
+            display inline-flex
+            flex-direction column
+            align-items center
+        }
+
+        &__accurate {
+            margin-top 25px
+
+            font-family 'SharpGrotesk-Bold15'
+            text-transform uppercase
+            color $white
+            font-size 20px
+            letter-spacing 3px
+        }
+
+        &__icons {
+            margin-top 15px
+
+            &__svg {
+                width 80px
+
+                &:last-child {
+                    margin-left 10px
+                    transform rotate(180deg)
+                }
+            }
+        }
+
+        &__description {
+            position absolute
+            top 40%
+
+            width 66%
+            margin-left 34%
+            padding 50px
+
+            background-color $white
+            color $black
+
+            text-align center
+
+            .is-right & {
+                margin-left 0
+            }
+
+            &__title {
+                text-align center
+                font-family 'SharpGrotesk-Black20'
+                font-size 20px
+                text-transform uppercase
+                letter-spacing 1px
+
+                margin-bottom 20px
+            }
+
+            &__text {
+                font-family 'SharpGrotesk-Book15'
+                text-align center
+                font-size 20px
+                letter-spacing 2px
+                line-height 1.5
+            }
+
+            &__link {
+                font-family 'SharpGrotesk-SemiBold25'
+                text-transform uppercase
+                font-size 15px
+
+                padding 15px 25px
+                border 3px solid $black
+                display inline-block
+
+                margin-top 30px
+
+                svg {
+                    height 20px
+                    transform translateY(20%)
+                    margin-left 5px
+                }
+            }
+        }
+    }
+}

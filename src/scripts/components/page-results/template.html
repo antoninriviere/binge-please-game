@@ -1,0 +1,193 @@
+<div class="page-results">
+    <app-logo></app-logo>
+
+    <div class="page-results__score">
+        <div class="page-results__score__container">
+            <div class="page-results__score__text uppercase">
+                your score
+            </div>
+            <div class="page-results__score__number uppercase">
+                1804
+            </div>
+        </div>
+        <app-btn-share></app-btn-share>
+    </div>
+
+    <div class="container">
+        <div class="page-results__profile container__column" @click="animateStickers">
+            <div class="page-results__profile__text">
+                You will end at the<br/> binger's <span class="page-results__profile__text--bold">good place</span>, that's for sure. You were good<br/> at this game, congrat's
+            </div>
+            <div class="page-results__stickers">
+                <div class="page-results__sticker--1 sticker uppercase">
+                    <span class="page-results__sticker--1__text sticker__text">
+                            serial binger
+                    </span>
+                </div>
+                <div class="page-results__sticker--2 sticker uppercase">
+                    <span class="page-results__sticker--2__text sticker__text">
+                            serial binger
+                    </span>
+                </div>
+                <div class="page-results__sticker--3 sticker uppercase">
+                    <span class="page-results__sticker--3__text sticker__text">
+                            serial binger
+                    </span>
+                </div>
+                <div class="page-results__sticker--4 sticker uppercase">
+                    <span class="page-results__sticker--4__text sticker__text">
+                            serial binger
+                    </span>
+                </div>
+                <div class="page-results__sticker--5 sticker uppercase">
+                    <span class="page-results__sticker--5__text sticker__text">
+                            serial binger
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-results__rewards">
+            <div class="page-results__reward">
+                <div class="page-results__reward__title">Sci-fi<br/>lover</div>
+                <img class="page-results__reward__badge" src="/static/images/drawable-xhdpi/stranger.png"/>
+                <div class="page-results__reward__text">We understood. It’s your favorite domain. 100% Good answer in SF categories. That passion is real.</div>
+            </div>
+            <div class="page-results__reward">
+                <div class="page-results__reward__title">Speedy like...<br/>Dirk Gently</div>
+                <img class="page-results__reward__badge" src="/static/images/drawable-xhdpi/dirk.png"/>
+                <div class="page-results__reward__text">Reflect and observer is how you are defined.
+                        You’ve got 100% good answer. Kudos!</div>
+            </div>
+            <div class="page-results__reward">
+                <div class="page-results__reward__title">Sneaky like...<br/>Daredevil</div>
+                <img class="page-results__reward__badge" src="/static/images/drawable-xhdpi/daredevil.png"/>
+                <div class="page-results__reward__text">You answer faster than your shadow. It takes you generally less than 5 seconds to respond correctly.</div>
+            </div>
+        </div>
+
+        <div class="page-results__recos">
+            <div class="page-results__recos__title">
+                you must binge
+            </div>
+            <div class="page-results__reco">
+                <div class="page-results__reco__image">
+                    <img src="/static/images/drawable-xhdpi/oitnb.jpg" alt="oitnb">
+
+                    <div class="page-results__reco__rate">
+                        <div class="page-results__reco__accurate">
+                            Accurate ?
+                        </div>
+                        <div class="page-results__reco__icons">
+                            <svg class="page-results__reco__icons__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                                <g fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                                    <circle cx="40" cy="40" r="40" stroke="#FFF" stroke-width="3"/>
+                                    <path fill="#FFF" fill-rule="nonzero" d="M59.122 35.59c.243-2.751-2.322-3.554-3.34-3.554-3.944 0-7.89 0-11.834-.003.568-1.236 1.26-4.512.388-9.027-.344-1.784-1.398-2.971-2.739-2.948-1.08.02-2.113.853-2.221 1.892-.119 1.142-.4 2.77-.665 3.882-.85 3.557-5.394 8.254-8.268 9.892v17.377c1.95 1.102 4.063 1.487 6.321 1.444 3.567-.068 13.756-.008 15.602-.02 1.307-.01 2.61-.632 3.237-2.21.856-2.153-1.351-3.23-1.351-3.23s2.416.119 2.969-2.049c.566-2.224-1.657-3.105-1.657-3.105 1.503-.164 2.466-.555 2.83-1.91.427-1.596-.6-2.795-2.224-3.488.246-.024 2.729-.425 2.952-2.943zm-31.18-2.627h-6.639c-.677 0-1.225.548-1.225 1.225v19.659c0 .677.548 1.225 1.225 1.225h6.638c.677 0 1.226-.548 1.226-1.225V34.188c0-.676-.549-1.225-1.226-1.225z"/>
+                                </g>
+                            </svg>
+                            <svg class="page-results__reco__icons__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                                <g fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                                    <circle cx="40" cy="40" r="40" stroke="#FFF" stroke-width="3"/>
+                                    <path fill="#FFF" fill-rule="nonzero" d="M59.122 35.59c.243-2.751-2.322-3.554-3.34-3.554-3.944 0-7.89 0-11.834-.003.568-1.236 1.26-4.512.388-9.027-.344-1.784-1.398-2.971-2.739-2.948-1.08.02-2.113.853-2.221 1.892-.119 1.142-.4 2.77-.665 3.882-.85 3.557-5.394 8.254-8.268 9.892v17.377c1.95 1.102 4.063 1.487 6.321 1.444 3.567-.068 13.756-.008 15.602-.02 1.307-.01 2.61-.632 3.237-2.21.856-2.153-1.351-3.23-1.351-3.23s2.416.119 2.969-2.049c.566-2.224-1.657-3.105-1.657-3.105 1.503-.164 2.466-.555 2.83-1.91.427-1.596-.6-2.795-2.224-3.488.246-.024 2.729-.425 2.952-2.943zm-31.18-2.627h-6.639c-.677 0-1.225.548-1.225 1.225v19.659c0 .677.548 1.225 1.225 1.225h6.638c.677 0 1.226-.548 1.226-1.225V34.188c0-.676-.549-1.225-1.226-1.225z"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-results__reco__description">
+                    <div class="page-results__reco__description__title">
+                        orange is the new black
+                    </div>
+                    <div class="page-results__reco__description__text">
+                            When she was young, Pipier Chapman had herself involved in a drug traffic. Ten years later, her criminal past resurface and she is sent into jail. Follow here new life in the middle of the Litchfield prison with her fellow inmates.
+                    </div>
+                    <div class="page-results__reco__description__link">
+                        Binge it on
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 24">
+                            <path fill="#F73E39" d="M12.144 22.267c-1.328.232-2.68.302-4.079.488L3.8 10.297v12.992c-1.328.14-2.54.326-3.799.512V0h3.543l4.848 13.504V0h3.753v22.267zm7.343-13.55c1.445 0 3.66-.07 4.988-.07v3.718c-1.655 0-3.59 0-4.988.07v5.532c2.19-.14 4.382-.326 6.596-.395v3.579l-10.326.813V0h10.326v3.719h-6.596v4.997zm20.465-4.998h-3.87v17.107c-1.258 0-2.517 0-3.728.046V3.72h-3.87V0h11.468v3.719zm6.06 4.742h5.105v3.718h-5.104v8.438h-3.66V0h10.42v3.719h-6.76V8.46zm12.82 8.901c2.122.047 4.266.21 6.34.326v3.672c-3.332-.21-6.666-.418-10.069-.488V0h3.73v17.362zm9.488 4.254c1.188.07 2.447.14 3.66.279V0h-3.66v21.616zM88.32 0l-4.733 11.32L88.32 23.8c-1.398-.185-2.797-.44-4.196-.673l-2.68-6.88-2.727 6.322c-1.352-.233-2.658-.302-4.01-.488l4.802-10.901L75.173 0h4.009l2.447 6.252L84.24 0h4.08z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="page-results__reco is-right">
+                <div class="page-results__reco__image">
+                    <img src="/static/images/drawable-xhdpi/13_reasons.jpg" alt="oitnb">
+
+                    <div class="page-results__reco__rate">
+                        <div class="page-results__reco__accurate">
+                            Accurate ?
+                        </div>
+                        <div class="page-results__reco__icons">
+                            <svg class="page-results__reco__icons__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                                <g fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                                    <circle cx="40" cy="40" r="40" stroke="#FFF" stroke-width="3"/>
+                                    <path fill="#FFF" fill-rule="nonzero" d="M59.122 35.59c.243-2.751-2.322-3.554-3.34-3.554-3.944 0-7.89 0-11.834-.003.568-1.236 1.26-4.512.388-9.027-.344-1.784-1.398-2.971-2.739-2.948-1.08.02-2.113.853-2.221 1.892-.119 1.142-.4 2.77-.665 3.882-.85 3.557-5.394 8.254-8.268 9.892v17.377c1.95 1.102 4.063 1.487 6.321 1.444 3.567-.068 13.756-.008 15.602-.02 1.307-.01 2.61-.632 3.237-2.21.856-2.153-1.351-3.23-1.351-3.23s2.416.119 2.969-2.049c.566-2.224-1.657-3.105-1.657-3.105 1.503-.164 2.466-.555 2.83-1.91.427-1.596-.6-2.795-2.224-3.488.246-.024 2.729-.425 2.952-2.943zm-31.18-2.627h-6.639c-.677 0-1.225.548-1.225 1.225v19.659c0 .677.548 1.225 1.225 1.225h6.638c.677 0 1.226-.548 1.226-1.225V34.188c0-.676-.549-1.225-1.226-1.225z"/>
+                                </g>
+                            </svg>
+                            <svg class="page-results__reco__icons__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                                <g fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                                    <circle cx="40" cy="40" r="40" stroke="#FFF" stroke-width="3"/>
+                                    <path fill="#FFF" fill-rule="nonzero" d="M59.122 35.59c.243-2.751-2.322-3.554-3.34-3.554-3.944 0-7.89 0-11.834-.003.568-1.236 1.26-4.512.388-9.027-.344-1.784-1.398-2.971-2.739-2.948-1.08.02-2.113.853-2.221 1.892-.119 1.142-.4 2.77-.665 3.882-.85 3.557-5.394 8.254-8.268 9.892v17.377c1.95 1.102 4.063 1.487 6.321 1.444 3.567-.068 13.756-.008 15.602-.02 1.307-.01 2.61-.632 3.237-2.21.856-2.153-1.351-3.23-1.351-3.23s2.416.119 2.969-2.049c.566-2.224-1.657-3.105-1.657-3.105 1.503-.164 2.466-.555 2.83-1.91.427-1.596-.6-2.795-2.224-3.488.246-.024 2.729-.425 2.952-2.943zm-31.18-2.627h-6.639c-.677 0-1.225.548-1.225 1.225v19.659c0 .677.548 1.225 1.225 1.225h6.638c.677 0 1.226-.548 1.226-1.225V34.188c0-.676-.549-1.225-1.226-1.225z"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-results__reco__description">
+                    <div class="page-results__reco__description__title">
+                        13 Reasons why
+                    </div>
+                    <div class="page-results__reco__description__text">
+                            Why did Hannah Baker take her own life? Her classmates all have secrets... and the truth is about to come out
+                    </div>
+                    <div class="page-results__reco__description__link">
+                        Binge it on
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 24">
+                            <path fill="#F73E39" d="M12.144 22.267c-1.328.232-2.68.302-4.079.488L3.8 10.297v12.992c-1.328.14-2.54.326-3.799.512V0h3.543l4.848 13.504V0h3.753v22.267zm7.343-13.55c1.445 0 3.66-.07 4.988-.07v3.718c-1.655 0-3.59 0-4.988.07v5.532c2.19-.14 4.382-.326 6.596-.395v3.579l-10.326.813V0h10.326v3.719h-6.596v4.997zm20.465-4.998h-3.87v17.107c-1.258 0-2.517 0-3.728.046V3.72h-3.87V0h11.468v3.719zm6.06 4.742h5.105v3.718h-5.104v8.438h-3.66V0h10.42v3.719h-6.76V8.46zm12.82 8.901c2.122.047 4.266.21 6.34.326v3.672c-3.332-.21-6.666-.418-10.069-.488V0h3.73v17.362zm9.488 4.254c1.188.07 2.447.14 3.66.279V0h-3.66v21.616zM88.32 0l-4.733 11.32L88.32 23.8c-1.398-.185-2.797-.44-4.196-.673l-2.68-6.88-2.727 6.322c-1.352-.233-2.658-.302-4.01-.488l4.802-10.901L75.173 0h4.009l2.447 6.252L84.24 0h4.08z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <div class="page-results__reco">
+                <div class="page-results__reco__image">
+                    <img src="/static/images/drawable-xhdpi/black_mirror.jpg" alt="oitnb">
+
+                    <div class="page-results__reco__rate">
+                        <div class="page-results__reco__accurate">
+                            Accurate ?
+                        </div>
+                        <div class="page-results__reco__icons">
+                            <svg class="page-results__reco__icons__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                                <g fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                                    <circle cx="40" cy="40" r="40" stroke="#FFF" stroke-width="3"/>
+                                    <path fill="#FFF" fill-rule="nonzero" d="M59.122 35.59c.243-2.751-2.322-3.554-3.34-3.554-3.944 0-7.89 0-11.834-.003.568-1.236 1.26-4.512.388-9.027-.344-1.784-1.398-2.971-2.739-2.948-1.08.02-2.113.853-2.221 1.892-.119 1.142-.4 2.77-.665 3.882-.85 3.557-5.394 8.254-8.268 9.892v17.377c1.95 1.102 4.063 1.487 6.321 1.444 3.567-.068 13.756-.008 15.602-.02 1.307-.01 2.61-.632 3.237-2.21.856-2.153-1.351-3.23-1.351-3.23s2.416.119 2.969-2.049c.566-2.224-1.657-3.105-1.657-3.105 1.503-.164 2.466-.555 2.83-1.91.427-1.596-.6-2.795-2.224-3.488.246-.024 2.729-.425 2.952-2.943zm-31.18-2.627h-6.639c-.677 0-1.225.548-1.225 1.225v19.659c0 .677.548 1.225 1.225 1.225h6.638c.677 0 1.226-.548 1.226-1.225V34.188c0-.676-.549-1.225-1.226-1.225z"/>
+                                </g>
+                            </svg>
+                            <svg class="page-results__reco__icons__svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 84 84">
+                                <g fill="none" fill-rule="evenodd" transform="translate(2 2)">
+                                    <circle cx="40" cy="40" r="40" stroke="#FFF" stroke-width="3"/>
+                                    <path fill="#FFF" fill-rule="nonzero" d="M59.122 35.59c.243-2.751-2.322-3.554-3.34-3.554-3.944 0-7.89 0-11.834-.003.568-1.236 1.26-4.512.388-9.027-.344-1.784-1.398-2.971-2.739-2.948-1.08.02-2.113.853-2.221 1.892-.119 1.142-.4 2.77-.665 3.882-.85 3.557-5.394 8.254-8.268 9.892v17.377c1.95 1.102 4.063 1.487 6.321 1.444 3.567-.068 13.756-.008 15.602-.02 1.307-.01 2.61-.632 3.237-2.21.856-2.153-1.351-3.23-1.351-3.23s2.416.119 2.969-2.049c.566-2.224-1.657-3.105-1.657-3.105 1.503-.164 2.466-.555 2.83-1.91.427-1.596-.6-2.795-2.224-3.488.246-.024 2.729-.425 2.952-2.943zm-31.18-2.627h-6.639c-.677 0-1.225.548-1.225 1.225v19.659c0 .677.548 1.225 1.225 1.225h6.638c.677 0 1.226-.548 1.226-1.225V34.188c0-.676-.549-1.225-1.226-1.225z"/>
+                                </g>
+                            </svg>
+                        </div>
+                    </div>
+                </div>
+                <div class="page-results__reco__description">
+                    <div class="page-results__reco__description__title">
+                        Black Mirror
+                    </div>
+                    <div class="page-results__reco__description__text">
+                            This sci-fi anthology series explores a twisted, high-tech near-future where humanity's greatest innovations and darkest instincts collide
+                    </div>
+                    <div class="page-results__reco__description__link">
+                        Binge it on
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 89 24">
+                            <path fill="#F73E39" d="M12.144 22.267c-1.328.232-2.68.302-4.079.488L3.8 10.297v12.992c-1.328.14-2.54.326-3.799.512V0h3.543l4.848 13.504V0h3.753v22.267zm7.343-13.55c1.445 0 3.66-.07 4.988-.07v3.718c-1.655 0-3.59 0-4.988.07v5.532c2.19-.14 4.382-.326 6.596-.395v3.579l-10.326.813V0h10.326v3.719h-6.596v4.997zm20.465-4.998h-3.87v17.107c-1.258 0-2.517 0-3.728.046V3.72h-3.87V0h11.468v3.719zm6.06 4.742h5.105v3.718h-5.104v8.438h-3.66V0h10.42v3.719h-6.76V8.46zm12.82 8.901c2.122.047 4.266.21 6.34.326v3.672c-3.332-.21-6.666-.418-10.069-.488V0h3.73v17.362zm9.488 4.254c1.188.07 2.447.14 3.66.279V0h-3.66v21.616zM88.32 0l-4.733 11.32L88.32 23.8c-1.398-.185-2.797-.44-4.196-.673l-2.68-6.88-2.727 6.322c-1.352-.233-2.658-.302-4.01-.488l4.802-10.901L75.173 0h4.009l2.447 6.252L84.24 0h4.08z"/>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

@@ -22,7 +22,7 @@
 .fork {
 
     &--container {
-        height 25%
+        height 20%
 
         display flex
         justify-content center
@@ -42,18 +42,45 @@
 .dink, .ashhole, .bullshirt, .motherforker, .messy, .kant, .holy {
     position absolute
     opacity 0
+
+    will-change transform
 }
 
 .dink {
+    z-index 3
+
     width 26.6%
+
+    right 20vw
+    top 35vh
+
+    transform-origin top right
+    transform rotate(-27deg)
 }
 
 .ashhole {
+    z-index 4
+
     width 53.9%
+
+    right 10vw
+    top 30vh
+
+    transform-origin top right
+    transform rotate(3deg)
 }
 
 .bullshirt {
+    z-index 4
+
     width 53.9%
+
+    bottom 12vh
+    left 7vw
+
+    transform-origin top left
+
+    transform rotate(9deg)
 }
 
 .motherforker {
@@ -61,62 +88,41 @@
 }
 
 .messy {
-    width 62.6%
+    opacity 0
+    z-index 2
+
+    width 57.6%
+
+    top -7vh
+    left 10vw
+
+    transform-origin top left
+
+    transform rotate(12deg)
 }
 
 .kant {
+    z-index 3
+
     width 82.8%
+
+    top -4vh
+    left 13vw
+
+    transform-origin top right
+
+    transform rotate(-12deg)
 }
 
 .holy {
+    z-index 3
+
     width 62.15%
+
+    bottom 7vh
+    right -2vw
+
+    transform-origin top right
+
+    transform rotate(-9deg)
 }
-
-// .dink, .ashhole, .bullshirt, .holy, .kant, .motherforker, .messy {
-//     display inline-block
-//     line-height 1
-//     padding 10px
-// }
-
-// .dink {
-//     color #F7E0DF
-//     background-color #F73E39
-//     font-family 'SharpGrotesk-Bold10'
-//     font-size 50vh
-// }
-
-// .ashhole {
-//     color #F7C046
-//     background-color #034E6D
-//     font-family 'SharpGrotesk-SemiBold25'
-// }
-
-// .bullshirt {
-//     color #F73E39
-//     background-color #B7D3D7
-//     font-family 'SharpGrotesk-Bold10'
-// }
-
-// .holy {
-//     color #F73E39
-//     background-color #000000
-//     font-family 'SharpGrotesk-SemiBold25'
-// }
-
-// .kant {
-//     color #F73E39
-//     background-color #F7E0DF
-//     font-family 'SharpGrotesk-Bold10'
-// }
-
-// .motherforker {
-//     color #F7C046
-//     background-color #5934A5
-//     font-family 'SharpGrotesk-SemiBold25'
-// }
-
-// .messy {
-//     color #B7D3D7
-//     background-color #5934A5
-//     font-family 'SharpGrotesk-Bold10'
-// }

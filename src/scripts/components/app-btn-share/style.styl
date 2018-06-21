@@ -1,0 +1,49 @@
+.app-btn-share {
+    display flex
+    flex-direction row
+    justify-content flex-end
+
+    width 100%
+
+    &__text {
+        font-family 'SharpGrotesk-SemiBold25'
+        font-size 15px
+        color $white
+        margin-right 20px
+        line-height 7vh
+    }
+
+    &__icons {
+        font-size 0
+    }
+
+    &__facebook, &__twitter {
+        display inline-block
+        position relative
+
+        border 3px solid $white
+        height 7vh
+        width 7vh
+
+        margin-top -3px
+
+        &__shape {
+            position absolute
+            top 50%
+            left 50%
+            transform translate3d(-50%, -50%, 0)
+
+            width auto
+            height 18px
+        }
+    }
+
+    &__facebook {
+
+    }
+
+    &__twitter {
+        margin-left -3px
+    }
+
+}

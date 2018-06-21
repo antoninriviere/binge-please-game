@@ -9,6 +9,7 @@ import PageQuiz from '../components/page-quiz'
 import PageFinish from '../components/page-finish'
 import PageScore from '../components/page-score'
 import PageLeaderboard from '../components/page-leaderboard'
+import PageResults from '../components/page-results'
 import AppWebglCanvas from '../components/app-webgl-canvas'
 
 import logger from 'Utils/logger'
@@ -36,6 +37,7 @@ export default {
         PageFinish,
         PageScore,
         PageLeaderboard,
+        PageResults,
         AppWebglCanvas
     },
 
@@ -61,9 +63,6 @@ export default {
 
     created()
     {
-        this.$html = document.documentElement
-        this.$body = document.body
-
         firebase.initializeApp(Config.firebase)
         this.database = firebase.database()
 
@@ -81,9 +80,13 @@ export default {
 
     mounted()
     {
+        this.$html = document.documentElement
+        this.$body = document.body
+
         this.onResize()
         this.onEnterFrame()
         this.onRouteChange(this.$route)
+        this.onDisableScroll()
     },
 
     destroyed()
@@ -138,12 +141,15 @@ export default {
 
         onDisableScroll()
         {
+            console.log('disable scroll', this.$body.classList)
             this.$body.classList.add('overflow-h')
             this.$html.classList.add('overflow-h')
         },
 
         onEnableScroll()
         {
+            console.log('enable scroll', this.$body.classList)
+
             this.$body.classList.remove('overflow-h')
             this.$html.classList.remove('overflow-h')
         },

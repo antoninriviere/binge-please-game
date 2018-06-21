@@ -40,6 +40,13 @@ const routes = [
         }
     },
     {
+        path: '/results',
+        name: 'results',
+        meta: {
+            componentId: 'page-results'
+        }
+    },
+    {
         path: '/leaderboard',
         name: 'leaderboard',
         meta: {
