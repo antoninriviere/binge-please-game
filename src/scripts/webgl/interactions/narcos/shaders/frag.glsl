@@ -4,6 +4,7 @@ uniform float uTime;
 uniform sampler2D uTexture;
 uniform vec2 uCenter;
 uniform float uRadius;
+uniform float uScale;
 uniform float uDisplacementFactor;
 uniform float uDistortion;
 uniform float uDistortion2;
@@ -21,7 +22,7 @@ float circle(vec2 uv, vec2 pos, float rad) {
 
 void main() {
 
-    float alpha = circle(gl_FragCoord.xy, uCenter, uRadius);
+    float alpha = circle(gl_FragCoord.xy, uCenter, uRadius * uScale);
 
     vec4 black = vec4(0.0, 0.0, 0.0, 1.0);
     vec4 red = vec4(1.0, 0.0, 0.0, 1.0);
@@ -34,10 +35,8 @@ void main() {
 
     vec2 dUv = vec2(fract(vUv.x + offset), fract(vUv.y));
     vec2 uv = mix(vUv, dUv, pow(sin(uDisplacementFactor), 2.0));
-    // vec2 uv = mix(vUv, dUv, 1.);
 
     vec4 textureColor = texture2D(uTexture, uv);
 
-    // gl_FragColor = finalTextureColor;
     gl_FragColor = mix(black, textureColor, alpha);
 }

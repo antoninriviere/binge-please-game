@@ -123,20 +123,6 @@ export default
         tuto: 'hover'
     },
     {
-        id: 'narcos',
-        type: '3d',
-        props: {
-        },
-        name: 'Narcos',
-        answers: ['narcos'],
-        componentId: 'quiz-custom',
-        elapsedTime: 0,
-        color: '#e2c1c0',
-        backgroundColor: '#000000',
-        ambientSound: '',
-        tuto: 'hover'
-    },
-    {
         id: 'orange-is-the-new-black',
         type: '3d',
         props: {
@@ -150,5 +136,19 @@ export default
         backgroundColor: '#f0d9d8',
         ambientSound: '',
         tuto: 'none'
+    },
+    {
+        id: 'narcos',
+        type: '3d',
+        props: {
+        },
+        name: 'Narcos',
+        answers: ['narcos'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        color: '#e2c1c0',
+        backgroundColor: '#000000',
+        ambientSound: '',
+        tuto: 'hover'
     }
 ]

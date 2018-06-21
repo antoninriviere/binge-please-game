@@ -12,7 +12,7 @@ import {
 import fragmentShader from './shaders/frag.glsl'
 import vertexShader from './shaders/vert.glsl'
 
-import { TimelineMax } from 'gsap'
+import { TimelineMax, TweenMax } from 'gsap'
 import resizePositionProportionally from 'Utils/resizePositionProportionally'
 import find from 'lodash.find'
 import positions from './positions'
@@ -41,10 +41,7 @@ export default class Narcos extends AInteraction
         {
             this.initMeshes()
             this.resize({}, this.windowObj)
-            window.addEventListener('click', () =>
-            {
-                this.moveCircle()
-            })
+            this.transitionIn()
         })
 
         this.scene.options.override.aspect = true
@@ -96,6 +93,7 @@ export default class Narcos extends AInteraction
             uDisplacementFactor: { value: 0 },
             uCenter: { value: new Vector2(-1000, -1000) },
             uRadius: { value: this.windowObj.height * 0.1 },
+            uScale: { value: 0 },
             uDistortion: { value: 3.0 },
             uDistortion2: { value: 5.0 },
             uSpeed: { value: 0.2 }
@@ -114,32 +112,105 @@ export default class Narcos extends AInteraction
         return find(this.textures, { id: `texture-${index}` }).texture
     }
 
-    moveCircle()
+    setupCursor()
     {
+        this.$cursor = document.createElement('img')
+
+        this.$cursor.src = '/static/narcos/cursor.svg'
+        this.$cursor.style.position = 'absolute'
+        this.$cursor.style.top = 0
+        this.$cursor.style.left = 0
+
+        this.cursorSize = this.windowObj.height * 0.15
+
+        this.$cursor.style.width = this.cursorSize + 'px'
+        this.$cursor.style.height = this.cursorSize + 'px'
+
+        TweenMax.set(this.$cursor, {
+            x: this.startPos.x - this.cursorSize / 2,
+            y: this.windowObj.height - this.startPos.y - this.cursorSize / 2,
+            transformOrigin: '50% 50%'
+        })
+
+        this.scene.renderer.domElement.parentNode.appendChild(this.$cursor)
+    }
+
+    transitionIn()
+    {
+        console.time('question')
         this.setupPositions()
+        this.setupCursor()
+        TweenMax.to(this.uniforms.uScale, 0.5, {
+            value: 1,
+            ease: Power4.easeOut,
+            onComplete: this.startAnimation
+        })
+    }
+
+    startAnimation = () =>
+    {
+        const delay = (this.TWEEN_DURATION + 0.5) * 1000
+        this.moveCircle()
+        this.interval = setInterval(this.moveCircle, delay)
+    }
+
+    moveCircle = () =>
+    {
         this.index++
-        const tl = new TimelineMax({
+        this.clearTimeline()
+        this.tl = new TimelineMax({
             onComplete: () =>
             {
-                this.initPos = positions[this.index]
-                this.targetPos = positions[this.index + 1]
+                if(this.index === positions.length - 1)
+                {
+                    clearInterval(this.interval)
+                    console.timeEnd('question')
+                }
+                else
+                {
+                    this.initPos = positions[this.index]
+                    this.targetPos = positions[this.index + 1]
+                    this.setupPositions()
+                }
             }
         })
-        tl.to(this.uniforms.uCenter.value, this.TWEEN_DURATION, {
+        this.tl.to(this.uniforms.uCenter.value, this.TWEEN_DURATION, {
             x: this.endPos.x,
             y: this.endPos.y,
             ease: Power2.easeInOut
         }, 0)
-        tl.fromTo(this.uniforms.uDisplacementFactor, this.TWEEN_DURATION, {
+        this.tl.to(this.$cursor, this.TWEEN_DURATION, {
+            x: this.endPos.x - this.cursorSize / 2,
+            y: this.windowObj.height - this.endPos.y - this.cursorSize / 2,
+            ease: Power2.easeInOut
+        }, 0)
+        this.tl.to(this.$cursor, this.TWEEN_DURATION / 6, {
+            scale: 1.5,
+            ease: Expo.easeOut
+        }, 0)
+        this.tl.to(this.$cursor, this.TWEEN_DURATION / 6, {
+            scale: 1,
+            ease: Expo.easeIn
+        }, this.TWEEN_DURATION * 0.75)
+        this.tl.fromTo(this.uniforms.uDisplacementFactor, this.TWEEN_DURATION, {
             value: 0
         }, {
             value: Math.PI,
             ease: Power0.easeNone
         }, 0)
-        tl.add(() =>
+        this.tl.add(() =>
         {
             this.uniforms.uTexture.value = this.getTexture(this.index)
         }, this.TWEEN_DURATION / 2)
+    }
+
+    clearTimeline()
+    {
+        if(this.tl)
+        {
+            this.tl.kill()
+            this.tl.clear()
+        }
     }
 
     setupPositions()
@@ -187,6 +258,13 @@ export default class Narcos extends AInteraction
         this.uniforms.uCenter.value.x = this.startPos.x
         this.uniforms.uCenter.value.y = this.startPos.y
 
+        if(this.$cursor)
+        {
+            this.cursorSize = this.windowObj.height * 0.15
+            this.$cursor.style.width = this.cursorSize + 'px'
+            this.$cursor.style.height = this.cursorSize + 'px'
+        }
+
         this.plane.scale.x = w
         this.plane.scale.y = h
     }
@@ -194,6 +272,10 @@ export default class Narcos extends AInteraction
     clear()
     {
         super.clear()
+        clearTimeout(this.interval)
+        this.clearTimeline()
+        this.$cursor.remove()
+
         this.scene.options.override.aspect = false
         this.scene.options.override.renderer = false
         this.scene.camera.aspect = this.windowObj.width / this.windowObj.height
