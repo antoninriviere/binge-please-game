@@ -26,6 +26,7 @@ export default
 
     mounted()
     {
+        this.$refs.overlayInner.classList.add('is-active')
         this.$refs.video.addEventListener('ended', () =>
         {
             // only functional if "loop" is removed
@@ -41,6 +42,15 @@ export default
 
     methods:
     {
+        onOkClick()
+        {
+            this.$refs.overlayInner.classList.remove('is-active')
+            this.$refs.overlay.classList.add('is-hidden')
+            setTimeout(() =>
+            {
+                this.$refs.video.play()
+            }, 200)
+        },
         onPlayClick()
         {
             this.$root.audioManager.resumeContext()

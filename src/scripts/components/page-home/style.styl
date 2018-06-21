@@ -58,4 +58,45 @@
             transform translateX(-50%) translateY(-50%) scale(1.1)
         }
     }
+
+    &__overlay {
+        z-index 5
+
+        opacity 1
+        background-color transparentify($red, 0.9)
+        transition opacity 2s $ease-out-expo
+
+        &.is-hidden {
+            opacity 0
+        }
+
+        &-inner {
+            opacity 0
+
+            will-change transform, opacity
+
+            transform scale(0.75)
+            transition opacity 0.4s $ease-out-quart, transform 0.4s $ease-out-quart
+
+
+            &.is-active {
+                opacity 1
+                transform scale(1)
+            }
+        }
+
+
+        &-description {
+            font-family 'SharpGrotesk-Medium20'
+            font-size 30px
+            line-height 45px
+            letter-spacing 0.86px
+            padding 40px 0
+        }
+
+        &-button {
+            border solid 3px $white
+            padding 15px 25px
+        }
+    }
 }
