@@ -1,7 +1,5 @@
 <div class="game-transition-manager pos-abs-tl fit" ref="container">
-    <svg :width="windowW" :height="windowH" :viewBox="viewBox">
-        <circle :cx="circle.cx" :cy="circle.cy" :r="circle.radius" :fill="circle.color" ref="circle"></circle>
-    </svg>
+    <ui-circle-transition ref="circleTransition"></ui-circle-transition>
     <div class="game-transition-manager__popin pos-abs-tl fit center-flex" ref="popin">
         <p class="game-transition-manager__title overflow-h">
             <span class="display-inline-block" ref="title">Time is over</span>

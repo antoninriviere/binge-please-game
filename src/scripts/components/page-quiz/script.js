@@ -152,7 +152,6 @@ export default
         {
             this.transitionOut().then(() =>
             {
-                console.log('ended')
                 this.isSkipping = false
                 // TODO Clear for prod
                 if(this.isDebug && Config.environment === 'dev')

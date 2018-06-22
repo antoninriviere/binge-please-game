@@ -1,0 +1,40 @@
+.sound-icon {
+    &__bar {
+        width 2px
+        height 11px
+        margin 0 1px
+        background-color $white
+        transform scaleY(0.35)
+        transform-origin 50% 100%
+        transition transform 0.3s $ease-out-expo
+        will-change transform
+        &:nth-child(2) {
+            animation-delay 0.2s
+        }
+        &:nth-child(3) {
+            animation-delay 0.3s
+        }
+        &:nth-child(4) {
+            animation-delay 0.15s
+        }
+    }
+    &.is-active &__bar {
+        animation-name barAnim
+        animation-duration 1s
+        animation-iteration-count infinite
+    }
+    &:hover &__bar {
+        transform scaleY(0.7)
+    }
+    @keyframes barAnim {
+        0% {
+            transform scaleY(0.25)
+        }
+        50% {
+            transform scaleY(1)
+        }
+        100% {
+            transform scaleY(0.25)
+        }
+    }
+}

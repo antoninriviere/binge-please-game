@@ -1,5 +1,5 @@
-import eventHub from 'Application/event-hub'
 import { TweenMax, TimelineMax } from 'gsap'
+import uiCircleTransition from 'Components/ui-circle-transition'
 import successWellDone from 'Components/game-success-transitions/well-done'
 import successYouWin from 'Components/game-success-transitions/you-win'
 export default
@@ -8,21 +8,12 @@ export default
 
     components:
     {
-
+        uiCircleTransition
     },
 
     data()
     {
         return {
-            windowW: 0,
-            windowH: 0,
-            viewBox: '0 0 0 0',
-            circle: {
-                cx: 0,
-                cy: 0,
-                radius: 0,
-                color: '#000000'
-            },
             answer: '',
             successComponent: undefined
         }
@@ -33,18 +24,11 @@ export default
 
     created()
     {
-        eventHub.$on('window:resize', this.onResize)
     },
 
     mounted()
     {
-        this.viewBox = `0 0 ${window.innerWidth} ${window.innerHeight}`
-        this.windowW = window.innerWidth
-        this.windowH = window.innerHeight
-        this.circle.cx = window.innerWidth / 2
-        this.circle.cy = window.innerHeight / 2
-        this.circle.radius = window.innerHeight * 1.5
-        TweenMax.set(this.$refs.circle, { scale: 0 })
+        this.$circle = this.$refs.circleTransition.$refs.circle
         this.failedAnimDelay = 0.5
     },
 
@@ -54,20 +38,11 @@ export default
 
     methods:
     {
-        onResize(windowObj)
-        {
-            this.windowW = windowObj.width
-            this.windowH = windowObj.height
-            this.viewBox = `0 0 ${windowObj.width} ${windowObj.height}`
-            this.circle.cx = windowObj.width / 2
-            this.circle.cy = windowObj.height / 2
-            this.circle.radius = windowObj.height * 1.5
-        },
         startTransition(options, questionState)
         {
-            this.circle.color = options.color
+            this.$refs.circleTransition.setColor(options.color)
+            this.$refs.circleTransition.setScale(0)
             this.answer = options.answer
-            TweenMax.set(this.$refs.circle, { scale: 0 })
             if(questionState === 'success')
             {
                 // this.successComponent = successWellDone
@@ -84,7 +59,7 @@ export default
             this.$refs.container.classList.add('is-active')
             return new Promise((resolve) =>
             {
-                TweenMax.to(this.$refs.circle, 0.45,
+                TweenMax.to(this.$circle, 0.45,
                     {
                         scale: 1,
                         ease: Sine.easeOut,
@@ -127,7 +102,7 @@ export default
                         resolve()
                     }
                 })
-                tl.to(this.$refs.circle, 0.4, {
+                tl.to(this.$circle, 0.4, {
                     scale: scale,
                     ease: Power3.easeOut
                 }, this.failedAnimDelay + 0.15)
@@ -150,7 +125,7 @@ export default
                 tl.set(this.$refs.popin, {
                     opacity: 0
                 }, this.failedAnimDelay + 1.5)
-                tl.to(this.$refs.circle, 0.4, {
+                tl.to(this.$circle, 0.4, {
                     scale: 1,
                     ease: Sine.easeOut
                 }, this.failedAnimDelay + 1.5)
