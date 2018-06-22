@@ -11,6 +11,7 @@ import PageFinish from '../components/page-finish'
 import PageScore from '../components/page-score'
 import PageLeaderboard from '../components/page-leaderboard'
 import AppWebglCanvas from '../components/app-webgl-canvas'
+import AppFooter from '../components/app-footer'
 import GameTypeManager from 'Components/game-type-manager'
 
 
@@ -40,6 +41,7 @@ export default {
         PageScore,
         PageLeaderboard,
         AppWebglCanvas,
+        AppFooter,
         GameTypeManager
     },
 

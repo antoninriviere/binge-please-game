@@ -8,7 +8,6 @@ import Quiz from 'Config/quiz'
 import GameInterface from 'Components/game-interface'
 import GameTutoManager from 'Components/game-tuto-manager'
 import GameTransitionManager from 'Components/game-transition-manager'
-import AppLogo from 'Components/app-logo'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -32,8 +31,7 @@ export default
         QuizCustom,
         GameInterface,
         GameTutoManager,
-        GameTransitionManager,
-        AppLogo
+        GameTransitionManager
     },
 
     data()

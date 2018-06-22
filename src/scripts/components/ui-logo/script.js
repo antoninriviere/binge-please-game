@@ -4,7 +4,7 @@ import { TweenMax, Power0 } from 'gsap'
 
 export default
 {
-    name: 'app-logo',
+    name: 'ui-logo',
 
     components:
     {

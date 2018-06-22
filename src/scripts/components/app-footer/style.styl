@@ -1,0 +1,31 @@
+.app-footer {
+    position absolute
+
+    $padding = 2 * $margin
+    width "calc(100% - %s)" % $padding
+
+    bottom 2.5vh
+    left 2.5vh
+
+    z-index 3
+
+    display flex
+    justify-content flex-end
+    align-items center
+    flex-direction row
+
+    &__sound {
+        border solid 3px $white
+        padding 15px 20px
+
+        &-label {
+            font-family 'SharpGrotesk-Bold20'
+            font-size 14px
+            margin-left 10px
+        }
+    }
+
+    &__netflix-logo {
+        margin-left auto
+    }
+}

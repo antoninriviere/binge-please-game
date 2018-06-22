@@ -1,5 +1,5 @@
 import appPage from 'Mixins/app-page'
-import AppLogo from 'Components/app-logo'
+import uiLogo from 'Components/ui-logo'
 import uiNetflixLogo from 'Components/ui-netflix-logo'
 import uiSoundIcon from 'Components/ui-sound-icon'
 import uiCircleTransition from 'Components/ui-circle-transition'
@@ -12,7 +12,7 @@ export default
 
     components:
     {
-        AppLogo,
+        uiLogo,
         uiNetflixLogo,
         uiSoundIcon,
         uiCircleTransition
@@ -78,7 +78,7 @@ export default
         {
             this.$refs.circleTransition.setColor('#5934A5')
             this.$refs.hero.classList.remove('is-active')
-            TweenMax.to(this.$circle, 1,
+            TweenMax.to(this.$circle, 0.45,
                 {
                     scale: 1,
                     ease: Sine.easeOut,

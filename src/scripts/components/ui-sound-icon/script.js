@@ -11,6 +11,14 @@ export default
         interactive: {
             type: Boolean,
             required: false
+        },
+        muteSound: {
+            type: Function,
+            required: false
+        },
+        resumeSound: {
+            type: Function,
+            required: false
         }
     },
 
@@ -46,13 +54,13 @@ export default
                 {
                     this.isActive = false
                     this.$refs.parent.classList.remove('is-active')
-                    // TODO: mute sound
+                    this.$props.muteSound()
                 }
                 else
                 {
                     this.isActive = true
                     this.$refs.parent.classList.add('is-active')
-                    // TODO: resume sound
+                    this.$props.resumeSound()
                 }
             }
         }
