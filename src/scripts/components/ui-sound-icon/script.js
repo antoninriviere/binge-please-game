@@ -18,7 +18,8 @@ export default
     {
         return {
             count: 5,
-            isActive: true
+            isActive: true,
+            isInteractive: this.$props.interactive
         }
     },
 

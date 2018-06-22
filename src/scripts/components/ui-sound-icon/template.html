@@ -1,3 +1,3 @@
-<div class="sound-icon is-active btn" @click="onClick" ref="parent">
+<div class="sound-icon is-active" :class="{btn: isInteractive}" @click="onClick" ref="parent">
     <div class="sound-icon__bar display-inline-block" v-for="bar in count"></div>
 </div>
