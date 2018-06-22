@@ -1,5 +1,6 @@
 import appPage from 'Mixins/app-page'
 import AppLogo from 'Components/app-logo'
+import uiNetflixLogo from 'Components/ui-netflix-logo'
 import uiSoundIcon from 'Components/ui-sound-icon'
 import uiCircleTransition from 'Components/ui-circle-transition'
 import resizePositionProportionally from 'Utils/resizePositionProportionally'
@@ -12,6 +13,7 @@ export default
     components:
     {
         AppLogo,
+        uiNetflixLogo,
         uiSoundIcon,
         uiCircleTransition
     },
@@ -19,7 +21,7 @@ export default
     data()
     {
         return {
-
+            currentSection: 'intro'
         }
     },
 
@@ -46,9 +48,13 @@ export default
         this.$refs.overlayInner.classList.add('is-active')
         this.$refs.video.addEventListener('ended', () =>
         {
-            this.$refs.home.classList.add('is-active')
-            this.$refs.intro.classList.add('is-hidden')
-            setTimeout(this.transitionOut, 2000)
+            this.currentSection = 'hero'
+            this.$nextTick().then(() =>
+            {
+                this.$refs.hero.classList.add('is-active')
+                this.$refs.intro.classList.add('is-hidden')
+            })
+            setTimeout(this.transitionOut, 4000)
         })
     },
 
@@ -71,8 +77,8 @@ export default
         transitionOut()
         {
             this.$refs.circleTransition.setColor('#5934A5')
-            this.$refs.home.classList.remove('is-active')
-            TweenMax.to(this.$circle, 0.7,
+            this.$refs.hero.classList.remove('is-active')
+            TweenMax.to(this.$circle, 1,
                 {
                     scale: 1,
                     ease: Sine.easeOut,

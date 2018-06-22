@@ -15,8 +15,13 @@
             <button class="page-home__overlay-button btn" @click="onOkClick">OK !</button>
         </div>
     </section>
-    <section class="page-home__wrapper fit center-flex" ref="home">
-        <img src="/static/home/logos.png" alt="">
-        <p class="page-home__headline color--white text-center">An interactive quiz about Netflix series.</p>
+    <section class="page-home__wrapper fit center-flex" ref="hero" v-if="currentSection === 'hero'">
+        <div class="page-home__netflix-logo">
+            <ui-netflix-logo color="F73E39"></ui-netflix-logo>
+        </div>
+        <div class="page-home__logo">
+            <app-logo autoplay></app-logo>
+        </div>
+        <p class="page-home__headline color--white text-infos text-center">An interactive quiz about Netflix series.</p>
     </section>
 </div>
