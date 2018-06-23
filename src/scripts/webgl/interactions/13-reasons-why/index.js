@@ -22,7 +22,7 @@ import {
 } from 'three'
 import { BloomPass } from 'postprocessing'
 import { MeshLine, MeshLineMaterial } from 'three.meshline'
-import { TimelineMax, Expo, Sine } from 'gsap'
+import { TweenMax, TimelineMax } from 'gsap'
 import GLTFLoader from 'WebGLUtils/GLTFLoader'
 import GUI from 'WebGLUtils/GUI'
 import ParseVec3 from 'WebGLUtils/ParseVec3'
@@ -85,9 +85,11 @@ export default class ThirteenReasonsWhy extends AInteraction
         this.scene.camera.fov = 15
         this.scene.camera.far = 5000
 
-        this.scene.camera.position.x = 16.39
-        this.scene.camera.position.y = 24.79
-        this.scene.camera.position.z = 31.93
+        this.initCameraPosition = new Vector3(16.39, 24.79, 31.93)
+
+        this.scene.camera.position.x = this.initCameraPosition.x
+        this.scene.camera.position.y = this.initCameraPosition.y
+        this.scene.camera.position.z = this.initCameraPosition.z
 
         this.scene.camera.rotation.x = -0.61
         this.scene.camera.rotation.y = 0.43
@@ -286,11 +288,24 @@ export default class ThirteenReasonsWhy extends AInteraction
         this.add(this.playButtonGlow)
         // this.initGUI()
         this.raycaster = new ARaycaster(this.scene.camera, [this.playButton], { callback: this.onPlayButtonClick, click: true })
+        this.transitionIn()
+    }
+
+    transitionIn()
+    {
+        const TWEEN_DURATION = 2
+        TweenMax.from(this.scene.camera.position, TWEEN_DURATION, {
+            x: this.initCameraPosition.x * 2,
+            y: this.initCameraPosition.y * 2,
+            z: this.initCameraPosition.z * 2,
+            ease: Sine.easeOut
+        })
+        TweenMax.delayedCall(2 + TWEEN_DURATION, this.onPlayButtonClick)
     }
 
     addFloor()
     {
-        const planeGeo = new PlaneBufferGeometry(1.5, 1, 2)
+        const planeGeo = new PlaneBufferGeometry(2, 2, 2)
         this.floorColor = '#e2c1c0'
         const planeMat = new MeshStandardMaterial({
             color: 0x000000,
