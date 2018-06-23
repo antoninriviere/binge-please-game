@@ -39,7 +39,7 @@ body.isFinishPage {
             width 100%
         }
     }
-    &__kudos {
+    &__points {
         position absolute
 
         $r = 18%
@@ -47,7 +47,7 @@ body.isFinishPage {
         top 36%
         width 100% - $r
     }
-    &__kudos-text {
+    &__points-text {
         font-family 'SharpGrotesk-Bold10'
         font-size 11vh
         letter-spacing 0.39vw
@@ -56,7 +56,7 @@ body.isFinishPage {
 
         padding 1vh 3vw 0vh
     }
-    &__kudos-background {
+    &__points-background {
         position absolute
 
         right 0
@@ -72,20 +72,22 @@ body.isFinishPage {
     &__congrats {
         position absolute
 
-        left 8.5%
-        bottom 19%
-
-        transform rotateZ(-90deg)
+        left 50%
+        transform translateX(-50%)
+        bottom 23%
     }
     &__congrats-text {
-        font-family '-Bold10'
-        font-size 11vh
+        font-family 'SharpGrotesk-Bold10'
+        font-size 5vh
         letter-spacing 0.39vw
 
-        color $red
-        background-color $blue
+        background-color $yellow
 
-        padding 1vh 3vw 0vh
+        padding 2vh 3vw 1.5vh
+
+        sup {
+            font-size 60%
+        }
     }
     &__transition-out {
         background-color $purple

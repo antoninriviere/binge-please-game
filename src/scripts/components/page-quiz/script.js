@@ -207,7 +207,9 @@ export default
 
         setupWebGLGroup(id)
         {
-            this.$store.commit(WEBGL_ADD_GROUP, id)
+            this.$store.commit(WEBGL_ADD_GROUP, {
+                id
+            })
         }
     }
 }

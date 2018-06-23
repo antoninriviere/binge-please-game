@@ -40,17 +40,17 @@ class App
         }
     }
 
-    addGroup(id)
+    addGroup(group)
     {
-        this.interactionId = id
-        this.group = this.getInteractionGroup(id)
+        this.interactionId = group.id
+        this.group = this.getInteractionGroup(group)
         this.scene.add(this.group)
         eventHub.$on('application:enterframe', this.update)
     }
 
-    getInteractionGroup(id)
+    getInteractionGroup(group)
     {
-        switch(id)
+        switch(group.id)
         {
             case '13_reasons_why':
                 return new ThirteenReasonsWhy(this.interactionConfig)
@@ -61,7 +61,7 @@ class App
             case 'narcos':
                 return new Narcos({ ...this.interactionConfig, windowObj: this.windowObj })
             case 'finish-screen':
-                return new FinishScreen(this.interactionConfig)
+                return new FinishScreen({ ...this.interactionConfig, ...group.config })
         }
     }
 

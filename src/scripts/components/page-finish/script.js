@@ -17,7 +17,8 @@ export default
     data()
     {
         return {
-            bannerCount: 3
+            bannerCount: 3,
+            position: 129
         }
     },
 
@@ -26,7 +27,12 @@ export default
     created()
     {
         this.$root.$body.classList.add('isFinishPage')
-        this.$store.commit(WEBGL_ADD_GROUP, 'finish-screen')
+        this.$store.commit(WEBGL_ADD_GROUP, {
+            id: 'finish-screen',
+            config: {
+                score: this.$store.state.Game.score
+            }
+        })
     },
 
     mounted()
@@ -45,7 +51,7 @@ export default
     {
         playAnim()
         {
-            const kudosChars = new SplitText(this.$refs.kudosText, { type: 'chars, words' }).chars
+            const pointsChars = new SplitText(this.$refs.pointsText, { type: 'chars, words' }).chars
             this.tl = new TimelineMax({
                 delay: 0.7,
                 onComplete: () =>
@@ -53,16 +59,16 @@ export default
                     // TweenMax.delayedCall(5, this.transitionOut)
                 }
             })
-            this.tl.from(this.$refs.kudos, 0.5, {
+            this.tl.from(this.$refs.points, 0.5, {
                 xPercent: -100,
                 ease: Circ.easeOut
             }, 0)
-            this.tl.to(this.$refs.kudosBg, 0.6, {
+            this.tl.to(this.$refs.pointsBg, 0.6, {
                 scaleX: 0,
                 transformOrigin: '100% 50%',
                 ase: Expo.easeInOut
             }, 0.3)
-            this.tl.staggerFromTo(kudosChars, 0.3, {
+            this.tl.staggerFromTo(pointsChars, 0.3, {
                 yPercent: 100,
                 opacity: 0
             }, {

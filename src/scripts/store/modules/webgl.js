@@ -1,6 +1,6 @@
 import { WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
 const state = {
-    webglGroup: ''
+    webglGroup: {}
 }
 
 const getters = {
@@ -8,13 +8,16 @@ const getters = {
 }
 
 const mutations = {
-    [WEBGL_ADD_GROUP](state, group)
+    [WEBGL_ADD_GROUP](state, group = { id: '', config: {} })
     {
-        state.webglGroup = group
+        state.webglGroup = {
+            id: group.id,
+            config: group.config
+        }
     },
     [WEBGL_CLEAR_GROUP](state)
     {
-        state.webglGroup = ''
+        state.webglGroup = {}
     }
 }
 

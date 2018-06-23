@@ -2,8 +2,7 @@ import AInteraction from '../AInteraction'
 
 import {
     PlaneBufferGeometry,
-    TextureLoader,
-    DirectionalLight,
+    CanvasTexture,
     Color,
     ShaderMaterial,
     Mesh
@@ -19,13 +18,54 @@ export default class FinishScreen extends AInteraction
     constructor(options)
     {
         super(options)
-
         this.name = 'finishScreen'
+        this.score = options.score
 
-
-        this.initMeshes()
+        this.createCanvasTexture(this.initMeshes)
 
         this.setupCamera()
+    }
+
+    createCanvasTexture(cb)
+    {
+        document.fonts.load('512px SharpGrotesk-Bold10').then(() =>
+        {
+            this.canvas = document.createElement('canvas')
+            this.canvas.style.letterSpacing = '5px'
+            const w = 1024
+            const h = 512
+            this.canvas.width = w
+            this.canvas.height = h
+            const ctx = this.canvas.getContext('2d')
+            ctx.font = '512px SharpGrotesk-Bold10'
+            ctx.fillStyle = '#000000'
+            ctx.textAlign = 'center'
+            ctx.textBaseline = 'middle'
+            const text = this.score.toString().split('').join(String.fromCharCode(8202))
+            ctx.fillText(text, w / 2, h / 2)
+            cb()
+        })
+    }
+
+    initMeshes = () =>
+    {
+        const planeGeo = new PlaneBufferGeometry(40, 20, 64, 64)
+        const scoreTexture = new CanvasTexture(this.canvas)
+        this.uniforms = {
+            uTime: { value: 0 },
+            uAmp: { value: 100 },
+            uPower: { value: 2 },
+            uColor: { value: new Color(0x5934A5) },
+            uTexture: { value: scoreTexture }
+        }
+        const planeMat = new ShaderMaterial({
+            uniforms: this.uniforms,
+            fragmentShader: fragmentShader,
+            vertexShader: vertexShader,
+            transparent: true
+        })
+        this.plane = new Mesh(planeGeo, planeMat)
+        this.add(this.plane)
         this.transitionIn()
     }
 
@@ -40,32 +80,6 @@ export default class FinishScreen extends AInteraction
         this.scene.camera.rotation.z = 0
     }
 
-    initMeshes()
-    {
-        const planeGeo = new PlaneBufferGeometry(30, 15, 64, 64)
-        this.uniforms = {
-            uTime: { value: 0 },
-            uAmp: { value: 100 },
-            uPower: { value: 2 },
-            uColor: { value: new Color(0x5934A5) },
-            uTexture: { value: new TextureLoader().load('/static/finish-screen/finish.png') }
-        }
-        const planeMat = new ShaderMaterial({
-            uniforms: this.uniforms,
-            fragmentShader: fragmentShader,
-            vertexShader: vertexShader,
-            transparent: true
-        })
-        this.plane = new Mesh(planeGeo, planeMat)
-        this.add(this.plane)
-    }
-
-    initLights()
-    {
-        this.directionalLight = new DirectionalLight(0xffffff, 1)
-        this.scene.add(this.directionalLight)
-    }
-
     transitionIn()
     {
         const tl = new TimelineMax()
@@ -76,6 +90,7 @@ export default class FinishScreen extends AInteraction
     update(time)
     {
         super.update()
-        this.uniforms.uTime.value += time.delta * 0.01
+        if(this.plane)
+            this.uniforms.uTime.value += time.delta * 0.01
     }
 }

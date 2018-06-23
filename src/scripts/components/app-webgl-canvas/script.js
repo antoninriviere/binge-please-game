@@ -36,19 +36,19 @@ export default
             this.webGLApp.mouseMove(event)
         },
 
-        onGroupUpdate(interactionId)
+        onGroupUpdate(group)
         {
             if(this.interactionId)
                 this.webGLApp.clearGroup()
-            this.interactionId = interactionId
-            if(interactionId === '')
+            this.interactionId = group.id
+            if(group.id)
             {
-                this.$el.classList.remove('is-active')
+                this.webGLApp.addGroup(group)
+                this.$el.classList.add('is-active')
             }
             else
             {
-                this.webGLApp.addGroup(interactionId)
-                this.$el.classList.add('is-active')
+                this.$el.classList.remove('is-active')
             }
         }
     }
