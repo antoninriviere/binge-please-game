@@ -75,6 +75,7 @@ export default
                 ease: Circ.easeOut
             }, 0.6)
         },
+
         transitionOut()
         {
             TweenMax.to(this.$refs.transitionOut, 0.5, {
@@ -86,6 +87,11 @@ export default
                     // this.$router.push('/score')
                 }
             })
+        },
+
+        onClickFinish()
+        {
+            this.$router.push('/results')
         }
     }
 }
