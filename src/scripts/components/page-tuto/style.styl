@@ -2,6 +2,10 @@
     height 100vh
     background-color $purple
 
+    .circle-transition {
+        z-index 4
+    }
+
     &__wrapper {
         width 68%
         max-width 960px
@@ -9,5 +13,16 @@
 
     &__headline {
         font-family 'SharpGrotesk-Medium20'
+    }
+
+    &__countdown {
+        z-index -1
+        font-family 'SharpGrotesk-Bold10'
+        font-size 50vh
+        letter-spacing 3vw
+
+        &.is-active {
+            z-index 5
+        }
     }
 }

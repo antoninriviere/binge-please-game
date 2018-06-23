@@ -1,6 +1,7 @@
 import appPage from 'Mixins/app-page'
 import { TimelineMax, TweenMax } from 'gsap'
 import TutoPlay from 'Components/tuto-play'
+import uiCircleTransition from 'Components/ui-circle-transition'
 import eventHub from 'Application/event-hub'
 
 export default
@@ -9,12 +10,14 @@ export default
 
     components:
     {
-        TutoPlay
+        TutoPlay,
+        uiCircleTransition
     },
 
     data()
     {
         return {
+            countdown: '3'
         }
     },
 
@@ -32,10 +35,14 @@ export default
         this.STAGGER_DURATION = 0.1
         this.CHAR_DELAY = 0.01
         this.STAGGER_DELAY = this.STAGGER_DURATION * 0.5
+        this.COUNTDOWN_DURATION = 0.4
+        this.COUNTDOWN_DELAY = 0.3
+        eventHub.$on('game:start', this.transitionOut)
     },
 
     mounted()
     {
+        this.$circle = this.$refs.circleTransition.$refs.circle
         eventHub.$emit('page:show-footer')
         this.transitionIn()
     },
@@ -103,6 +110,48 @@ export default
             }
             else if(this.$route.params.id === '2')
                 this.$root.typeManager.isTypeable = true
+        },
+        transitionOut()
+        {
+            this.$refs.circleTransition.setColor('#F7C046')
+            TweenMax.to(this.$circle, 0.45,
+                {
+                    scale: 1,
+                    ease: Sine.easeOut,
+                    onComplete: this.startCountdown
+                }
+            )
+        },
+        startCountdown()
+        {
+            this.$refs.countdown.classList.add('is-active')
+            this.tl = new TimelineMax({
+                onComplete: () =>
+                {
+                    this.$router.push('/quiz/1')
+                }
+            })
+            this.tl.from(this.$refs.countdownText, this.COUNTDOWN_DURATION, {
+                scale: 0,
+                ease: Expo.easeOut
+            }, 0)
+            this.updateCountdown(1, '#F73E39', '2')
+            this.updateCountdown(2, '#B7D3D7', '1')
+            this.updateCountdown(3, '#5934A5', 'GO!')
+        },
+        updateCountdown(index, color, text)
+        {
+            const t = index * (this.COUNTDOWN_DELAY + this.COUNTDOWN_DURATION)
+            this.tl.set(this.$refs.countdownText, { scale: 0 }, t)
+            this.tl.add(() =>
+            {
+                this.$refs.circleTransition.setColor(color)
+                this.countdown = text
+            }, t)
+            this.tl.to(this.$refs.countdownText, this.COUNTDOWN_DURATION, {
+                scale: 1,
+                ease: Expo.easeOut
+            }, t)
         }
     }
 }

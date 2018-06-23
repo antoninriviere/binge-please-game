@@ -1,4 +1,5 @@
 <div class="page-tuto center-flex">
+    <ui-circle-transition ref="circleTransition"></ui-circle-transition>
     <section class="page-tuto__wrapper text-infos text-center">
         <div v-show="$route.params.id === '1'">
             <p class="page-tuto__headline 1 color--white" ref="headline-1">
@@ -13,6 +14,9 @@
                 Type PLAY to start the game.
             </p>
             <tuto-play ref="tutoPlay"></tuto-play>
+            <div class="page-tuto__countdown pos-abs-tl fit center-flex" ref="countdown">
+                <p class="color--white uppercase" ref="countdownText">{{countdown}}</p>
+            </div>
         </div>
     </section>
 </div>

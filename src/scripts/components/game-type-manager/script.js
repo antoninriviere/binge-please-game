@@ -157,7 +157,7 @@ export default
         {
             if(this.currentType.toLowerCase() === 'play')
             {
-                this.$router.push('/quiz/1')
+                eventHub.$emit('game:start')
                 this.currentType = ''
             }
             else
