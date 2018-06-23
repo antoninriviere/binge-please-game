@@ -125,10 +125,9 @@ export default class Narcos extends AInteraction
 
         this.$cursor.style.width = this.cursorSize + 'px'
         this.$cursor.style.height = this.cursorSize + 'px'
-
         TweenMax.set(this.$cursor, {
             x: this.startPos.x - this.cursorSize / 2,
-            y: this.windowObj.height - this.startPos.y - this.cursorSize / 2,
+            y: this.windowObj.height - this.startPos.y - this.cursorSize / 2 - this.vars.top * 2,
             transformOrigin: '50% 50%'
         })
 
@@ -137,7 +136,6 @@ export default class Narcos extends AInteraction
 
     transitionIn()
     {
-        console.time('question')
         this.setupPositions()
         this.setupCursor()
         TweenMax.to(this.uniforms.uScale, 0.5, {
@@ -164,7 +162,6 @@ export default class Narcos extends AInteraction
                 if(this.index === positions.length - 1)
                 {
                     clearInterval(this.interval)
-                    console.timeEnd('question')
                 }
                 else
                 {
@@ -181,7 +178,7 @@ export default class Narcos extends AInteraction
         }, 0)
         this.tl.to(this.$cursor, this.TWEEN_DURATION, {
             x: this.endPos.x - this.cursorSize / 2,
-            y: this.windowObj.height - this.endPos.y - this.cursorSize / 2,
+            y: this.windowObj.height - this.endPos.y - this.cursorSize / 2 - this.vars.top * 2,
             ease: Power2.easeInOut
         }, 0)
         this.tl.to(this.$cursor, this.TWEEN_DURATION / 6, {
@@ -216,10 +213,10 @@ export default class Narcos extends AInteraction
     setupPositions()
     {
         this.startPos.x = Math.ceil((this.vars.width * this.initPos.x) / 1024)
-        this.startPos.y = Math.ceil(this.vars.height - (this.windowObj.height * this.initPos.y) / 576)
+        this.startPos.y = Math.ceil(this.vars.height - (this.windowObj.height * this.initPos.y) / 576) + this.vars.top
 
         this.endPos.x = Math.ceil((this.vars.width * this.targetPos.x) / 1024)
-        this.endPos.y = Math.ceil(this.vars.height - (this.windowObj.height * this.targetPos.y) / 576)
+        this.endPos.y = Math.ceil(this.vars.height - (this.windowObj.height * this.targetPos.y) / 576) + this.vars.top
     }
 
     update(time)
