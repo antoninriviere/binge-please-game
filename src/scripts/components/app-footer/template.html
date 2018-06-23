@@ -1,4 +1,4 @@
-<footer class="app-footer">
+<footer class="app-footer" v-show="!hidden">
         <div class="app-footer__sound">
             <ui-sound-icon :muteSound="muteSound" :resumeSound="resumeSound" interactive></ui-sound-icon>
             <div class="app-footer__sound-label display-inline-block color--white">Sound: {{soundState}}</div>

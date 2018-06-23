@@ -1,7 +1,7 @@
 import eventHub from 'Application/event-hub'
 import appPage from 'Mixins/app-page'
 
-import AppLogo from 'Components/app-logo'
+import UiLogo from 'Components/ui-logo'
 import AppBtnShare from 'Components/app-btn-share'
 import AppLeaderboard from 'Components/app-leaderboard'
 
@@ -15,7 +15,7 @@ export default
 
     components:
     {
-        AppLogo,
+        UiLogo,
         AppBtnShare,
         AppLeaderboard
     },
@@ -59,6 +59,7 @@ export default
 
         window.addEventListener('scroll', this.onScroll)
         eventHub.$emit('page:enable-scroll')
+        eventHub.$emit('page:hide-footer')
     },
 
     destroyed()

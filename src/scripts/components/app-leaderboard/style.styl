@@ -1,5 +1,5 @@
 .leaderboard {
-    z-index 12
+    z-index 10
     position fixed
     width 100%
     height 100vh
@@ -8,9 +8,10 @@
 
     will-change transform
     transform translate3d(70%, 0, 0)
-    transition transform 0.8s $ease-in-out-expo
+    transition transform 0.8s $ease-in-out-expo, z-index 0.8s linear 0.8s
 
     &.is-active {
+        z-index 12
         transform translate3d(0, 0, 0)
         transition transform 0.8s $ease-in-out-expo
     }
