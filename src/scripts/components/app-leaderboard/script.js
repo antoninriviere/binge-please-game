@@ -52,7 +52,8 @@ export default
         {
             console.log('open leaderboard')
             this.isActive = !this.isActive
-            if(this.isActive) {
+            if(this.isActive)
+            {
                 // const scrollAmout = window.scrollY
                 eventHub.$emit('page:disable-scroll')
                 // this.$parent.$el.scrollTop = scrollAmout

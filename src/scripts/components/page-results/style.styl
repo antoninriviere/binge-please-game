@@ -1,21 +1,24 @@
 .page-results {
     overflow hidden
 
-    background-color: $purple
-
-    .logo {
-        z-index 10
-        position fixed
-        top 20px
-        left 20px
-        width 180px
-    }
+    background-color $purple
 
     &__score {
         z-index 10
         position fixed
-        right 20px
-        top 20px
+        right $margin
+        top $margin
+
+        opacity 0
+        transform translateX(20%)
+        will-change transform, opacity
+        transition opacity 0.8s $ease-out-expo, transform 0.5s $ease-out-expo
+        transition-delay 0.2s
+
+        &.is-active {
+            opacity 1
+            transform translateX(0)
+        }
 
         &__container {
             width 18vw
@@ -63,6 +66,19 @@
 
         display grid
         grid-template-columns repeat(12, 1fr)
+
+        opacity 0
+        transform translateY(50px)
+
+        will-change transform, opacity
+
+        transition opacity 0.3s $ease-out-sine, transform 0.3s $ease-out-sine
+        transition-delay 0.2s
+
+        &.is-active {
+            opacity 1
+            transform translateY(0)
+        }
     }
 
     &__profile {

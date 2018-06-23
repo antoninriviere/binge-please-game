@@ -21,6 +21,7 @@ export default
 
     created()
     {
+        eventHub.$on('page:show-footer', this.showFooter)
         eventHub.$on('page:hide-footer', this.hideFooter)
     },
 
@@ -35,6 +36,11 @@ export default
 
     methods:
     {
+        showFooter()
+        {
+            this.hidden = false
+        },
+
         hideFooter()
         {
             this.hidden = true

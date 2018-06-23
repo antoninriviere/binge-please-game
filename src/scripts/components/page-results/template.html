@@ -1,8 +1,7 @@
 <div class="page-results">
-    <ui-logo></ui-logo>
     <app-leaderboard :score="score"></app-leaderboard>
 
-    <div class="page-results__score">
+    <div class="page-results__score" ref="score">
         <div class="page-results__score__container">
             <div class="page-results__score__text uppercase">
                 your score
@@ -14,7 +13,7 @@
         <app-btn-share></app-btn-share>
     </div>
 
-    <div class="container">
+    <div class="container" ref="container">
         <div class="page-results__profile container__column" @click="animateStickers">
             <div class="page-results__profile__text">
                 You will end at the<br/> binger's <span class="page-results__profile__text--bold">good place</span>, that's for sure. You were good<br/> at this game, congrat's

@@ -1,6 +1,7 @@
 import appPage from 'Mixins/app-page'
 import { TimelineMax, TweenMax } from 'gsap'
 import TutoPlay from 'Components/tuto-play'
+import eventHub from 'Application/event-hub'
 
 export default
 {
@@ -35,6 +36,7 @@ export default
 
     mounted()
     {
+        eventHub.$emit('page:show-footer')
         this.transitionIn()
     },
 

@@ -8,7 +8,6 @@ import PageHome from '../components/page-home'
 import PageTuto from '../components/page-tuto'
 import PageQuiz from '../components/page-quiz'
 import PageFinish from '../components/page-finish'
-import PageScore from '../components/page-score'
 import PageLeaderboard from '../components/page-leaderboard'
 import PageResults from '../components/page-results'
 import AppWebglCanvas from '../components/app-webgl-canvas'
@@ -39,7 +38,6 @@ export default {
         PageTuto,
         PageQuiz,
         PageFinish,
-        PageScore,
         PageLeaderboard,
         PageResults,
         AppWebglCanvas,

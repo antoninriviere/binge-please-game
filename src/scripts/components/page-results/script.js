@@ -1,7 +1,6 @@
 import eventHub from 'Application/event-hub'
 import appPage from 'Mixins/app-page'
 
-import UiLogo from 'Components/ui-logo'
 import AppBtnShare from 'Components/app-btn-share'
 import AppLeaderboard from 'Components/app-leaderboard'
 
@@ -15,7 +14,6 @@ export default
 
     components:
     {
-        UiLogo,
         AppBtnShare,
         AppLeaderboard
     },
@@ -60,6 +58,8 @@ export default
         window.addEventListener('scroll', this.onScroll)
         eventHub.$emit('page:enable-scroll')
         eventHub.$emit('page:hide-footer')
+        this.$refs.container.classList.add('is-active')
+        this.$refs.score.classList.add('is-active')
     },
 
     destroyed()

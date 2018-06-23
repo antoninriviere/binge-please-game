@@ -90,14 +90,14 @@ export default
                 ease: Expo.easeOut,
                 onComplete: () =>
                 {
-                    // this.$router.push('/score')
+                    this.$router.push('/results')
                 }
             })
         },
 
         onClickFinish()
         {
-            this.$router.push('/results')
+            this.transitionOut()
         }
     }
 }

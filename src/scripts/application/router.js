@@ -40,13 +40,6 @@ const routes = [
         }
     },
     {
-        path: '/score',
-        name: 'score',
-        meta: {
-            componentId: 'page-score'
-        }
-    },
-    {
         path: '/results',
         name: 'results',
         meta: {
