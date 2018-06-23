@@ -117,7 +117,6 @@ export default
 
         onRouteChange(newRoute)
         {
-            this.clearQuiz()
             if(newRoute.name === 'quiz')
             {
                 this.setupNextQuestion()
@@ -150,6 +149,7 @@ export default
         {
             this.transitionOut().then(() =>
             {
+                this.clearQuiz()
                 this.isSkipping = false
                 // TODO Clear for prod
                 if(this.isDebug && Config.environment === 'dev')
