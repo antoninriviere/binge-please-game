@@ -6,10 +6,8 @@ import Config from 'Config'
 import Quiz from 'Config/quiz'
 
 import GameInterface from 'Components/game-interface'
-import GameTypeManager from 'Components/game-type-manager'
 import GameTutoManager from 'Components/game-tuto-manager'
 import GameTransitionManager from 'Components/game-transition-manager'
-import AppLogo from 'Components/app-logo'
 
 import QuizDom from 'Components/quiz-dom'
 import QuizEmoji from 'Components/quiz-emoji'
@@ -32,10 +30,8 @@ export default
         QuizVideo,
         QuizCustom,
         GameInterface,
-        GameTypeManager,
         GameTutoManager,
-        GameTransitionManager,
-        AppLogo
+        GameTransitionManager
     },
 
     data()
@@ -69,6 +65,7 @@ export default
         {
             const debugXpId = debugParams.debug
             const debugXpIndex = findIndex(Quiz, { id: debugXpId })
+            this.$root.typeManager.isTypeable = true
             this.$store.commit(SET_PROGRESS, debugXpIndex)
         }
         else
@@ -153,7 +150,6 @@ export default
         {
             this.transitionOut().then(() =>
             {
-                console.log('ended')
                 this.isSkipping = false
                 // TODO Clear for prod
                 if(this.isDebug && Config.environment === 'dev')
@@ -174,6 +170,7 @@ export default
             {
                 eventHub.$off('application:route-change', this.onRouteChange)
                 this.clearQuiz()
+                this.$root.typeManager.isTypeable = false
                 this.transitionOut().then(() =>
                 {
                     this.$router.push('/finish')
@@ -185,7 +182,7 @@ export default
         {
             return new Promise((resolve) =>
             {
-                this.$refs.typeManager.transitionOut(this.questionState)
+                this.$root.typeManager.transitionOut(this.questionState)
                 const options = {
                     color: this.quizObject.color,
                     titleColor: this.quizObject.titleColor ? this.quizObject.titleColor : '#F7C046',
@@ -193,7 +190,7 @@ export default
                 }
                 this.$refs.transitionManager.startTransition(options, this.questionState).then(() =>
                 {
-                    this.$refs.typeManager.isTypeable = true
+                    this.$root.typeManager.isTypeable = true
                     resolve()
                 })
             })

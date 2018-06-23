@@ -15,17 +15,17 @@ export default
     {
         return {
             isActive: false,
-            isTypeable: true,
+            isTypeable: false,
             currentType: '',
-            answer: ''
+            answer: '',
+            currentPage: ''
         }
     },
 
     created()
     {
         window.addEventListener('keydown', this.onKeyBoardEnter)
-        this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
-        this.$store.watch(this.$store.getters.getTypeErrors, this.onTypeError)
+        eventHub.$on('application:route-change', this.onRouteChange)
     },
 
     mounted()
@@ -79,6 +79,19 @@ export default
 
     methods:
     {
+        onRouteChange(newRoute)
+        {
+            if(newRoute.name === 'quiz' && this.currentPage !== 'quiz')
+            {
+                if(this.$refs.text.classList.contains('is-tuto'))
+                    this.$refs.text.classList.remove('is-tuto')
+                this.$store.watch(this.$store.getters.getSkippedQuestions, this.onSkipQuestion)
+                this.$store.watch(this.$store.getters.getTypeErrors, this.onTypeError)
+            }
+            if(newRoute.name === 'tuto' && this.currentPage !== 'tuto')
+                this.$refs.text.classList.add('is-tuto')
+            this.currentPage = newRoute.name
+        },
         onSkipQuestion()
         {
             this.isTypeable = false
@@ -114,9 +127,12 @@ export default
                 {
                     // Enter
                     case 13 :
-                        this.$store.dispatch('submitAnswer', { answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
-                        // this.currentType = ''
-                        // this.isActive = false
+                        if(this.currentPage === 'quiz')
+                            this.$store.dispatch('submitAnswer', { answer: this.currentType.toLowerCase(), time: this.$root.time.currentTime })
+                        else if(this.currentPage === 'tuto')
+                            this.testPlayType()
+                        else
+                            break
                         break
                     // Backspace
                     case 8 :
@@ -135,6 +151,18 @@ export default
                         }
                         break
                 }
+            }
+        },
+        testPlayType()
+        {
+            if(this.currentType.toLowerCase() === 'play')
+            {
+                this.$router.push('/quiz/1')
+                this.currentType = ''
+            }
+            else
+            {
+                this.currentType = ''
             }
         },
         transitionOut(questionState)

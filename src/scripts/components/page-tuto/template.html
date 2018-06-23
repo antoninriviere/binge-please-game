@@ -1,0 +1,18 @@
+<div class="page-tuto center-flex">
+    <section class="page-tuto__wrapper text-infos text-center">
+        <div v-show="$route.params.id === '1'">
+            <p class="page-tuto__headline 1 color--white" ref="headline-1">
+                Guess the titles of 10 TV shows.<br/>
+                The fastest you answer, the more points you get.
+            </p>
+        </div>
+        <div v-show="$route.params.id === '2'">
+            <p class="page-tuto__headline 2 color--white" ref="headline-2">
+                To submit the title, type the answer on your keyboard<br/>
+                and press Enter.<br/><br/>
+                Type PLAY to start the game.
+            </p>
+            <tuto-play ref="tutoPlay"></tuto-play>
+        </div>
+    </section>
+</div>

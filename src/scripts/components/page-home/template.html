@@ -1,13 +1,27 @@
 <div class="page-home">
+    <ui-circle-transition ref="circleTransition"></ui-circle-transition>
     <section class="page-home__intro fit pos-abs" ref="intro">
-        <video playsinline autoplay muted class="page-home__intro__video-elem" ref="video">
-            <source src="/static/video/intro_bingeplease.mp4" type="video/mp4">
+        <video class="page-home__intro__video-elem fit" ref="video">
+            <source :src="url" type="video/mp4">
         </video>
     </section>
-    <section class="page-home__wrapper fit center-flex" ref="home">
-        <img src="/static/home/logos.png" alt="">
-        <p class="page-home__headline color--white text-center">An interactive quiz about Netflix series.</p>
-        <p class="page-home__description color--white text-center">Solve fastest as you can the good answer of this 10 riddles.<br/>Bet you can't guess all of these.<br/>And discover your BingePlease profile !</p>
-        <button class="page-home__button btn color--white" @click="onPlayClick">Play</button>
+    <section class="page-home__overlay fit pos-abs center-flex text-center color--white" ref="overlay">
+        <div class="page-home__overlay-inner" ref="overlayInner">
+            <ui-sound-icon></ui-sound-icon>
+            <p class="page-home__overlay-description text-infos">
+                For a better experience,<br/>
+                Turn up the volume or put your headphone on.
+            </p>
+            <button class="page-home__overlay-button btn" @click="onOkClick">OK !</button>
+        </div>
+    </section>
+    <section class="page-home__wrapper fit center-flex" ref="hero" v-if="currentSection === 'hero'">
+        <div class="page-home__netflix-logo">
+            <ui-netflix-logo color="F73E39"></ui-netflix-logo>
+        </div>
+        <div class="page-home__logo">
+            <ui-logo autoplay></ui-logo>
+        </div>
+        <p class="page-home__headline color--white text-infos text-center">An interactive quiz about Netflix series.</p>
     </section>
 </div>

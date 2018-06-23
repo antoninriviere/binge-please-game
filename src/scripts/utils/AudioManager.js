@@ -13,4 +13,12 @@ export default class AudioManager
             sound.play()
         return sound
     }
+    muteSound()
+    {
+        sono.mute()
+    }
+    resumeSound()
+    {
+        sono.unMute()
+    }
 }

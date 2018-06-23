@@ -1,13 +1,7 @@
 .page-home {
     height 100vh
     background-color $yellow
-    img {
-        width 60%
-        margin-bottom 2vh
-    }
     &__wrapper {
-        width 50%
-
         margin 0 auto
 
         opacity 0
@@ -22,40 +16,81 @@
             transition opacity 0.8s $ease-out-quart, transform 0.6s $ease-out-quart
         }
     }
+
+    &__netflix-logo {
+        width 9vw
+        margin-bottom 30px
+    }
+
+    &__logo {
+        width 34%
+    }
+
     &__headline {
-        font-family 'SharpGrotesk-Light10'
-        font-size 42px
-        letter-spacing 5px
-    }
-    &__description {
         font-family 'SharpGrotesk-Medium20'
-        font-size 18px
-        line-height 32px
-        letter-spacing 1px
-    }
-    &__button {
-        margin-top 2vh
-        text-transform uppercase
-        padding 3vh 8vw
-        font-size 22px
-        font-family 'SharpGrotesk-Bold20'
+        margin-top 10px
     }
 
     &__intro {
         z-index 4
+        opacity 1
+        transition opacity 0.6s $ease-out-expo 0.3s
 
         &.is-hidden {
             opacity 0
-            visibility hidden
+            // visibility hidden
         }
 
         &__video-elem {
-            position fixed
-            top 50%
-            left 50%
-            height 100vh
-            // z-index -100
-            transform translateX(-50%) translateY(-50%) scale(1.1)
+            position absolute
+        }
+    }
+
+    &__overlay {
+        z-index 5
+
+        opacity 1
+        background-color transparentify($red, 0.9)
+        transition opacity 0.6s $ease-out-expo 0.3s
+
+        &.is-hidden {
+            opacity 0
+        }
+
+        &-inner {
+            opacity 0
+
+            will-change transform, opacity
+
+            transform scale(0.75)
+            transition opacity 0.4s $ease-out-quart, transform 0.4s $ease-out-quart
+
+
+            &.is-active {
+                opacity 1
+                transform scale(1)
+            }
+        }
+
+
+        &-description {
+            font-family 'SharpGrotesk-Medium20'
+            padding 40px 0
+        }
+
+        &-button {
+            font-size 14px
+            border solid 3px $white
+            padding 10px 20px
+            font-family 'SharpGrotesk-Bold20'
+            background-color transparent
+            color $white
+            transition background-color 0.8s $ease-out-expo, color 0.4s $ease-out-expo
+
+            &:hover {
+                background-color transparentify($white, 0.9)
+                color $red
+            }
         }
     }
 }
