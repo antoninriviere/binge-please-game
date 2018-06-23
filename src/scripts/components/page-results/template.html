@@ -1,5 +1,6 @@
 <div class="page-results">
     <app-logo></app-logo>
+    <app-leaderboard :score="score"></app-leaderboard>
 
     <div class="page-results__score">
         <div class="page-results__score__container">
@@ -7,7 +8,7 @@
                 your score
             </div>
             <div class="page-results__score__number uppercase">
-                1804
+                {{ score }}
             </div>
         </div>
         <app-btn-share></app-btn-share>

@@ -3,6 +3,7 @@ import appPage from 'Mixins/app-page'
 
 import AppLogo from 'Components/app-logo'
 import AppBtnShare from 'Components/app-btn-share'
+import AppLeaderboard from 'Components/app-leaderboard'
 
 import { TweenMax } from 'gsap'
 
@@ -15,7 +16,8 @@ export default
     components:
     {
         AppLogo,
-        AppBtnShare
+        AppBtnShare,
+        AppLeaderboard
     },
 
     data()
@@ -23,6 +25,14 @@ export default
         return {
             animatedStickers: false,
             duration: 10
+        }
+    },
+
+    computed:
+    {
+        score()
+        {
+            return this.$store.getters.getScore()
         }
     },
 
@@ -49,11 +59,6 @@ export default
 
         window.addEventListener('scroll', this.onScroll)
         eventHub.$emit('page:enable-scroll')
-    },
-
-    computed:
-    {
-
     },
 
     destroyed()

@@ -1,0 +1,43 @@
+<div class="leaderboard" :class="{'is-active': isActive}">
+    <div class="leaderboard__button" @click="toggleLeaderboard">leaderboard</div>
+    <div class="leaderboard__popin">
+        <div class="leaderboard__popin__title">
+            <div class="leaderboard__popin__cell fit">
+                <div class="leaderboard__popin__cell--left">
+                    username
+                </div>
+                <div class="leaderboard__popin__cell--right">
+                    points
+                </div>
+            </div>
+        </div>
+        <div class="leaderboard__popin__wrapper" :style="{height: wrapperHeight}" ref="wrapper">
+            <template v-for="(score, index) in scores">
+
+                <div v-if="score.yours" class="leaderboard__popin__cell is-yours fit">
+                    <div class="leaderboard__popin__cell__position" @click="onSubmitPseudo"></div>
+                    <div class="leaderboard__popin__cell--left">
+                        <input class="leaderboard__popin__cell__input" v-model="yourScore.pseudo" placeholder="enter your nickname">
+                    </div>
+                    <div class="leaderboard__popin__cell--right">
+                            {{ score.total }}
+                    </div>
+                    <div class="leaderboard__popin__cell__you">
+                        <span class="leaderboard__popin__cell__you__text"> You </span>
+                    </div>
+                </div>
+
+                <div v-else class="leaderboard__popin__cell fit" :class="{'is-first' : index === 0}">
+                    <div class="leaderboard__popin__cell__position" :class="{'is-purple': index < 3}"> {{ index + 1 }} </div>
+                    <div class="leaderboard__popin__cell--left">
+                            {{ score.pseudo }}
+                    </div>
+                    <div class="leaderboard__popin__cell--right">
+                            {{ score.total }}
+                    </div>
+                </div>
+
+            </template>
+        </div>
+    </div>
+</div>
