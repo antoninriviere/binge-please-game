@@ -38,7 +38,7 @@ export default
 
     created()
     {
-
+        this.$root.$body.style.backgroundColor = '#5934A5'
     },
 
     mounted()
