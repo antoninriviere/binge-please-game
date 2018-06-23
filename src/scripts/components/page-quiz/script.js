@@ -170,6 +170,7 @@ export default
             {
                 eventHub.$off('application:route-change', this.onRouteChange)
                 this.clearQuiz()
+                this.$root.typeManager.isTypeable = false
                 this.transitionOut().then(() =>
                 {
                     this.$router.push('/finish')

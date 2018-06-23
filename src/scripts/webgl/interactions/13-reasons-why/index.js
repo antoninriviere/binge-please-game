@@ -82,13 +82,18 @@ export default class ThirteenReasonsWhy extends AInteraction
 
     setupCamera()
     {
+        this.scene.camera.fov = 15
+        this.scene.camera.far = 5000
+
         this.scene.camera.position.x = 16.39
         this.scene.camera.position.y = 24.79
         this.scene.camera.position.z = 31.93
+
         this.scene.camera.rotation.x = -0.61
         this.scene.camera.rotation.y = 0.43
         this.scene.camera.rotation.z = 0.24
-        // this.scene.initCameraGUI()
+
+        this.scene.camera.updateProjectionMatrix()
     }
 
     initMaterials()

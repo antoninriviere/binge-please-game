@@ -27,12 +27,12 @@ export default class Panties extends Object3D
         this.initPos = new Vector3(
             start,
             400,
-            start * this.sign * 0.5
+            start * this.sign * 3
         )
         this.mesh = mesh
         this.mesh.position.set(this.initPos.x, randomIntInRange(-150, 350), this.initPos.z)
         const scale = randomIntInRange(60, 80)
-        this.mesh.scale.set(0, 0, 0)
+        this.mesh.scale.set(0.1, 0.1, 0.1)
         this.mesh.rotation.set(randomInRange(-Math.PI, Math.PI), randomInRange(-Math.PI, Math.PI), randomInRange(-Math.PI, Math.PI))
         const delay = 300 * index
         setTimeout(() =>

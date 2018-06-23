@@ -19,16 +19,18 @@ export default class OrangeIsTheNewBlack extends AInteraction
         this.initLights()
 
         this.setupCamera()
-
-        // this.initGUI()
     }
 
     setupCamera()
     {
-        this.scene.camera.fov = 45
+        this.scene.camera.fov = 15
+        this.scene.camera.far = 5000
+
         this.scene.camera.position.x = 0
         this.scene.camera.position.y = 0
         this.scene.camera.position.z = 2000
+
+        this.scene.camera.updateProjectionMatrix()
     }
 
     loadPantiesModel()
@@ -68,9 +70,6 @@ export default class OrangeIsTheNewBlack extends AInteraction
     {
         this.hemisphereLight = new HemisphereLight(0xFF82BD, 0xFF82BD, 1)
         this.scene.add(this.hemisphereLight)
-        // this.directionalLight = new DirectionalLight(0xffffff, 1)
-        // this.directionalLight.position.set(5, 5, 10)
-        // this.scene.add(this.directionalLight)
     }
 
     update(time)

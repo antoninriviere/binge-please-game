@@ -42,6 +42,9 @@ export default class StrangerThings extends AInteraction
         this.initMeshes()
         this.initLights()
 
+        this.scene.options.override.aspect = true
+        this.scene.options.override.renderer = true
+
         this.setupCamera()
 
         this.initGUI()
@@ -51,13 +54,17 @@ export default class StrangerThings extends AInteraction
 
     setupCamera()
     {
+        this.scene.camera.fov = 15
+
         this.scene.camera.position.x = 0
         this.scene.camera.position.y = 0
         this.scene.camera.position.z = 1
+
         this.scene.camera.rotation.x = 0
         this.scene.camera.rotation.y = 0
         this.scene.camera.rotation.z = 0
-        this.scene.initCameraGUI()
+
+        this.scene.camera.updateProjectionMatrix()
     }
 
     animateCamera()
@@ -214,11 +221,6 @@ export default class StrangerThings extends AInteraction
         }
     }
 
-    addListeners()
-    {
-        window.addEventListener('mousemove', this.onMouseMove)
-    }
-
     initGUI()
     {
         this.parallaxe.range = [0, 0.1]
@@ -283,13 +285,10 @@ export default class StrangerThings extends AInteraction
         this.plane.scale.y = planeHeightAtDistance
 
         this.setBulbsPosition()
-
-        this.scene.renderer.setSize(this.windowObj.width, this.windowObj.height)
     }
 
     clear()
     {
         super.clear()
-        window.removeEventListener('mousemove', this.onMouseMove)
     }
 }

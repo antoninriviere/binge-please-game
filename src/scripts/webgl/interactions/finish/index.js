@@ -24,7 +24,6 @@ export default class FinishScreen extends AInteraction
 
 
         this.initMeshes()
-        // this.initLights()
 
         this.setupCamera()
         this.transitionIn()
@@ -34,7 +33,8 @@ export default class FinishScreen extends AInteraction
     {
         this.scene.camera.position.x = 0
         this.scene.camera.position.y = 0
-        this.scene.camera.position.z = 250
+        this.scene.camera.position.z = 50
+
         this.scene.camera.rotation.x = 0
         this.scene.camera.rotation.y = 0
         this.scene.camera.rotation.z = 0
@@ -42,7 +42,7 @@ export default class FinishScreen extends AInteraction
 
     initMeshes()
     {
-        const planeGeo = new PlaneBufferGeometry(50, 25, 128, 128)
+        const planeGeo = new PlaneBufferGeometry(30, 15, 64, 64)
         this.uniforms = {
             uTime: { value: 0 },
             uAmp: { value: 100 },
@@ -69,7 +69,7 @@ export default class FinishScreen extends AInteraction
     transitionIn()
     {
         const tl = new TimelineMax()
-        tl.to(this.uniforms.uAmp, 3, { value: 10, ease: Back.easeOut }, 0)
+        tl.to(this.uniforms.uAmp, 3, { value: 3, ease: Back.easeOut }, 0)
         tl.to(this.uniforms.uPower, 3, { value: 1, ease: Back.easeOut }, 0)
     }
 

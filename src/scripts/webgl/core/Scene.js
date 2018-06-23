@@ -12,9 +12,9 @@ class SceneObj extends Scene
         super()
         const defaultOptions = {
             camera: {
-                fov: 15,
+                fov: 45,
                 near: 1,
-                far: 5000,
+                far: 1000,
                 position: new Vector3(0, 0, 10),
                 rotation: new Vector3(0, 0, 0)
             },
@@ -166,9 +166,15 @@ class SceneObj extends Scene
         this.camera.position.x = this.options.camera.position.x
         this.camera.position.y = this.options.camera.position.y
         this.camera.position.z = this.options.camera.position.z
+
         this.camera.rotation.x = this.options.camera.rotation.x
         this.camera.rotation.y = this.options.camera.rotation.y
         this.camera.rotation.z = this.options.camera.rotation.z
+
+        this.camera.fov = this.options.camera.fov
+        this.camera.near = this.options.camera.near
+        this.camera.far = this.options.camera.far
+        this.camera.updateProjectionMatrix()
     }
 
     resize(newWidth, newHeight)
