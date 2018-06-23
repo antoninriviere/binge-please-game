@@ -14,7 +14,7 @@ export default
     data()
     {
         return {
-            hidden: false,
+            hidden: true,
             soundState: 'on '
         }
     },
