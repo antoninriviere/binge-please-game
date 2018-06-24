@@ -1,6 +1,6 @@
 import TheCrownSvg from './the-crown-svg'
 import BreakingBadSvg from './breaking-bad-svg'
-import HouseOfCards from './house-of-cards'
+import OrphanBlack from './orphan-black'
 import BlackMirror from './black-mirror'
 import TheGoodPlace from './the-good-place'
 
@@ -12,7 +12,7 @@ export default
     {
         TheCrownSvg,
         BreakingBadSvg,
-        HouseOfCards,
+        OrphanBlack,
         BlackMirror,
         TheGoodPlace
     },

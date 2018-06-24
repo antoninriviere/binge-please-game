@@ -77,13 +77,13 @@ export default
         tuto: 'hover'
     },
     {
-        id: 'house-of-cards',
+        id: 'orphan-black',
         type: '2d',
         props: {
-            name: 'house-of-cards'
+            name: 'orphan-black'
         },
-        name: 'House of Cards',
-        answers: ['house of cards'],
+        name: 'Orphan Black',
+        answers: ['orphan black'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
         color: '#fcdfde',
