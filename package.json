@@ -9,7 +9,7 @@
         "start": "node build/dev-server.js",
         "build": "node build/build.js",
         "uncss": "node uncss.js",
-        "postbuild": "npm run uncss"
+        "postbuild": ""
     },
     "dependencies": {
         "controlkit": "^0.1.9",
