@@ -112,7 +112,7 @@ export default
             if(this.isSkipping)
                 return
             this.isSkipping = true
-            this.$store.dispatch('skipQuestion', this.quizObject.id)
+            this.$store.dispatch('skipQuestion', this.quizObject)
         },
 
         onRouteChange(newRoute)

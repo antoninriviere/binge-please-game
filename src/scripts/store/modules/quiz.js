@@ -6,7 +6,8 @@ import {
     SKIP_QUESTION,
     INCREMENT_SCORE,
     START_TRANSITION,
-    SHOW_TYPE_ERROR
+    SHOW_TYPE_ERROR,
+    SAVE_PROGRESSION
 } from 'MutationTypes'
 import Fuzzyset from 'fuzzyset.js'
 
@@ -14,6 +15,7 @@ const fuzzyMinScore = 0.9
 
 const state = {
     quiz: [],
+    progression : [],
     maxQuestions: undefined,
     skippedQuestions: [],
     progress: 1,
@@ -67,9 +69,16 @@ const mutations = {
         state.transition++
         state.questionState = questionState
     },
-    [SKIP_QUESTION](state, questionId)
+    [SKIP_QUESTION](state, quizObject)
     {
-        state.skippedQuestions.push(questionId)
+        state.skippedQuestions.push(quizObject)
+        state.progression.push({
+            id: quizObject.id,
+            genres: quizObject.genres,
+            failed: true,
+            points: 0,
+            time: 0
+        })
     },
     [QUIZ_HAS_FINISHED](state, questionState)
     {
@@ -79,6 +88,16 @@ const mutations = {
     [SHOW_TYPE_ERROR](state)
     {
         state.typeErrors++
+    },
+    [SAVE_PROGRESSION](state, data)
+    {
+        state.progression.push({
+            id: data.id,
+            genres: data.genres,
+            failed: false,
+            points: data.totalPoints,
+            time: data.timeToAnswer
+        })
     }
 }
 
@@ -118,7 +137,8 @@ const actions = {
             // TODO better max time
             const timePoints = Math.round(answerObj.time / 15000 * 100)
             const totalPoints = 100 + timePoints
-
+            const timeToAnswer = 15000 - answerObj.time
+            commit(SAVE_PROGRESSION, { ...currentQuestion, totalPoints, timeToAnswer })
             commit(INCREMENT_SCORE, totalPoints)
             dispatch('testQuizState', 'success')
         }
@@ -127,9 +147,9 @@ const actions = {
             commit(SHOW_TYPE_ERROR)
         }
     },
-    skipQuestion({ state, commit, dispatch }, questionId)
+    skipQuestion({ state, commit, dispatch }, quizObject)
     {
-        commit(SKIP_QUESTION, questionId)
+        commit(SKIP_QUESTION, quizObject)
         dispatch('testQuizState', 'failed')
     }
 }

@@ -13,7 +13,8 @@ export default
         ambientSound: '',
         color: '#f7c046',
         backgroundColor: '#f7c046',
-        tuto: 'click'
+        tuto: 'click',
+        genres: ['comedies', 'dramas']
     },
     {
         id: 'black-mirror',
@@ -28,7 +29,8 @@ export default
         ambientSound: 'black_mirror',
         color: '#000000',
         backgroundColor: '#000000',
-        tuto: 'hover'
+        tuto: 'hover',
+        genres: ['comedies', 'sci-fi-and-fantasy']
     },
     {
         id: '13_reasons_why',
@@ -44,7 +46,8 @@ export default
         titleColor: '#F73E39',
         backgroundColor: '#f0d9d8',
         ambientSound: '',
-        tuto: 'click'
+        tuto: 'click',
+        genres: ['comedies', 'thrillers']
     },
     {
         id: 'the-crown-svg',
@@ -59,7 +62,8 @@ export default
         color: '#412789',
         backgroundColor: '#5934a5',
         ambientSound: 'the_crown',
-        tuto: 'click'
+        tuto: 'click',
+        genres: ['history', 'dramas']
     },
     {
         id: 'breaking-bad',
@@ -74,7 +78,8 @@ export default
         color: '#412789',
         backgroundColor: '#5934a5',
         ambientSound: '',
-        tuto: 'hover'
+        tuto: 'hover',
+        genres: ['crime', 'dramas']
     },
     {
         id: 'orphan-black',
@@ -89,7 +94,8 @@ export default
         color: '#fcdfde',
         backgroundColor: '#034E6D',
         ambientSound: '',
-        tuto: 'none'
+        tuto: 'none',
+        genres: ['action-and-adventure', 'sci-fi-and-fantasy']
     },
     {
         id: 'friends',
@@ -106,7 +112,8 @@ export default
         color: '#034e6d',
         backgroundColor: '#B7D3D7',
         ambientSound: '',
-        tuto: 'none'
+        tuto: 'none',
+        genres: ['comedies']
     },
     {
         id: 'stranger-things',
@@ -120,7 +127,8 @@ export default
         ambientSound: 'stranger_things',
         color: '#000000',
         backgroundColor: '#000000',
-        tuto: 'hover'
+        tuto: 'hover',
+        genres: ['action-and-adventure', 'sci-fi-and-fantasy']
     },
     {
         id: 'orange-is-the-new-black',
@@ -135,7 +143,8 @@ export default
         titleColor: '#F73E39',
         backgroundColor: '#f0d9d8',
         ambientSound: '',
-        tuto: 'none'
+        tuto: 'none',
+        genres: ['comedies', 'gay-and-lesbian-movies']
     },
     {
         id: 'narcos',
@@ -149,6 +158,7 @@ export default
         color: '#e2c1c0',
         backgroundColor: '#000000',
         ambientSound: '',
-        tuto: 'hover'
+        tuto: 'hover',
+        genres: ['history', 'dramas', 'thrillers']
     }
 ]
