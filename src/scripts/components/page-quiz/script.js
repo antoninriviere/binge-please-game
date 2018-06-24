@@ -170,6 +170,7 @@ export default
         {
             if(hasFinished)
             {
+                eventHub.$emit('application:stop-time')
                 eventHub.$off('application:route-change', this.onRouteChange)
                 this.clearQuiz()
                 this.$root.typeManager.isTypeable = false
