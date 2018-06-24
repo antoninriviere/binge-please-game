@@ -24,7 +24,8 @@ export default
     data()
     {
         return {
-            clickId: 0
+            clickId: 0,
+            cluesCount: 4
         }
     },
 
@@ -41,6 +42,10 @@ export default
 
     mounted()
     {
+        // datas
+        this.firstDelay = 0.25
+        this.clueDelay = 1.5
+
         // Selectors
         this.$sparkles =  Array.prototype.slice.call(this.$refs.sparkles.querySelectorAll('.sparkle'))
 
@@ -48,7 +53,7 @@ export default
         this.$refs.queen.style.transform = `translateX(${-this.$refs.pilow.getBoundingClientRect().width / 2}px)`
 
         // Scalable elems
-        const scalableElems = [this.$refs.crownBig, this.$refs.flag, this.$refs.pilow, this.$refs.corgi]
+        const scalableElems = [this.$refs.queenSvg, this.$refs.crownLittle, this.$refs.crownBig, this.$refs.flag, this.$refs.pilow, this.$refs.corgi]
         for(let i = 0; i < scalableElems.length; i++)
         {
             TweenMax.set(scalableElems[i], {
@@ -56,12 +61,6 @@ export default
                 transformOrigin: '50% 50%'
             })
         }
-
-        // Crown
-        TweenMax.set(this.$refs.crownLittle, {
-            scale: 1,
-            transformOrigin: '50% 50%'
-        })
 
         // Sparkles
         for(let i = 0; i < this.$sparkles.length; i++)
@@ -80,15 +79,17 @@ export default
         })
         this.sparklesTl.pause()
 
-        // Hand
-        TweenMax.set(this.$refs.hand, { rotation: -10, transformOrigin: '50% 100%' })
-        TweenMax.to(this.$refs.hand, 0.3, {
-            rotation: 10,
-            yoyo: true,
-            repeat: -1,
-            transformOrigin: '50% 100%',
-            ease: Circ.easeInOut
-        })
+        // Add clues
+        const incClue = (delay) =>
+        {
+            TweenMax.delayedCall(delay, () =>
+            {
+                this.addClue()
+                if(this.clickId <= this.cluesCount) incClue(this.clueDelay)
+            })
+        }
+
+        incClue(this.firstDelay)
     },
 
     destroyed()
@@ -102,28 +103,62 @@ export default
         {
 
         },
-        onClick()
+
+        addClue()
         {
             this.clickId++
 
             switch(this.clickId)
             {
                 case 1:
-                    this.corgiAppear()
+                    this.queenAppear()
                     break
                 case 2:
-                    this.flagAppear()
+                    this.corgiAppear()
                     break
                 case 3:
+                    this.flagAppear()
+                    break
+                case 4:
                     this.crownAppear()
                     this.animateSparkles()
                     break
                 default:
-                    this.corgiSound.play()
+                    this.playCorgiSound()
             }
         },
 
+        playCorgiSound()
+        {
+            this.corgiSound.play()
+        },
+
         // Apparitions
+        queenAppear()
+        {
+            // Crown
+            TweenMax.to(this.$refs.crownLittle, 0.5, {
+                scale: 1,
+                ease: Elastic.easeInOut,
+                delay: 0.25
+            })
+
+            TweenMax.to(this.$refs.queenSvg, 0.5, {
+                scale: 1,
+                ease: Elastic.easeInOut
+            })
+
+            // Hand
+            TweenMax.set(this.$refs.hand, { rotation: -10, transformOrigin: '50% 100%' })
+            TweenMax.to(this.$refs.hand, 0.3, {
+                rotation: 10,
+                yoyo: true,
+                repeat: -1,
+                transformOrigin: '50% 100%',
+                ease: Circ.easeInOut
+            })
+        },
+
         crownAppear()
         {
             TweenMax.to(this.$refs.crownLittle, 0.5, {

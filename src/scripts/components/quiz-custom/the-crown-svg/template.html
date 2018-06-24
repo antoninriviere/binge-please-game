@@ -1,5 +1,6 @@
-<div class="the-crown-svg fit" @click="onClick" ref="wrapper">
-    <div class="queen fit pos-abs-tl" ref="queen">
+<!-- <div class="the-crown-svg fit" @click="addClue" ref="wrapper"> -->
+<div class="the-crown-svg fit" ref="wrapper">
+    <div class="queen fit pos-abs-tl" ref="queen" @click="playCorgiSound">
         <svg class="fit pos-center" viewBox="0 0 467 784" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
             <defs>
             <path id="path-1" d="M0 685.977h212.936V0H0z"/>
@@ -12,7 +13,7 @@
             <g id="Recherches" fill="none" fill-rule="evenodd">
               <g transform="translate(-340 -109)">
                 <g id="reine" transform="translate(340 109)">
-                  <g transform="translate(254 98)">
+                  <g transform="translate(254 98)" ref="queenSvg">
                     <path d="M127.704 100.73c0 .394-.136 1.188-.285 2.02l-17.54-.625 17.825-1.394z" id="Fill-1" fill="#F7E0DF"/>
                     <path d="M133.762 131.662c-1.944-1.259-3.616-2.848-4.844-4.72-25.234-1.75-34.904-16.27-37.943-22.602.235 1.967.164 7.315.155 7.744-.09 4.49.217 10.517-1.789 14.638-2.432 4.995-9.156 7.861-14.073 9.63-.552.199-9.65 2.951-9.73 2.559 1.411 6.822 3.034 14.637 3.92 19.051.666 3.323 1.427 6.643 1.999 9.983.642 3.75 2.444 6.206 5.891 7.852 3.146 1.502 6.802 2.28 10.287 2.28l18.794 26.51 18.794-26.51c3.485 0 7.141-.778 10.287-2.28 3.447-1.646 5.331-3.094 5.973-6.845.572-3.34 4.571-23.286 6.193-30.92.004-.018-12.795-5.645-13.914-6.37" id="Fill-3" fill="#F7E0DF"/>
                     <path d="M90.759 103.62l19.12-1.496-20.096-.717s.33 1.138 1.192 2.933c-.054-.454-.125-.728-.216-.72" id="Fill-5" fill="#E2CCCC"/>

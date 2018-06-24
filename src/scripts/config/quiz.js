@@ -25,7 +25,7 @@ export default
         answers: ['black mirror'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        ambientSound: '',
+        ambientSound: 'black_mirror',
         color: '#000000',
         backgroundColor: '#000000',
         tuto: 'hover'
@@ -58,7 +58,7 @@ export default
         elapsedTime: 0,
         color: '#412789',
         backgroundColor: '#5934a5',
-        ambientSound: '',
+        ambientSound: 'the_crown',
         tuto: 'click'
     },
     {
