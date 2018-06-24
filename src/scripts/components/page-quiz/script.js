@@ -147,9 +147,9 @@ export default
 
         onTransitionStart()
         {
+            this.clearQuiz()
             this.transitionOut().then(() =>
             {
-                this.clearQuiz()
                 this.isSkipping = false
                 // TODO Clear for prod
                 if(this.isDebug && Config.environment === 'dev')

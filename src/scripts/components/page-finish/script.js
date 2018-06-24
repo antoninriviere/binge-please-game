@@ -33,6 +33,11 @@ export default
                 score: this.$store.state.Game.score
             }
         })
+        this.finishSound = this.$root.audioManager.create({
+            url: '../static/sounds/finish_sound.mp3',
+            autoplay: false,
+            loop: true
+        })
     },
 
     mounted()
@@ -45,6 +50,7 @@ export default
         this.$root.$body.classList.remove('isFinishPage')
         this.$store.commit(WEBGL_CLEAR_GROUP)
         this.tl.clear()
+        this.finishSound.destroy()
     },
 
     methods:
@@ -66,7 +72,7 @@ export default
             this.tl.to(this.$refs.pointsBg, 0.6, {
                 scaleX: 0,
                 transformOrigin: '100% 50%',
-                ase: Expo.easeInOut
+                ease: Expo.easeInOut
             }, 0.3)
             this.tl.staggerFromTo(pointsChars, 0.3, {
                 yPercent: 100,
@@ -79,6 +85,10 @@ export default
             this.tl.from(this.$refs.congratsText, 0.5, {
                 yPercent: -100,
                 ease: Circ.easeOut
+            }, 0.6)
+            this.tl.add(() =>
+            {
+                this.finishSound.play()
             }, 0.6)
         },
 

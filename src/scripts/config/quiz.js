@@ -58,7 +58,7 @@ export default
         elapsedTime: 0,
         color: '#412789',
         backgroundColor: '#5934a5',
-        ambientSound: 'ambient5',
+        ambientSound: '',
         tuto: 'click'
     },
     {
@@ -73,7 +73,7 @@ export default
         elapsedTime: 0,
         color: '#412789',
         backgroundColor: '#5934a5',
-        ambientSound: 'ambient5',
+        ambientSound: '',
         tuto: 'hover'
     },
     {

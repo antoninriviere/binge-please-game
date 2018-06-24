@@ -300,7 +300,7 @@ export default class ThirteenReasonsWhy extends AInteraction
             z: this.initCameraPosition.z * 2,
             ease: Sine.easeOut
         })
-        TweenMax.delayedCall(2 + TWEEN_DURATION, this.onPlayButtonClick)
+        this.tapeTimeout = TweenMax.delayedCall(1 + TWEEN_DURATION, this.onPlayButtonClick)
     }
 
     addFloor()
@@ -409,6 +409,8 @@ export default class ThirteenReasonsWhy extends AInteraction
         this.scene.remove(this.directionalLightFront)
         this.scene.remove(this.directionalLightBack)
         this.scene.clearPostProcessing()
+        if(this.tapeTimeout)
+            this.tapeTimeout.kill()
         this.tapeSound.destroy()
     }
 }

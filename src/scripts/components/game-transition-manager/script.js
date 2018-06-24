@@ -24,6 +24,16 @@ export default
 
     created()
     {
+        this.rightAnswerSound = this.$root.audioManager.create({
+            url: '../static/sounds/right_answer.mp3',
+            autoplay: false,
+            loop: false
+        })
+        this.failedAnswerSound = this.$root.audioManager.create({
+            url: '../static/sounds/failed_answer.mp3',
+            autoplay: false,
+            loop: false
+        })
     },
 
     mounted()
@@ -57,6 +67,7 @@ export default
         playSuccessTransition()
         {
             this.$refs.container.classList.add('is-active')
+            this.rightAnswerSound.play()
             return new Promise((resolve) =>
             {
                 TweenMax.to(this.$circle, 0.45,
@@ -89,6 +100,7 @@ export default
             TweenMax.set(this.$refs.popin, { opacity: 1 })
             let scale = (answerClone.getBoundingClientRect().width / window.innerHeight * 0.4).toFixed(2)
             scale = Math.max(0.2, scale)
+            this.failedAnswerSound.play()
             return new Promise((resolve) =>
             {
                 const tl = new TimelineMax({

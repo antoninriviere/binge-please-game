@@ -26,6 +26,11 @@ export default
     {
         window.addEventListener('keydown', this.onKeyBoardEnter)
         eventHub.$on('application:route-change', this.onRouteChange)
+        this.errorSound = this.$root.audioManager.create({
+            url: '../static/sounds/wrong_answer.mp3',
+            autoplay: false,
+            loop: false
+        })
     },
 
     mounted()
@@ -98,6 +103,7 @@ export default
         },
         onTypeError()
         {
+            this.errorSound.play()
             this.playFailedTransition()
         },
         onKeyBoardEnter(ev)
