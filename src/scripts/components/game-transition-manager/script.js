@@ -15,7 +15,8 @@ export default
     {
         return {
             answer: '',
-            successComponent: undefined
+            successComponent: undefined,
+            transitionIndex: 0
         }
     },
 
@@ -24,6 +25,7 @@ export default
 
     created()
     {
+        this.transitionComponents = [successWellDone, successYouWin]
         this.rightAnswerSound = this.$root.audioManager.create({
             url: '../static/sounds/right_answer.mp3',
             autoplay: false,
@@ -55,14 +57,21 @@ export default
             this.answer = options.answer
             if(questionState === 'success')
             {
-                // this.successComponent = successWellDone
-                this.successComponent = successYouWin
+                this.successComponent = this.getTransitionComponent()
                 return this.$nextTick().then(() => this.playSuccessTransition())
             }
             else
             {
                 return this.$nextTick().then(() => this.playFailedTransition(options.titleColor))
             }
+        },
+        getTransitionComponent()
+        {
+            const component = this.transitionComponents[this.transitionIndex]
+            this.transitionIndex++
+            if(this.transitionIndex === this.transitionComponents.length)
+                this.transitionIndex = 0
+            return component
         },
         playSuccessTransition()
         {
