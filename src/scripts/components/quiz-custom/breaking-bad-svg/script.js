@@ -1,7 +1,4 @@
 import eventHub from 'Application/event-hub'
-// import AudioManager from 'Utils/AudioManager'
-
-// import { TweenMax } from 'gsap'
 
 export default
 {
@@ -13,17 +10,12 @@ export default
     data()
     {
         return {
+            index: 0
         }
     },
 
     created()
     {
-        // this.audioManager = new AudioManager()
-        // this.corgiSound = this.audioManager.create({
-        //     url: '/static/sounds/corgi_noise.mp3',
-        //     autoplay: false,
-        //     loop: false
-        // })
     },
 
     mounted()
@@ -36,14 +28,22 @@ export default
         this.setCache()
         setTimeout(() =>
         {
-            this.$els[0].classList.add('has-appeared')
+            this.$els[this.index].classList.add('has-appeared')
         }, 500)
-        this.$refs.container.addEventListener('mousemove', this.onMouseMove)
+        this.interval = setInterval(() =>
+        {
+            this.index++
+            this.$els[this.index].classList.add('has-appeared')
+            if(this.index === 4)
+                clearInterval(this.interval)
+        }, 1500)
+        // this.$refs.container.addEventListener('mousemove', this.onMouseMove)
         eventHub.$on('window:resize', this.onResize)
     },
 
     destroyed()
     {
+        // this.$refs.container.removeEventListener('mousemove', this.onMouseMove)
         eventHub.$off('window:resize', this.onResize)
     },
 
