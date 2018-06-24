@@ -147,6 +147,8 @@ export default
 
         onTransitionStart()
         {
+            eventHub.$emit('application:stop-time')
+
             this.transitionOut().then(() =>
             {
                 this.clearQuiz()

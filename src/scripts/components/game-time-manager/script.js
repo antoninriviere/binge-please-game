@@ -26,6 +26,10 @@ export default
     created()
     {
         eventHub.$on('application:enterframe', this.onTick)
+
+        eventHub.$on('application:start-time', this.startTime)
+        eventHub.$on('application:stop-time', this.stopTime)
+
         this.$root.$store.watch(this.$root.$store.getters.getCurrentProgress, this.onUpdateProgress)
     },
 
@@ -38,6 +42,7 @@ export default
     {
         startTime()
         {
+            console.log('start time')
             this.time.current = 0
             this.time.enabled = true
             this.$root.time.startTime()
@@ -45,13 +50,13 @@ export default
 
         stopTime()
         {
+            console.log('stop time')
             this.time.enabled = false
             this.$root.time.stopTime()
         },
 
         onUpdateProgress()
         {
-            this.stopTime()
             this.startTime()
         },
 
@@ -66,6 +71,7 @@ export default
 
                 if(this.$root.time.currentTime < 0)
                 {
+                    this.$root.time.currentTime = 0
                     this.stopTime()
                     eventHub.$emit('application:skip')
                 }
