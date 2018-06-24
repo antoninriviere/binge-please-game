@@ -6,7 +6,7 @@ import Config from 'Config'
 import Quiz from 'Config/quiz'
 
 import GameInterface from 'Components/game-interface'
-import GameTutoManager from 'Components/game-tuto-manager'
+// import GameTutoManager from 'Components/game-tuto-manager'
 import GameTransitionManager from 'Components/game-transition-manager'
 
 import QuizDom from 'Components/quiz-dom'
@@ -30,7 +30,7 @@ export default
         QuizVideo,
         QuizCustom,
         GameInterface,
-        GameTutoManager,
+        // GameTutoManager,
         GameTransitionManager
     },
 
