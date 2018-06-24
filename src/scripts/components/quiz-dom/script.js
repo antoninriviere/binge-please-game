@@ -38,6 +38,10 @@ export default
 
     mounted()
     {
+        setTimeout(() =>
+        {
+            this.$refs.image.classList.add('is-active')
+        }, 500)
     },
 
     destroyed()

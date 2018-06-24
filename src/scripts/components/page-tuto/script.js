@@ -38,6 +38,11 @@ export default
         this.COUNTDOWN_DURATION = 0.4
         this.COUNTDOWN_DELAY = 0.3
         eventHub.$on('game:start', this.transitionOut)
+        this.tickSound = this.$root.audioManager.create({
+            url: '../static/sounds/countdown_tick.mp3',
+            autoplay: false,
+            loop: false
+        })
     },
 
     mounted()
@@ -135,6 +140,10 @@ export default
                 scale: 0,
                 ease: Expo.easeOut
             }, 0)
+            this.tl.add(() =>
+            {
+                this.tickSound.play()
+            }, this.COUNTDOWN_DURATION / 2)
             this.updateCountdown(1, '#F73E39', '2')
             this.updateCountdown(2, '#B7D3D7', '1')
             this.updateCountdown(3, '#5934A5', 'GO!')
@@ -152,6 +161,10 @@ export default
                 scale: 1,
                 ease: Expo.easeOut
             }, t)
+            this.tl.add(() =>
+            {
+                this.tickSound.play()
+            }, t + this.COUNTDOWN_DURATION / 2)
         }
     }
 }
