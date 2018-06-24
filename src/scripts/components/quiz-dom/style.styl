@@ -10,5 +10,16 @@
 
     &__image {
         width 100%
+
+        opacity 0
+        transform scale(0.75)
+
+        will-change transform, opacity
+        transition opacity 0.8s $ease-out-quart, transform 0.6s $ease-out-quart
+
+        &.is-active {
+            opacity 1
+            transform scale(1)
+        }
     }
 }
