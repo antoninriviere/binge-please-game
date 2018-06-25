@@ -3,6 +3,7 @@ import { TweenMax, TimelineMax } from 'gsap'
 import uiCircleTransition from 'Components/ui-circle-transition'
 import successWellDone from 'Components/game-success-transitions/well-done'
 import successYouWin from 'Components/game-success-transitions/you-win'
+import successBravo from 'Components/game-success-transitions/bravo'
 export default
 {
     name: 'game-transition-manager',
@@ -31,7 +32,7 @@ export default
     {
         this.$root.$store.watch(this.$root.$store.getters.getScore, this.onUpdateScore)
 
-        this.transitionComponents = [successWellDone, successYouWin]
+        this.transitionComponents = [successWellDone, successYouWin, successBravo]
         this.rightAnswerSound = this.$root.audioManager.create({
             url: '../static/sounds/right_answer.mp3',
             autoplay: false,
@@ -70,7 +71,8 @@ export default
             this.answer = options.answer
             if(questionState === 'success')
             {
-                this.successComponent = this.getTransitionComponent()
+                // this.successComponent = this.getTransitionComponent()
+                this.successComponent = successBravo
                 return this.$nextTick().then(() => this.playSuccessTransition())
             }
             else
@@ -94,7 +96,6 @@ export default
             this.rightAnswerSound.play()
             return new Promise((resolve) =>
             {
-
                 this.playScoreAnimation()
 
                 TweenMax.to(this.$circle, 0.45,

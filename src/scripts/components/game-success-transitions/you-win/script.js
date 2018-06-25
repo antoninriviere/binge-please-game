@@ -56,7 +56,7 @@ export default
                         index = 0
                         TweenMax.set(this.$texts, { fill: '#ffffff' })
                         TweenMax.set(this.$refs.container.children, { clearProps: 'all' })
-                        this.tl.set(this.$refs.container, { clearProps: 'all' })
+                        TweenMax.set(this.$refs.container, { clearProps: 'all' })
                         resolve()
                     }
                 })
