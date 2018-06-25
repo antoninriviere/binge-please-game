@@ -146,7 +146,7 @@ export default class ThirteenReasonsWhy extends AInteraction
 
         const line = new MeshLine()
         line.setGeometry(geometry)
-        const material = new MeshLineMaterial({
+        this.cableMaterial = new MeshLineMaterial({
             color: new Color(0x000000),
             lineWidth: 40,
             resolution: this.resolution,
@@ -154,7 +154,7 @@ export default class ThirteenReasonsWhy extends AInteraction
             near: this.scene.camera.near,
             far: this.scene.camera.far
         })
-        this.cable = new Mesh(line.geometry, material)
+        this.cable = new Mesh(line.geometry, this.cableMaterial)
         this.setupMesh(this.cable)
     }
 
@@ -293,14 +293,24 @@ export default class ThirteenReasonsWhy extends AInteraction
 
     transitionIn()
     {
-        const TWEEN_DURATION = 2
-        TweenMax.from(this.scene.camera.position, TWEEN_DURATION, {
-            x: this.initCameraPosition.x * 2,
-            y: this.initCameraPosition.y * 2,
+        const TWEEN_DURATION = 6
+        this.target = new Vector3(-1, 1.5, 0)
+        this.tlIn = new TimelineMax()
+        this.tlIn.from(this.scene.camera.position, TWEEN_DURATION, {
+            x: this.initCameraPosition.x * 5,
+            y: this.initCameraPosition.y * 3,
             z: this.initCameraPosition.z * 2,
-            ease: Sine.easeOut
-        })
-        this.tapeTimeout = TweenMax.delayedCall(1 + TWEEN_DURATION, this.onPlayButtonClick)
+            ease: Power2.easeOut,
+            onUpdate: () =>
+            {
+                this.scene.camera.lookAt(this.target)
+            }
+        }, 0)
+        this.tlIn.from(this.cableMaterial.uniforms.lineWidth, TWEEN_DURATION, {
+            value: 15,
+            ease: Power2.easeOut
+        }, 0)
+        this.tapeTimeout = TweenMax.delayedCall(2.5, this.onPlayButtonClick)
     }
 
     addFloor()
@@ -315,7 +325,7 @@ export default class ThirteenReasonsWhy extends AInteraction
         })
         this.floor = new Mesh(planeGeo, planeMat)
         this.floor.position.y = -0.7
-        this.floor.scale.set(50, 50, 50)
+        this.floor.scale.set(60, 60, 60)
         this.floor.rotation.x = -Math.PI / 2
         this.floor.receiveShadow = true
         this.add(this.floor)
@@ -406,6 +416,11 @@ export default class ThirteenReasonsWhy extends AInteraction
     clear()
     {
         super.clear()
+        if(this.tlIn)
+        {
+            this.tlIn.kill()
+            this.tlIn.clear()
+        }
         this.scene.remove(this.directionalLightFront)
         this.scene.remove(this.directionalLightBack)
         this.scene.clearPostProcessing()
