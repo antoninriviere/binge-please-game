@@ -22,13 +22,13 @@ export default
             isAnimating: false,
             hasAppeared: false,
             isNeonOver: true,
-            isRoadOver: false,
-            isCoupleOver: false,
-            dropCount: 150,
+            isRoadOver: true,
+            isCoupleOver: true,
+            isDriveOver: true,
+            dropCount: 50,
             canAnimateDrops: true,
             coupleHeight: 0,
-            coupleWidth: 0,
-            isDriveOver: false
+            coupleWidth: 0
         }
     },
 
@@ -103,6 +103,8 @@ export default
 
         // Play animations
         this.animateNeon()
+        this.animateDrops()
+        this.animateSparkles()
     },
 
     destroyed()
@@ -127,13 +129,13 @@ export default
 
         onOverRoad()
         {
-            this.isRoadOver = true
-            this.animateSparkles()
+            // this.isRoadOver = true
+            // this.animateSparkles()
         },
 
         onLeaveRoad()
         {
-            this.isRoadOver = false
+            // this.isRoadOver = false
         },
 
         animateSparkles()
@@ -205,16 +207,16 @@ export default
 
         onOverCouple()
         {
-            this.isCoupleOver = true
-            if(this.canAnimateDrops)
-            {
-                this.animateDrops()
-            }
+            // this.isCoupleOver = true
+            // if(this.canAnimateDrops)
+            // {
+            //     this.animateDrops()
+            // }
         },
 
         onLeaveCouple()
         {
-            this.isCoupleOver = false
+            // this.isCoupleOver = false
         },
 
         animateDrops()
@@ -238,16 +240,19 @@ export default
         {
             if(this.isCoupleOver)
             {
+                const dropX = index / this.dropCount * parseInt(this.coupleStyles.width)
+
                 TweenMax.set(drop,
                     {
-                        x: `${randomInRange(0, this.coupleHeight)}px`,
+                        x: `${dropX}px`,
                         y: '-50px',
                         scale: randomInRange(0.4, 0.6)
                     })
-                TweenMax.to(drop, 0.75,
+                TweenMax.to(drop, randomInRange(0.6, 1),
                     {
+                        x: dropX - randomInRange(0, 150),
                         y: `${this.coupleHeight}px`,
-                        delay: index * this.dropDelay,
+                        delay: index * randomInRange(0, 0.025),
                         ease: Power0.easeNone,
                         onComplete: () =>
                         {
@@ -262,12 +267,12 @@ export default
 
         onOverDrive()
         {
-            this.isDriveOver = true
+            // this.isDriveOver = true
         },
 
         onLeaveDrive()
         {
-            this.isDriveOver = false
+            // this.isDriveOver = false
         }
     }
 }

@@ -13,7 +13,7 @@ import {
     Raycaster
 } from 'three'
 
-import TweenMax from 'gsap'
+import TweenMax, { TimelineMax } from 'gsap'
 
 import { randomInRange, randomIntInRange } from 'Utils/Numbers'
 
@@ -48,8 +48,6 @@ export default class StrangerThings extends AInteraction
         this.setupCamera()
 
         this.initGUI()
-
-        this.resize(this.mouse, this.windowObj)
     }
 
     setupCamera()
@@ -58,7 +56,7 @@ export default class StrangerThings extends AInteraction
 
         this.scene.camera.position.x = 0
         this.scene.camera.position.y = 0
-        this.scene.camera.position.z = 1
+        this.scene.camera.position.z = 1.2
 
         this.scene.camera.rotation.x = 0
         this.scene.camera.rotation.y = 0
@@ -69,7 +67,10 @@ export default class StrangerThings extends AInteraction
 
     animateCamera()
     {
-
+        TweenMax.to(this.scene.camera.position, 5, {
+            z: 1,
+            ease: Power0.easeNone
+        })
     }
 
     initMeshes()
@@ -80,24 +81,42 @@ export default class StrangerThings extends AInteraction
 
     setBg()
     {
-        // Plane background texture
-        const planeGeo = new PlaneBufferGeometry(1, 1)
-        this.uniforms = {
-            uTime: { value: 0 },
-            uTexture: { value: new TextureLoader().load('/static/stranger-things/bg.jpg') },
-            uMap: { value: new TextureLoader().load('/static/stranger-things/depthmap.png') },
-            uMouse: { value: new Vector2(this.mouse.x, this.mouse.y) },
-            uResolution: { value: new Vector2(window.innerWidth, window.innerHeight) },
-            uParallaxe: { value: this.parallaxe.intensity }
-        }
-        const planeMat = new ShaderMaterial({
-            uniforms: this.uniforms,
-            fragmentShader: fragmentShader,
-            vertexShader: vertexShader,
-            side: DoubleSide
-        })
-        this.plane = new Mesh(planeGeo, planeMat)
-        this.add(this.plane)
+        // instantiate a loader
+        const loader = new TextureLoader()
+
+        loader.load(
+            '/static/stranger-things/bg.jpg',
+            (texture) =>
+            {
+                        // Plane background texture
+                const planeGeo = new PlaneBufferGeometry(1, 1)
+                this.uniforms = {
+                    uTime: { value: 0 },
+                    uTexture: { value: texture },
+                    uMap: { value: new TextureLoader().load('/static/stranger-things/depthmap.png') },
+                    uMouse: { value: new Vector2(this.mouse.x, this.mouse.y) },
+                    uResolution: { value: new Vector2(window.innerWidth, window.innerHeight) },
+                    uParallaxe: { value: this.parallaxe.intensity }
+                }
+                const planeMat = new ShaderMaterial({
+                    uniforms: this.uniforms,
+                    fragmentShader: fragmentShader,
+                    vertexShader: vertexShader,
+                    side: DoubleSide
+                })
+                this.plane = new Mesh(planeGeo, planeMat)
+                this.add(this.plane)
+
+                this.loaded = true
+                this.resize(this.mouse, this.windowObj)
+                this.animateCamera()
+                this.tweenBulbs()
+            },
+            undefined,
+
+            // onError callback
+            (err) => console.error('Error loading texture', err)
+        )
     }
 
     setBulbs()
@@ -221,6 +240,28 @@ export default class StrangerThings extends AInteraction
         }
     }
 
+    tweenBulbs()
+    {
+        const phraseTl = new TimelineMax({
+            onComplete: () => phraseTl.restart()
+        })
+        const BULB_DELAY = 0.2
+
+        // Salut les punks or if you read this you're a nerd
+        const phrase = [17, 0, 10, 19, 18, 10, 4, 17, 14, 19, 12, 9, 17]
+        for(let i = 0; i < phrase.length; i++)
+        {
+            const delay = i * BULB_DELAY
+
+            phraseTl.to(this.bulbs[phrase[i]].material, 0.2, {
+                opacity: 1
+            }, delay)
+            phraseTl.to(this.bulbs[phrase[i]].material, 0.2, {
+                opacity: 0
+            }, delay + 0.3)
+        }
+    }
+
     initGUI()
     {
         this.parallaxe.range = [0, 0.1]
@@ -240,31 +281,34 @@ export default class StrangerThings extends AInteraction
 
     update(time)
     {
-        super.update()
-        this.uniforms.uTime.value = time.elapsed
-        this.uniforms.uMouse.value = new Vector2(this.mouse.ratio.fromCenter.x, this.mouse.ratio.fromCenter.y)
-        this.uniforms.uParallaxe.value = this.parallaxe.intensity
+        if(this.loaded)
+        {
+            super.update()
+            this.uniforms.uTime.value = time.elapsed
+            this.uniforms.uMouse.value = new Vector2(this.mouse.ratio.fromCenter.x, this.mouse.ratio.fromCenter.y)
+            this.uniforms.uParallaxe.value = this.parallaxe.intensity
+        }
     }
 
     onMouseMove(mouse)
     {
         this.mouse = mouse
-        const vMouse = new Vector2(this.mouse.nX, this.mouse.nY)
-        this.raycaster.setFromCamera(vMouse, this.scene.camera)
+        // const vMouse = new Vector2(this.mouse.nX, this.mouse.nY)
+        // this.raycaster.setFromCamera(vMouse, this.scene.camera)
 
-        const intersects = this.raycaster.intersectObjects(this.bulbs)
+        // const intersects = this.raycaster.intersectObjects(this.bulbs)
 
-        if(intersects.length > 0 && this.canIntersect && intersects.length < this.bulbs.length)
-        {
-            for(let i = 0; i < intersects.length; i++)
-            {
-                if(!intersects[i].object.lighted)
-                {
-                    this.animateBulb(intersects[i].object, true)
-                    intersects[i].object.lighted = true
-                }
-            }
-        }
+        // if(intersects.length > 0 && this.canIntersect && intersects.length < this.bulbs.length)
+        // {
+        //     for(let i = 0; i < intersects.length; i++)
+        //     {
+        //         if(!intersects[i].object.lighted)
+        //         {
+        //             this.animateBulb(intersects[i].object, true)
+        //             intersects[i].object.lighted = true
+        //         }
+        //     }
+        // }
     }
 
     resize(mouse, windowObj)
@@ -274,7 +318,8 @@ export default class StrangerThings extends AInteraction
         this.windowObj.width = windowObj.width
         this.windowObj.height = windowObj.height
 
-        const distance = this.scene.camera.position.z - this.plane.position.z
+        // const distance = this.scene.camera.position.z - this.plane.position.z
+        const distance = 1 - this.plane.position.z
         const aspect = 2
         const vFov = this.scene.camera.fov * Math.PI / 180
         const planeHeightAtDistance = 2 * Math.tan(vFov / 2) * distance
