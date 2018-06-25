@@ -136,7 +136,7 @@ export default
         props: {
             name: 'friends',
             image: 'dance.gif',
-            width: '50vw'
+            width: '40vw'
         },
         name: 'Friends',
         answers: ['friends'],
