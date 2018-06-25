@@ -48,6 +48,7 @@ export default
     mounted()
     {
         this.$circle = this.$refs.circleTransition.$refs.circle
+        eventHub.$emit('page:show-header')
         eventHub.$emit('page:show-footer')
         this.transitionIn()
     },

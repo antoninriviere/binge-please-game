@@ -1,0 +1,20 @@
+.app-header {
+    position absolute
+
+    $padding = 2 * $margin
+    width "calc(100% - %s)" % $padding
+
+    top $margin
+    left $margin
+
+    z-index 3
+
+    display flex
+    justify-content flex-start
+    align-items flex-end
+    flex-direction row
+
+    &__logo {
+        width 15vw
+    }
+}
