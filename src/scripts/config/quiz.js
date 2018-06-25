@@ -144,7 +144,7 @@ export default
         elapsedTime: 0,
         color: '#034e6d',
         backgroundColor: '#B7D3D7',
-        ambientSound: '',
+        ambientSound: 'friends',
         tuto: 'none',
         genres: ['comedies']
     },
