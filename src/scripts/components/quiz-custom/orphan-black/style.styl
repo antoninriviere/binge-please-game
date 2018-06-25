@@ -4,6 +4,17 @@
     height $h
     width "calc( (%s * 3) / 4)" % $h
     background-color $pink
+
+    opacity 0
+    will-change transform, opacity
+
+    transform scale(0.75)
+    transition opacity 0.8s $ease-out-quart, transform 0.6s $ease-out-quart
+
+    &.is-active {
+        opacity 1
+        transform scale(1)
+    }
 }
 .xp-item {
     transform-origin 50% 21%

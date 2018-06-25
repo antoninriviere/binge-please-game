@@ -110,7 +110,7 @@ export default
         color: '#B7D3D7',
         titleColor: '#F73E39',
         backgroundColor: '#034E6D',
-        ambientSound: '',
+        ambientSound: 'orphan-black',
         tuto: 'none',
         genres: ['action-and-adventure', 'sci-fi-and-fantasy']
     },
