@@ -1,7 +1,7 @@
 import eventHub from 'Application/event-hub'
 import AudioManager from 'Utils/AudioManager'
 
-import { randomInRange } from 'Utils/Numbers'
+import { randomInRange, randomIntInRange } from 'Utils/Numbers'
 
 
 import { TweenMax, Power0 } from 'gsap'
@@ -20,98 +20,59 @@ export default
     },
 
     computed: {
-
+        dink()
+        {
+            return {
+                ref: '',
+                x: this.$root.windowObj.width * 0.544,
+                y: this.$root.windownObj.height * 0.35
+            }
+        }
     },
 
     data()
     {
         return {
+            // hasAppeared: false,
+
             swearIndex: 0,
 
             swearwords: {
 
                 messy : {
                     ref: '',
-                    from: {
-                        scale: 3,
-                        x: '-20px',
-                        y: '20px'
-                    },
-                    to: {
-                        scale: 1,
-                        x: 0,
-                        y: 0
-                    }
+                    x: 0,
+                    y: 0
                 },
 
                 kant: {
                     ref: '',
-                    from: {
-                        scale: 3,
-                        x: '-20px',
-                        y: '20px'
-                    },
-                    to: {
-                        scale: 1,
-                        x: 0,
-                        y: 0
-                    }
+                    x: 0,
+                    y: 0
                 },
 
                 holy: {
                     ref: '',
-                    from: {
-                        scale: 3,
-                        x: '-20px',
-                        y: '20px'
-                    },
-                    to: {
-                        scale: 1,
-                        x: 0,
-                        y: 0
-                    }
+                    x: 0,
+                    y: 0
                 },
 
                 dink: {
                     ref: '',
-                    from: {
-                        scale: 3,
-                        x: '-20px',
-                        y: '20px'
-                    },
-                    to: {
-                        scale: 1,
-                        x: 0,
-                        y: 0
-                    }
+                    x: 0,
+                    y: 0
                 },
 
                 bullshirt: {
                     ref: '',
-                    from: {
-                        scale: 3,
-                        x: '-20px',
-                        y: '20px'
-                    },
-                    to: {
-                        scale: 1,
-                        x: 0,
-                        y: 0
-                    }
+                    x: 0,
+                    y: 0
                 },
 
                 ashhole: {
                     ref: '',
-                    from: {
-                        scale: 3,
-                        x: '-20px',
-                        y: '20px'
-                    },
-                    to: {
-                        scale: 1,
-                        x: 0,
-                        y: 0
-                    }
+                    x: 0,
+                    y: 0
                 }
 
             }
@@ -127,6 +88,11 @@ export default
 
     mounted()
     {
+        TweenMax.to([this.$refs.bg1, this.$refs.bg2], 0.8,
+            {
+                opacity: 1,
+                delay: 0.2
+            })
         this.tweenForks()
 
         this.swearwords.messy.ref = this.$refs.messy
@@ -136,7 +102,7 @@ export default
         this.swearwords.bullshirt.ref = this.$refs.bullshirt
         this.swearwords.ashhole.ref = this.$refs.ashhole
 
-        TweenMax.delayedCall(2, this.addAllBadges)
+        TweenMax.delayedCall(1.5, this.addAllBadges)
 
         // this.swearwords = [this.$refs.motherforker, this.$refs.messy, this.$refs.kant, this.$refs.holy, this.$refs.bullshirt, this.$refs.ashhole, this.$refs.dink]
     },
@@ -191,35 +157,46 @@ export default
             })
         },
 
-        tweenBadge(badge)
+        tweenBadge(badge, index)
         {
+            console.log('tween badge', badge, index)
+            const randomIndex = randomIntInRange(0, 7)
+            const randomY = randomInRange(100, this.$root.windowObj.height -200)
+
             TweenMax.set(badge.ref, {
-                opacity: 1
+                opacity: 1,
+                zIndex: randomIndex
             })
             TweenMax.fromTo(badge.ref, 0.1,
                 {
-                    scale: badge.from.scale,
-                    x: badge.from.x,
-                    y: badge.from.y
+                    scale: 3,
+                    x: badge.x + 20,
+                    y: randomY + 20
                 },
                 {
-                    scale: badge.to.scale,
-                    x: badge.to.x,
-                    y: badge.to.y,
+                    scale: 1,
+                    x: badge.x,
+                    y: randomY,
                     ease: Circ.easeOut,
                     onComplete: this.slideBadge,
-                    onCompleteParams: [badge]
+                    onCompleteParams: [badge, index]
                 })
         },
 
-        slideBadge(badge)
+        slideBadge(badge, index)
         {
             const jamesBound = badge.ref.getBoundingClientRect()
-            const distance = jamesBound.top + jamesBound.height
-            console.log()
+            const distance = jamesBound.height + 100
             TweenMax.to(badge.ref, 3, {
                 y: -distance + 'px',
-                delay: '0'
+                delay: '0',
+                ease: Power0.easeNone,
+                onComplete: () =>
+                {
+                    // const delay = index * randomInRange(0.3, 0.6)
+                    // TweenMax.delayedCall(delay, () => this.tweenBadge(badge, index))
+                    this.tweenBadge(badge, index)
+                }
             })
         },
 
@@ -259,7 +236,7 @@ export default
             Object.values(this.swearwords).forEach((value, index) => {
                 console.log(value, index)
                 const delay = index * randomInRange(0.3, 0.6)
-                TweenMax.delayedCall(delay, () => this.tweenBadge(value))
+                TweenMax.delayedCall(delay, () => this.tweenBadge(value, index))
             })
         }
     }

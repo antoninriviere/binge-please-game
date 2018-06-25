@@ -1,6 +1,6 @@
 <div class="black-mirror fit">
     <div class="black-mirror__content fit">
-        <div class="black-mirror__content__line fit-w">
+        <div class="black-mirror__content__line fit-w" :class="{'has-appeared': hasAppeared}">
             <section class="black-mirror__road" :class="{'is-active' : isRoadOver}" :style="carStyles"
             @mouseover="onOverRoad"
             @mouseleave="onLeaveRoad">
@@ -58,11 +58,13 @@
             </section>
 
         </div>
-        <div class="black-mirror__content__line fit-w">
+        <div class="black-mirror__content__line fit-w" :class="{'has-appeared': hasAppeared}">
 
-            <section class="black-mirror__neon pos-rel" :class="{'is-active' : isNeonOver}" :style="neonStyles"
+            <!-- <section class="black-mirror__neon pos-rel" :class="{'is-active' : isNeonOver}" :style="neonStyles"
             @mouseover="onOverNeon"
-            @mouseleave="onLeaveNeon">
+            @mouseleave="onLeaveNeon"> -->
+            <section class="black-mirror__neon pos-rel" :class="{'is-active' : isNeonOver}" :style="neonStyles"
+            >
                 <div class="black-mirror__neon--dark pos-abs-tl fit"></div>
                 <div class="black-mirror__neon--light pos-abs-tl fit"></div>
             </section>

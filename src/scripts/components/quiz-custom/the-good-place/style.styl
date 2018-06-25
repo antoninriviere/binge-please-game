@@ -4,15 +4,27 @@
     &__bg--1, &__bg--2 {
         position absolute
         top 0
+
+        // will-change transform
+
+        // opacity 0
+        // transition all 0.8s $ease-out-quart
+
+        // &.has-appeared {
+        //     opacity 1
+        //     transition all 0.8s $ease-out-quart
+        // }
     }
 
     &__bg--1 {
+        opacity 0
         will-change transform
 
         transform translate3d(0, 0, 0)
     }
 
     &__bg--2 {
+        opacity 0
         will-change transform
 
         transform translate3d(0, 100%, 0)
@@ -51,8 +63,9 @@
 
     width 26.6%
 
-    right 20vw
-    top 35vh
+    left 53.4vw
+    //top 35vh
+    top 0
 
     transform-origin top right
     transform rotate(-27deg)
@@ -64,7 +77,8 @@
     width 53.9%
 
     right 10vw
-    top 30vh
+    // top 30vh
+    top 0
 
     transform-origin top right
     transform rotate(3deg)
@@ -75,7 +89,8 @@
 
     width 53.9%
 
-    bottom 12vh
+    // bottom 12vh
+    top 0
     left 7vw
 
     transform-origin top left
@@ -93,7 +108,8 @@
 
     width 57.6%
 
-    top -7vh
+    // top -7vh
+    top 0
     left 10vw
 
     transform-origin top left
@@ -106,7 +122,8 @@
 
     width 82.8%
 
-    top -4vh
+    // top -4vh
+    top 0
     left 13vw
 
     transform-origin top right
@@ -119,7 +136,8 @@
 
     width 62.15%
 
-    bottom 7vh
+    // bottom 7vh
+    top 0
     right -2vw
 
     transform-origin top right

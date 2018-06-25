@@ -19,7 +19,9 @@ export default
     data()
     {
         return {
-            isNeonOver: false,
+            isAnimating: false,
+            hasAppeared: false,
+            isNeonOver: true,
             isRoadOver: false,
             isCoupleOver: false,
             dropCount: 150,
@@ -71,6 +73,12 @@ export default
 
     mounted()
     {
+        TweenMax.delayedCall(0.3, () =>
+        {
+            this.hasAppeared = true
+            this.isAnimating = true
+        })
+
         this.$sparkles = this.$el.querySelectorAll('.black-mirror__road__sparkle')
         // Sparkles
         for(let i = 0; i < this.$sparkles.length; i++)
@@ -92,10 +100,16 @@ export default
         this.coupleHeight = this.$refs.couple.clientHeight
         this.coupleWidth = this.$refs.couple.clientWidth
         this.drops = this.$refs.couple.querySelectorAll('.black-mirror__couple__drop')
+
+        // Play animations
+        this.animateNeon()
     },
 
     destroyed()
     {
+        this.isAnimating = false
+        this.neonTl.clear()
+        this.neonTl.kill()
         eventHub.$off('window:resize', this.onResize)
     },
 
@@ -159,14 +173,34 @@ export default
             }
         },
 
-        onOverNeon()
-        {
-            this.isNeonOver = true
-        },
+        // onOverNeon()
+        // {
+        //     this.isNeonOver = true
+        // },
 
-        onLeaveNeon()
+        // onLeaveNeon()
+        // {
+        //     this.isNeonOver = false
+        // },
+
+        animateNeon()
         {
-            this.isNeonOver = false
+            this.neonTl = new TimelineMax({
+                onComplete: () =>
+                {
+                    this.neonTl.restart()
+                }
+            })
+            this.neonTl.add(() => this.isNeonOver = false, '+=1')
+            this.neonTl.add(() => this.isNeonOver = true, '+=0.15')
+            this.neonTl.add(() => this.isNeonOver = false, '+=1')
+            this.neonTl.add(() => this.isNeonOver = true, '+=0.05')
+            this.neonTl.add(() => this.isNeonOver = false, '+=0.2')
+            this.neonTl.add(() => this.isNeonOver = true, '+=0.1')
+            this.neonTl.add(() => this.isNeonOver = false, '+=1')
+            this.neonTl.add(() => this.isNeonOver = true, '+=0.1115')
+
+            this.neonTl.play()
         },
 
         onOverCouple()
