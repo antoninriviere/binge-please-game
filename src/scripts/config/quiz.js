@@ -160,7 +160,7 @@ export default
         color: '#F73E39',
         titleColor: '#F7C046',
         backgroundColor: '#000000',
-        ambientSound: '',
+        ambientSound: 'narcos',
         tuto: 'hover',
         genres: ['history', 'dramas', 'thrillers']
     }
