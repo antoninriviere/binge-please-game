@@ -213,11 +213,11 @@ export default
                 }, 0.03, this.failedAnimDelay + 0.5)
                 tl.set(this.$refs.popin, {
                     opacity: 0
-                }, this.failedAnimDelay + 1.5)
+                }, this.failedAnimDelay + 2.5)
                 tl.to(this.$circle, 0.4, {
                     scale: 1,
                     ease: Sine.easeOut
-                }, this.failedAnimDelay + 1.5)
+                }, this.failedAnimDelay + 2.5)
             })
         }
     }
