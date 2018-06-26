@@ -59,6 +59,7 @@ export default
         window.addEventListener('scroll', this.onScroll)
         eventHub.$emit('page:enable-scroll')
         eventHub.$emit('page:hide-footer')
+        eventHub.$emit('page:show-nav')
         this.$refs.container.classList.add('is-active')
         this.$refs.score.classList.add('is-active')
     },
