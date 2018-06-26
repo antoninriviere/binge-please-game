@@ -1,12 +1,35 @@
 .page-gallery {
     background-color $black
 
+    &__wrapper {
+        opacity 0
+        transform scale(0.75)
+        transition opacity 0.6s $ease-out-quart, transform 0.6s $ease-out-quart
+        will-change transform, opacity
+
+        &.is-active {
+            opacity 1
+            transform scale(1)
+        }
+    }
+
     &__title {
         top 15vh
         left 23%
         font-family 'SharpGrotesk-Bold10'
         font-size 40vh
         letter-spacing 1.6vw
+    }
+
+    &__infos {
+        z-index 2
+        position absolute
+        right 130px
+        $fz = 18px
+        bottom "calc(5vh - %s)" % ($fz / 2)
+
+        font-family 'SharpGrotesk-Medium20'
+        font-size $fz
     }
 
     .slider {

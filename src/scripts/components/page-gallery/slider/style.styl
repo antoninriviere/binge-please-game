@@ -2,21 +2,63 @@
     width 100vw
     &__items {
         display flex
-        flex-wrap nowrap
+        flex-flow row nowrap
         padding-left 16vw
     }
     &__item {
+        list-style none
         &:not(:last-child) {
-            padding-right 80px
+            padding-right 5vw
         }
-        img {
+        &:hover &{
+            &-thumbnail {
+                transform scale(1.1)
+
+                &-button {
+                    svg {
+                        opacity 1
+                        transform translateY(0%)
+                        transition-delay 0.2s
+                    }
+                }
+            }
+        }
+        &-thumbnail {
+            width 100%
             user-select none
             pointer-events none
+            transform scale(1)
+            transition transform 0.8s $ease-out-quart
+            will-change transform
+
+            &-wrapper {
+                width 32vw
+            }
+            &-button {
+                pointer-events all
+                svg {
+                    opacity 0
+                    transform translateY(50%)
+                    transform-origin 50% 50%
+                    transition all 0.3s $ease-out-expo
+                    transition-delay 0s
+                }
+            }
+        }
+        &-title {
+            font-family 'SharpGrotesk-Bold10'
+            font-size 30px
+            line-height 60px
+            letter-spacing 2px
+        }
+        &-index {
+            font-family 'SharpGrotesk-Bold20'
         }
     }
     &__indicator {
-        width 30vw
+        width 22vw
         height 5px
+        border-radius 3px
         background-color transparentify($white, 0.2)
         margin 0 auto
         margin-top 50px
@@ -29,6 +71,7 @@
             top 0
             height 100%
             background-color $white
+            border-radius 3px
         }
     }
 }

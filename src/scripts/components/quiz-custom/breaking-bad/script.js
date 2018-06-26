@@ -2,7 +2,7 @@ import eventHub from 'Application/event-hub'
 
 export default
 {
-    name: 'breaking-bad-svg',
+    name: 'breaking-bad',
 
     computed: {
     },

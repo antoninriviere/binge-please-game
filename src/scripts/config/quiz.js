@@ -1,7 +1,7 @@
 export default
 [
     {
-        id: '13_reasons_why',
+        id: '13-reasons-why',
         type: '3d',
         props: {
             model: '',
@@ -18,10 +18,10 @@ export default
         genres: ['comedies', 'thrillers']
     },
     {
-        id: 'the-crown-svg',
+        id: 'the-crown',
         type: '2d',
         props: {
-            name: 'the-crown-svg'
+            name: 'the-crown'
         },
         name: 'The crown',
         answers: ['the crown'],
@@ -54,7 +54,7 @@ export default
         id: 'breaking-bad',
         type: '2d',
         props: {
-            name: 'breaking-bad-svg'
+            name: 'breaking-bad'
         },
         name: 'Breaking Bad',
         answers: ['breaking bad'],

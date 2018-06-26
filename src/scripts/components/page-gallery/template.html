@@ -1,4 +1,10 @@
 <div class="page-gallery pos-abs-tl fit">
-    <p class="page-gallery__title pos-abs uppercase color--white">explore</p>
-    <gallery-slider :items="items"></gallery-slider>
+    <ui-circle-transition ref="circleTransition"></ui-circle-transition>
+    <div class="page-gallery__wrapper pos-abs-tl fit is-active" ref="wrapper">
+        <p class="page-gallery__title pos-abs uppercase color--white" ref="title">explore</p>
+        <gallery-slider :items="items"></gallery-slider>
+    </div>
+    <game-tuto-manager :tuto="tuto"></game-tuto-manager>
+    <p class="page-gallery__infos color--white">{{tutoInfos}}</p>
+    <gallery-panel ref="panel"></gallery-panel>
 </div>

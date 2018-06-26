@@ -4,6 +4,9 @@ Vue.use(VueHammer)
 
 import { TweenMax, TimelineMax } from 'gsap'
 import eventHub from 'Application/event-hub'
+
+import Config from 'Config'
+
 export default
 {
     name: 'gallery-slider',
@@ -26,7 +29,9 @@ export default
             x: 0,
             sliderPercentage: 0,
             currentX: 0,
+            VELOCITY: Config.isTouchDevice ? 100 : 50,
             IS_GRABBING: false,
+            IS_CLICKABLE: true,
             BACK_DURATION: 0.9,
             SLIDE_DURATION: 0.5
         }
@@ -44,8 +49,18 @@ export default
 
     mounted()
     {
+        TweenMax.set(this.$refs.parent, { opacity: 0 })
         this.onResize()
         eventHub.$on('window:resize', this.onResize)
+        const $visibleEls = [this.$refs.items.children[0], this.$refs.items.children[1], this.$refs.items.children[2]]
+        const tlIn = new TimelineMax({
+            paused: true,
+            delay: 0.3
+        })
+        tlIn.set(this.$refs.parent, { opacity: 1 })
+        tlIn.staggerFrom($visibleEls, 0.75, { x: 200, scale: 0.75, opacity: 0.75, transformOrigin: '50% 50%', ease: Expo.easeOut, clearProps: 'all' }, 0.08)
+        tlIn.from(this.$refs.indicator, 1, { y: 10, ease: Power2.easeOut }, 0)
+        tlIn.play()
     },
 
     destroyed()
@@ -68,15 +83,27 @@ export default
         {
             this.IS_GRABBING = false
         },
+        onItemClick(id)
+        {
+            this.$parent.onItemClick(id)
+        },
+        pad(num)
+        {
+            let s = String(num)
+            while(s.length < 2) s = '0' + s
+            return s
+        },
         pan(event)
         {
             const computedX = this.x + event.deltaX
             let newX = computedX
+            const dir = newX > this.x ? 1 : -1
             TweenMax.set(this.$refs.items, { x: newX })
+            TweenMax.to(this.$refs.items, 0.5, { skewX: `${10 * -dir}deg`, overwrite: 'all', ease: Expo.easeOut })
             this.currentX = newX
             if(event.isFinal)
             {
-                newX = computedX + event.velocityX * 100
+                newX = computedX + event.velocityX * this.VELOCITY
                 let backX = null
 
                 if(newX > 0)
@@ -88,13 +115,14 @@ export default
                     this.clearTl(this.tlPan)
 
                 this.tlPan = new TimelineMax()
-                this.tlPan.to(this.$refs.items, backX === null ? 0.5 : 0.1, {
+                const tweenD = backX === null ? 0.5 : 0.1
+                this.tlPan.to(this.$refs.items, tweenD, {
                     x: newX
                 })
-                this.tlPan.to(this, backX === null ? 0.5 : 0.1, {
+                this.tlPan.to(this, tweenD, {
                     currentX: newX
                 }, 0)
-
+                let skewT = tweenD
                 if(backX !== null)
                 {
                     this.tlPan.to(this.$refs.items, this.BACK_DURATION, {
@@ -105,7 +133,12 @@ export default
                         currentX: backX,
                         ease: Power4.easeOut
                     }, '-=' + this.BACK_DURATION)
+                    skewT += this.BACK_DURATION
                 }
+                this.tlPan.to(this.$refs.items, 0.3, {
+                    skewX: '0deg',
+                    ease: Circ.easeOut
+                }, '-=' + skewT)
                 this.x = backX === null ? newX : backX
             }
         },
@@ -132,7 +165,7 @@ export default
         },
         onResize()
         {
-            this.itemWidth = this.$refs.item[0].offsetWidth
+            this.itemWidth = this.$refs.items.children[0].children[0].offsetWidth
             this.fullWidth = (this.itemWidth * this.items.length) - this.itemWidth
         }
     }

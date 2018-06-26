@@ -25,6 +25,7 @@ export default class Narcos extends AInteraction
 
         this.name = 'narcos'
         this.windowObj = options.windowObj
+        this.interactive = options.interactive
 
         this.index = 0
         this.initPos = positions[this.index]
@@ -32,6 +33,7 @@ export default class Narcos extends AInteraction
 
         this.startPos = new Vector2()
         this.endPos = new Vector2()
+        this.easedMouse = new Vector2(window.innerWidth / 2, window.innerHeight / 2)
 
         this.textures = []
 
@@ -141,8 +143,38 @@ export default class Narcos extends AInteraction
         TweenMax.to(this.uniforms.uScale, 0.5, {
             value: 1,
             ease: Power4.easeOut,
-            onComplete: this.startAnimation
+            onComplete: () =>
+            {
+                if(this.interactive)
+                    this.setupInteraction()
+                else
+                    this.startAnimation()
+            }
         })
+    }
+
+    setupInteraction()
+    {
+        this.interval = setInterval(this.changeTexture, 4000)
+    }
+
+    changeTexture = () =>
+    {
+        this.index++
+        this.clearTimeline()
+        if(this.index === positions.length)
+            this.index = 0
+        this.tl = new TimelineMax()
+        this.tl.fromTo(this.uniforms.uDisplacementFactor, this.TWEEN_DURATION, {
+            value: 0
+        }, {
+            value: Math.PI,
+            ease: Power0.easeNone
+        }, 0)
+        this.tl.add(() =>
+        {
+            this.uniforms.uTexture.value = this.getTexture(this.index)
+        }, this.TWEEN_DURATION / 2)
     }
 
     startAnimation = () =>
@@ -224,6 +256,23 @@ export default class Narcos extends AInteraction
         super.update()
         if(this.plane)
             this.uniforms.uTime.value += time.delta * 0.01
+        if(this.interactive)
+            this.animate()
+    }
+
+    animate()
+    {
+        if(this.$cursor)
+        {
+            this.easedMouse.x += (this.mouse.x - this.easedMouse.x) * 0.1
+            this.easedMouse.y += (this.mouse.y - this.easedMouse.y) * 0.1
+            TweenMax.set(this.$cursor, {
+                x: this.easedMouse.x - this.cursorSize / 2,
+                y: this.easedMouse.y - this.cursorSize / 2
+            })
+            this.uniforms.uCenter.value.x = this.easedMouse.x
+            this.uniforms.uCenter.value.y = this.windowObj.height - this.easedMouse.y
+        }
     }
 
     resize = (mouse, windowObj) =>

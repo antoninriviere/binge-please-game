@@ -1,34 +1,30 @@
 import appPage from 'Mixins/app-page'
 import gallerySlider from './slider'
+import galleryPanel from './panel'
+import uiCircleTransition from 'Components/ui-circle-transition'
+import GameTutoManager from 'Components/game-tuto-manager'
+import Quiz from 'Config/quiz'
+import { TweenMax } from 'gsap'
+import { WEBGL_ADD_GROUP } from 'MutationTypes'
+
 export default
 {
     name: 'page-gallery',
 
     components:
     {
-        gallerySlider
+        gallerySlider,
+        galleryPanel,
+        uiCircleTransition,
+        GameTutoManager
     },
 
     data()
     {
         return {
-            items: [
-                {
-                    id: 0
-                },
-                {
-                    id: 1
-                },
-                {
-                    id: 2
-                },
-                {
-                    id: 3
-                },
-                {
-                    id: 4
-                }
-            ]
+            items: Quiz,
+            tuto: '',
+            tutoInfos: ''
         }
     },
 
@@ -42,7 +38,8 @@ export default
 
     mounted()
     {
-        // this.playAnim()
+        this.$circle = this.$refs.circleTransition.$refs.circle
+        TweenMax.from(this.$refs.title, 0.8, { yPercent: 20, ease: Expo.easeOut })
     },
 
     destroyed()
@@ -51,8 +48,33 @@ export default
 
     methods:
     {
-        playAnim()
+        onItemClick(item)
         {
+            if(item.id === 'narcos')
+            {
+                this.$refs.circleTransition.setColor(item.backgroundColor)
+                this.$refs.wrapper.classList.remove('is-active')
+                TweenMax.to(this.$circle, 0.45,
+                    {
+                        delay: 0.3,
+                        scale: 1,
+                        ease: Sine.easeOut,
+                        onComplete: () =>
+                        {
+                            this.$store.commit(WEBGL_ADD_GROUP, {
+                                id: item.id,
+                                config: {
+                                    interactive: true
+                                }
+                            })
+                            this.tuto = 'hover'
+                            this.tutoInfos = 'Hover the image'
+                            this.$refs.panel.activate()
+                            this.$refs.panel.open()
+                        }
+                    }
+                )
+            }
         }
     }
 }

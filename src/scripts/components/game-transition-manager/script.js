@@ -71,8 +71,8 @@ export default
             this.answer = options.answer
             if(questionState === 'success')
             {
-                // this.successComponent = this.getTransitionComponent()
-                this.successComponent = successBravo
+                this.successComponent = this.getTransitionComponent()
+                // this.successComponent = successBravo
                 return this.$nextTick().then(() => this.playSuccessTransition())
             }
             else

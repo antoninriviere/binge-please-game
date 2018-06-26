@@ -1,5 +1,5 @@
-import TheCrownSvg from './the-crown-svg'
-import BreakingBadSvg from './breaking-bad-svg'
+import TheCrown from './the-crown'
+import BreakingBad from './breaking-bad'
 import OrphanBlack from './orphan-black'
 import BlackMirror from './black-mirror'
 import TheGoodPlace from './the-good-place'
@@ -10,8 +10,8 @@ export default
 
     components:
     {
-        TheCrownSvg,
-        BreakingBadSvg,
+        TheCrown,
+        BreakingBad,
         OrphanBlack,
         BlackMirror,
         TheGoodPlace

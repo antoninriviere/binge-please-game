@@ -1,4 +1,4 @@
-<div class="slider pos-abs">
+<div class="slider pos-abs" ref="parent">
     <ul class="slider__items"
         v-hammer:pan.horizontal="pan"
         ref="items"
@@ -6,13 +6,25 @@
         @mouseup="defaultCursor"
         :style="{'cursor': IS_GRABBING ? '-webkit-grabbing' : '-webkit-grab'}"
     >
-        <li class="slider__item" v-for="(item, i) in items" :key="i" ref="item">
-            <img src="http://placehold.it/300x200" alt="">
+        <li class="slider__item display-inline-block" v-for="(item, i) in items" :key="i" ref="item">
+            <div class="slider__item-thumbnail-wrapper pos-rel overflow-h">
+                <img class="slider__item-thumbnail" :src="`../static/gallery/${item.id}.jpg`" alt="">
+                <div class="slider__item-thumbnail-button btn pos-center display-inline-block">
+                    <svg width="124" height="57" viewbox="0 0 124 57" @click="onItemClick(item)">
+                        <g fill="none" fill-rule="evenodd">
+                            <path d="M61.749.071C37.117.071 15.039 11 .095 28.27c14.943 17.271 37.022 28.199 61.654 28.199 24.631 0 46.71-10.928 61.654-28.199C108.46 10.999 86.38.071 61.75.071" fill="#FFF"/>
+                            <path d="M61.749 4.075c13.363 0 24.195 10.832 24.195 24.195S75.112 52.465 61.749 52.465 37.554 41.633 37.554 28.27 48.386 4.075 61.749 4.075z" fill="#B7D3D7"/>
+                            <path d="M51.89 28.27c0-5.445 4.414-9.859 9.859-9.859s9.859 4.414 9.859 9.859-4.414 9.859-9.86 9.859c-5.444 0-9.858-4.414-9.858-9.859" fill="#000"/>
+                        </g>
+                    </svg>
+                </div>
+            </div>
+            <p class="slider__item-title color--white uppercase"><span class="slider__item-index">{{pad(i + 1)}}.</span> {{item.name}}</p>
         </li>
     </ul>
-    <div class="slider__indicator pos-rel overflow-h" :style="{'--percentage': sliderPercentage + '%'}"></div>
-    <div class="text-center">
+    <div class="slider__indicator pos-rel overflow-h" :style="{'--percentage': sliderPercentage + '%'}" ref="indicator"></div>
+    <!-- <div class="text-center">
         <button class="color--white" @click="slide('prev')">prev</button>
         <button class="color--white" @click="slide('next')">next</button>
-    </div>
+    </div> -->
 </div>

@@ -52,14 +52,14 @@ class App
     {
         switch(group.id)
         {
-            case '13_reasons_why':
+            case '13-reasons-why':
                 return new ThirteenReasonsWhy(this.interactionConfig)
             case 'stranger-things':
                 return new StrangerThings({ ...this.interactionConfig, windowObj: this.windowObj })
             case 'orange-is-the-new-black':
                 return new OrangeIsTheNewBlack(this.interactionConfig)
             case 'narcos':
-                return new Narcos({ ...this.interactionConfig, windowObj: this.windowObj })
+                return new Narcos({ ...this.interactionConfig, ...group.config, windowObj: this.windowObj })
             case 'finish-screen':
                 return new FinishScreen({ ...this.interactionConfig, ...group.config })
         }

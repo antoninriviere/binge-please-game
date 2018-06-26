@@ -6,7 +6,7 @@ import { TweenMax, Circ, Elastic, TimelineMax } from 'gsap'
 
 export default
 {
-    name: 'the-crown-svg',
+    name: 'the-crown',
 
     components:
     {

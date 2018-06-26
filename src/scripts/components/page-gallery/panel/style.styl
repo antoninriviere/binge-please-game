@@ -1,0 +1,61 @@
+.gallery-panel {
+    bottom 0
+    left 0
+    width 44vw
+    z-index 2
+
+    $p = $margin * 2.5
+    padding $p
+
+    background-color $white
+
+    transform translateX(0)
+    transition transform 0.8s $ease-in-out-expo
+    will-change transform
+
+    &.is-closed {
+        transform "translateX(calc(-100% + %s))" % $p
+    }
+
+    &__title {
+        font-family 'SharpGrotesk-Black20'
+        font-size 25px
+        line-height 30px
+        letter-spacing 2px
+        margin-bottom 15px
+    }
+
+    &__description {
+        font-family 'SharpGrotesk-Book15'
+        font-size 20px
+        line-height 30px
+        letter-spacing 2px
+    }
+
+    &__button {
+        position absolute
+
+        top 25px
+        right 0
+
+        font-family 'SharpGrotesk-Bold10'
+        font-size 50px
+        line-height 40px
+        letter-spacing 2.5px
+        padding 10px 10px 5px
+        transform translateX(50%) rotate(-14deg)
+        transition transform 0.6s $ease-in-out-expo
+        will-change transform
+        user-select none
+
+        &--open {
+            background-color $blue
+            transform translateX(50%) rotate(-14deg)
+        }
+
+        &--close {
+            background-color $blue-dark
+            transform translateX(50%) rotate(14deg)
+        }
+    }
+}

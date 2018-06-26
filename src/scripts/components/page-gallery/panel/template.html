@@ -1,0 +1,9 @@
+<div class="gallery-panel pos-abs text-center" :class="{'is-closed': !IS_OPEN}" v-show="IS_ACTIVE">
+    <p class="gallery-panel__title uppercase">narcos</p>
+    <p class="gallery-panel__description">
+        The Medellin cartel - the most violent, ruthless and wealthy criminal organization in the history of modern crime. And the one man who lorded over them all... Pablo Escobar.
+    </p>
+    <p class="gallery-panel__button btn gallery-panel__button--open uppercase color--red" v-if="!IS_OPEN" @click="open">open</p>
+    <p class="gallery-panel__button btn gallery-panel__button--close uppercase color--red" v-if="IS_OPEN" @click="close">close</p>
+    <ui-binge-link link="https://www.netflix.com/watch/80025313"></ui-binge-link>
+</div>

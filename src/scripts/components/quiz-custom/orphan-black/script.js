@@ -2,7 +2,7 @@ import { TweenMax } from 'gsap'
 
 export default
 {
-    name: 'breaking-bad-svg',
+    name: 'orphan-black',
 
     computed: {
     },
