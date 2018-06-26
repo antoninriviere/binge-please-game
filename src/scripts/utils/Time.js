@@ -4,6 +4,7 @@ export default class Time
     {
         this.elapsed = 0
         this.delta = 0
+        this.pause = false
     }
 
     start()
@@ -13,17 +14,25 @@ export default class Time
         this.tick()
     }
 
+    pause()
+    {
+        this.pause = true
+    }
+
     tick()
     {
-        const current = Date.now()
-
-        this.delta = current - this.current
-        this.elapsed = current - this.start
-        this.current = current
-
-        if(this.delta > 60)
+        if(!this.pause)
         {
-            this.delta = 60
+            const current = Date.now()
+
+            this.delta = current - this.current
+            this.elapsed = current - this.start
+            this.current = current
+
+            if(this.delta > 60)
+            {
+                this.delta = 60
+            }
         }
     }
 
