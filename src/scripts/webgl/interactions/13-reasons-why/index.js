@@ -325,7 +325,7 @@ export default class ThirteenReasonsWhy extends AInteraction
         })
         this.floor = new Mesh(planeGeo, planeMat)
         this.floor.position.y = -0.7
-        this.floor.scale.set(60, 60, 60)
+        this.floor.scale.set(100, 100, 100)
         this.floor.rotation.x = -Math.PI / 2
         this.floor.receiveShadow = true
         this.add(this.floor)
