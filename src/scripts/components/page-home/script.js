@@ -54,7 +54,7 @@ export default
                 this.$refs.hero.classList.add('is-active')
                 this.$refs.intro.classList.add('is-hidden')
             })
-            setTimeout(this.transitionOut, 4000)
+            setTimeout(this.transitionOut, 6000)
         })
     },
 

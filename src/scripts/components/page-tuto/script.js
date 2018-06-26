@@ -107,7 +107,7 @@ export default
                     opacity: 0,
                     scale: 0.9,
                     ease: Expo.easeOut,
-                    delay: 2,
+                    delay: 4,
                     onComplete: () =>
                     {
                         this.$router.push('/tuto/2')
