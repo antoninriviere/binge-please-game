@@ -17,8 +17,14 @@ export default
     data()
     {
         return {
-            bannerCount: 3,
-            position: this.$store.getters.getPlace()
+            bannerCount: 3
+        }
+    },
+
+    computed: {
+        position()
+        {
+            return this.$store.getters.getPlace()
         }
     },
 

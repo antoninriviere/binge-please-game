@@ -164,9 +164,17 @@ export default
                 {
                     this.place = i + 1
                     this.$store.commit(SET_PLACE, this.place)
+                    this.$router.push({
+                        name: 'finish',
+                        params: { place: this.place }
+                    })
                     return
                 }
             }
+            this.$router.push({
+                name: 'finish',
+                params: { place: this.place }
+            })
         },
 
         setupNextQuestion()
@@ -212,11 +220,6 @@ export default
                 this.transitionOut().then(() =>
                 {
                     this.getScoreDatas()
-
-                    this.$router.push({
-                        name: 'finish',
-                        params: { place: this.place }
-                    })
                 })
             }
         },
