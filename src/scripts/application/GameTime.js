@@ -15,6 +15,16 @@ export default class GameTime extends Time
         this.currentTime = this.maxTime - this.elapsed
     }
 
+    pauseTime()
+    {
+        super.pause()
+    }
+
+    playTime()
+    {
+        super.play()
+    }
+
     stopTime()
     {
         super.stop()

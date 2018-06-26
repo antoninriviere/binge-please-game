@@ -113,6 +113,9 @@ export default
             if(entry === 39)
                 eventHub.$emit('application:skip')
 
+            if(entry === 17)
+                eventHub.$emit('application:toggle-pause-time')
+
             if(!this.isTypeable)
                 return
 

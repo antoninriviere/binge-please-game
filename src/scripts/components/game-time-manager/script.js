@@ -16,6 +16,7 @@ export default
     data()
     {
         return {
+            paused: false,
             time: {
                 enabled: false,
                 current: 0
@@ -28,6 +29,7 @@ export default
         eventHub.$on('application:enterframe', this.onTick)
 
         eventHub.$on('application:start-time', this.startTime)
+        eventHub.$on('application:toggle-pause-time', this.togglePauseTime)
         eventHub.$on('application:stop-time', this.stopTime)
 
         this.$root.$store.watch(this.$root.$store.getters.getCurrentProgress, this.onUpdateProgress)
@@ -42,17 +44,30 @@ export default
     {
         startTime()
         {
-            console.log('start time')
             this.time.current = 0
             this.time.enabled = true
             this.$root.time.startTime()
+            this.$root.time.hasElapsed = 0
         },
 
         stopTime()
         {
-            console.log('stop time')
             this.time.enabled = false
             this.$root.time.stopTime()
+        },
+
+        togglePauseTime()
+        {
+            if(this.paused)
+            {
+                this.paused = false
+                this.$root.time.playTime()
+            }
+            else
+            {
+                this.paused = true
+                this.$root.time.pauseTime()
+            }
         },
 
         onUpdateProgress()
