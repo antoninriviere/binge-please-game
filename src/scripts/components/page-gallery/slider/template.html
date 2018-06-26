@@ -1,0 +1,18 @@
+<div class="slider pos-abs">
+    <ul class="slider__items"
+        v-hammer:pan.horizontal="pan"
+        ref="items"
+        @mousedown="grabCursor"
+        @mouseup="defaultCursor"
+        :style="{'cursor': IS_GRABBING ? '-webkit-grabbing' : '-webkit-grab'}"
+    >
+        <li class="slider__item" v-for="(item, i) in items" :key="i" ref="item">
+            <img src="http://placehold.it/300x200" alt="">
+        </li>
+    </ul>
+    <div class="slider__indicator pos-rel overflow-h" :style="{'--percentage': sliderPercentage + '%'}"></div>
+    <div class="text-center">
+        <button class="color--white" @click="slide('prev')">prev</button>
+        <button class="color--white" @click="slide('next')">next</button>
+    </div>
+</div>

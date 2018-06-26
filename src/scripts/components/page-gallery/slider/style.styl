@@ -1,0 +1,34 @@
+.slider {
+    width 100vw
+    &__items {
+        display flex
+        flex-wrap nowrap
+        padding-left 16vw
+    }
+    &__item {
+        &:not(:last-child) {
+            padding-right 80px
+        }
+        img {
+            user-select none
+            pointer-events none
+        }
+    }
+    &__indicator {
+        width 30vw
+        height 5px
+        background-color transparentify($white, 0.2)
+        margin 0 auto
+        margin-top 50px
+        &:after {
+            content ''
+            position absolute
+            $selectionWidth = 33%
+            width "calc(%s + 1px)" % $selectionWidth
+            left calc(var(--percentage) * 2/3)
+            top 0
+            height 100%
+            background-color $white
+        }
+    }
+}

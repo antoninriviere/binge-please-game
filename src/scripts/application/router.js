@@ -47,6 +47,13 @@ const routes = [
         }
     },
     {
+        path: '/gallery',
+        name: 'gallery',
+        meta: {
+            componentId: 'page-gallery'
+        }
+    },
+    {
         path: '/leaderboard',
         name: 'leaderboard',
         meta: {
