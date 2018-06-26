@@ -17,6 +17,8 @@ import resizePositionProportionally from 'Utils/resizePositionProportionally'
 import find from 'lodash.find'
 import positions from './positions'
 
+import AudioManager from 'Utils/AudioManager'
+
 export default class Narcos extends AInteraction
 {
     constructor(options)
@@ -155,6 +157,12 @@ export default class Narcos extends AInteraction
 
     setupInteraction()
     {
+        this.audioManager = new AudioManager()
+        this.narcosSound = this.audioManager.create({
+            url: '/static/sounds/narcos-long.mp3',
+            autoplay: true,
+            loop: false
+        })
         this.interval = setInterval(this.changeTexture, 4000)
     }
 
@@ -264,6 +272,7 @@ export default class Narcos extends AInteraction
     {
         if(this.$cursor)
         {
+            this.endPos.y - this.cursorSize / 2 - this.vars.top * 2,
             this.easedMouse.x += (this.mouse.x - this.easedMouse.x) * 0.1
             this.easedMouse.y += (this.mouse.y - this.easedMouse.y) * 0.1
             TweenMax.set(this.$cursor, {
@@ -271,7 +280,7 @@ export default class Narcos extends AInteraction
                 y: this.easedMouse.y - this.cursorSize / 2
             })
             this.uniforms.uCenter.value.x = this.easedMouse.x
-            this.uniforms.uCenter.value.y = this.windowObj.height - this.easedMouse.y
+            this.uniforms.uCenter.value.y = this.windowObj.height - this.easedMouse.y - (this.vars.top * 2)
         }
     }
 
@@ -318,6 +327,8 @@ export default class Narcos extends AInteraction
     clear()
     {
         super.clear()
+        if(this.interactive)
+            this.narcosSound.destroy()
         clearTimeout(this.interval)
         this.clearTimeline()
         this.$cursor.remove()
