@@ -1,12 +1,14 @@
-import { INCREMENT_SCORE, SET_CURRENT_TIME } from 'MutationTypes'
+import { INCREMENT_SCORE, SET_CURRENT_TIME, SET_PLACE } from 'MutationTypes'
 
 const state = {
     score: 0,
-    currentTime: 0
+    currentTime: 0,
+    place: 0
 }
 
 const getters = {
-    getScore: (state) => () => state.score
+    getScore: (state) => () => state.score,
+    getPlace: (state) => () => state.place
 }
 
 const mutations = {
@@ -18,6 +20,10 @@ const mutations = {
     [SET_CURRENT_TIME](state, time)
     {
         state.currentTime = time
+    },
+    [SET_PLACE](state, place)
+    {
+        state.place = place
     }
 }
 

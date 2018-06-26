@@ -18,7 +18,7 @@ export default
     {
         return {
             bannerCount: 3,
-            position: 129
+            position: this.$store.getters.getPlace()
         }
     },
 

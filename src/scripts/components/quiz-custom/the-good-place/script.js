@@ -34,7 +34,7 @@ export default
     {
         return {
             // hasAppeared: false,
-
+            isAnimated: false,
             swearIndex: 0,
 
             swearwords: {
@@ -104,11 +104,14 @@ export default
 
         TweenMax.delayedCall(1.5, this.addAllBadges)
 
+        this.isAnimated = true
+
         // this.swearwords = [this.$refs.motherforker, this.$refs.messy, this.$refs.kant, this.$refs.holy, this.$refs.bullshirt, this.$refs.ashhole, this.$refs.dink]
     },
 
     destroyed()
     {
+        this.isAnimated = false
         eventHub.$off('window:resize', this.onResize)
     },
 
@@ -195,6 +198,7 @@ export default
                 {
                     // const delay = index * randomInRange(0.3, 0.6)
                     // TweenMax.delayedCall(delay, () => this.tweenBadge(badge, index))
+                    if(this.isAnimated)
                     this.tweenBadge(badge, index)
                 }
             })

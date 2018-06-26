@@ -17,7 +17,7 @@ import QuizCustom from 'Components/quiz-custom'
 import { getDebugParams } from 'Utils/Url'
 import findIndex from 'lodash.findindex'
 
-import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP, INCREMENT_PROGRESS } from 'MutationTypes'
+import { SET_QUIZ, SET_PROGRESS, WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP, INCREMENT_PROGRESS, SET_PLACE } from 'MutationTypes'
 
 export default
 {
@@ -38,6 +38,8 @@ export default
     {
         return {
             id: this.$route.params.id,
+            totalScore: 0,
+            place: 0,
             isDebug: false,
             isSkipping: false
         }
@@ -134,6 +136,39 @@ export default
                 this.$store.commit(WEBGL_CLEAR_GROUP)
         },
 
+        getScoreDatas()
+        {
+            this.scores = []
+
+            this.totalScore = this.$store.getters.getScore()
+
+            this.$root.database.ref('/scores/').orderByChild('total').once('value').then((snapshot) =>
+            {
+                snapshot.forEach((child) =>
+                {
+                    const scoreArray = { ...child.val(), ...{ yours: false } }
+                    this.scores.unshift(scoreArray)
+                })
+
+                this.compareScore()
+
+                // console.log('score datas', this.scores, 'total scpre', this.totalScore)
+            })
+        },
+
+        compareScore()
+        {
+            for(let i = 0; i < this.scores.length; i++)
+            {
+                if(this.totalScore >= this.scores[i].total)
+                {
+                    this.place = i + 1
+                    this.$store.commit(SET_PLACE, this.place)
+                    return
+                }
+            }
+        },
+
         setupNextQuestion()
         {
             if(this.quizObject.type === '3d')
@@ -176,7 +211,12 @@ export default
                 this.$root.typeManager.isTypeable = false
                 this.transitionOut().then(() =>
                 {
-                    this.$router.push('/finish')
+                    this.getScoreDatas()
+
+                    this.$router.push({
+                        name: 'finish',
+                        params: { place: this.place }
+                    })
                 })
             }
         },

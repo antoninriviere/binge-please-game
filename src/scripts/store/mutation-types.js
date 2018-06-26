@@ -1,6 +1,7 @@
 // GAME
 export const INCREMENT_SCORE = 'INCREMENT_SCORE'
 export const SET_CURRENT_TIME = 'SET_CURRENT_TIME'
+export const SET_PLACE = 'SET_PLACE'
 // QUIZ
 export const SET_QUIZ = 'SET_QUIZ'
 export const SET_PROGRESS = 'SET_PROGRESS'
