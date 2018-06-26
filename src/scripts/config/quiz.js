@@ -43,7 +43,7 @@ export default
         answers: ['the good place'],
         componentId: 'quiz-custom',
         elapsedTime: 0,
-        ambientSound: '',
+        ambientSound: 'the_good_place',
         color: '#f7c046',
         titleColor: '#000000',
         backgroundColor: '#f7c046',
