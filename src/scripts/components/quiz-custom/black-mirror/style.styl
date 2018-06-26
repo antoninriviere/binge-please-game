@@ -155,11 +155,11 @@
 
         &__glass {
 
-            &--reflection--left, &--reflection--right {
+            &--reflection--left--1, &--reflection--left--2, &--reflection--right--1, &--reflection--right--2 {
                 width 100%
                 position absolute
-                top 0
-                left 0
+                // top 0
+                // left 0
 
                 opacity 0
 
@@ -171,24 +171,73 @@
                 -webkit-mask-mode alpha
                 mask-mode alpha
 
+                -webkit-mask-repeat no-repeat
+                mask-repeat no-repeat
+
                 .is-active & {
                     opacity 1
 
-                    animation-name reflection
                     animation-duration 1s
-                    animation-delay 0.5s
+                    animation-delay 0s
+                    animation-timing-function linear
                     animation-iteration-count infinite
                 }
             }
 
+            &--reflection--left--1, &--reflection--left--2 {
+                height 61.5%
+                width auto
+                bottom 0
+                left 46%
+            }
+
+            &--reflection--right--1, &--reflection--right--2 {
+                height 61%
+                width auto
+                bottom 0
+                left 66.5%
+            }
+
             &--reflection--left {
-                -webkit-mask-image url(/static/black-mirror/drive/glass-mask-1-left.png)
-                mask-image url(/static/black-mirror/drive/glass-mask-1-left.png)
+
+                &--1 {
+                    -webkit-mask-image url(/static/black-mirror/drive/glass-mask-1-left-single.png)
+                    mask-image url(/static/black-mirror/drive/glass-mask-1-left-single.png)
+
+                    .is-active & {
+                        animation-name reflection
+                    }
+                }
+
+                &--2 {
+                    -webkit-mask-image url(/static/black-mirror/drive/glass-mask-1-left-single.png)
+                    mask-image url(/static/black-mirror/drive/glass-mask-1-left-single.png)
+
+                    .is-active & {
+                        animation-name reflection-2
+                    }
+                }
             }
 
             &--reflection--right {
-                -webkit-mask-image url(/static/black-mirror/drive/glass-mask-1-right.png)
-                mask-image url(/static/black-mirror/drive/glass-mask-1-right.png)
+
+                &--1 {
+                    -webkit-mask-image url(/static/black-mirror/drive/glass-mask-1-right-single.png)
+                    mask-image url(/static/black-mirror/drive/glass-mask-1-right-single.png)
+
+                    .is-active & {
+                        animation-name reflection
+                    }
+                }
+
+                &--2 {
+                    -webkit-mask-image url(/static/black-mirror/drive/glass-mask-1-right-single.png)
+                    mask-image url(/static/black-mirror/drive/glass-mask-1-right-single.png)
+
+                    .is-active & {
+                        animation-name reflection-2
+                    }
+                }
             }
 
             &__trees {
@@ -202,36 +251,58 @@
                 -webkit-mask-mode alpha
                 mask-mode alpha
 
-                &__palm {
-                    width 12%
-                    top 27%
-                    left 30%
+                &__palm--big, &__palm--big--2, &__palm--big--3, &__palm--big--4 {
 
                     opacity 0
 
                     .is-active & {
                         opacity 1
                         animation-name palmtrees
+                        animation-delay: 0s
                         animation-duration 1s
-                        animation-delay 0.5s
+                        animation-timing-function linear
                         animation-iteration-count infinite
                     }
+                }
 
-                    &--2 {
-                        width 8%
-                        top 45%
-                        left 40%
+                &__palm--big {
 
-                        opacity 0
-
-                        .is-active & {
-                            opacity 1
-                            animation-name palmtrees
-                            animation-duration 1s
-                            animation-delay 0.5s
-                            animation-iteration-count infinite
-                        }
+                    .is-active & {
+                        animation-delay: 0s
                     }
+                }
+
+                &__palm--big--2 {
+
+                    .is-active & {
+                        animation-delay: 0.5s
+                    }
+                }
+
+                 &__palm--big--3 {
+
+                    .is-active & {
+                        animation-delay: 1s
+                    }
+                }
+
+                &__palm--big--4 {
+
+                    .is-active & {
+                        animation-delay: 1.5s
+                    }
+                }
+
+                &__palm--big, &__palm--big--2, &__palm--big--3, &__palm--big--4 {
+                    width 16%
+                    bottom -8%
+                    left 26%
+                }
+
+                &__palm--little, &__palm--little--2 {
+                    width 10%
+                    bottom 0
+                    left 38%
                 }
 
             }
@@ -287,22 +358,34 @@
 
 @keyframes reflection {
     0% {
-        transform translate3d(-100px, 0, 0)
-        -webkit-mask-position-x 100px
+        transform translate3d(0, 0, 0)
+        -webkit-mask-position-x 0
     }
 
     100% {
-        transform translate3d(100px, 0, 0)
-        -webkit-mask-position-x -100px
+        transform translate3d(112px, 0, 0)
+        -webkit-mask-position-x -112px
+    }
+}
+
+@keyframes reflection-2 {
+    0% {
+        transform translate3d(-112px, 0, 0)
+        -webkit-mask-position-x 112px
+    }
+
+    100% {
+        transform translate3d(0, 0, 0)
+        -webkit-mask-position-x 0
     }
 }
 
 @keyframes palmtrees {
     0% {
-        transform translate3d(-80px, -40px, 0) scale(1.5)
+        transform translate3d(-100px, 0, 0) scale(1.7)
     }
 
     100% {
-        transform translate3d(120px, 30px, 0) scale(0.6)
+        transform translate3d(120px, 0, 0) scale(0.5)
     }
 }

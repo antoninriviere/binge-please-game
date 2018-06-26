@@ -1,39 +1,6 @@
 export default
 [
     {
-        id: 'the-good-place',
-        type: '2d',
-        props: {
-            name: 'the-good-place'
-        },
-        name: 'The good place',
-        answers: ['the good place'],
-        componentId: 'quiz-custom',
-        elapsedTime: 0,
-        ambientSound: '',
-        color: '#f7c046',
-        titleColor: '#000000',
-        backgroundColor: '#f7c046',
-        tuto: 'click',
-        genres: ['comedies', 'dramas']
-    },
-    {
-        id: 'black-mirror',
-        type: '2d',
-        props: {
-            name: 'black-mirror'
-        },
-        name: 'Black Mirror',
-        answers: ['black mirror'],
-        componentId: 'quiz-custom',
-        elapsedTime: 0,
-        ambientSound: 'black_mirror',
-        color: '#000000',
-        backgroundColor: '#000000',
-        tuto: 'hover',
-        genres: ['comedies', 'sci-fi-and-fantasy']
-    },
-    {
         id: '13_reasons_why',
         type: '3d',
         props: {
@@ -67,6 +34,23 @@ export default
         genres: ['history', 'dramas']
     },
     {
+        id: 'the-good-place',
+        type: '2d',
+        props: {
+            name: 'the-good-place'
+        },
+        name: 'The good place',
+        answers: ['the good place'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        ambientSound: '',
+        color: '#f7c046',
+        titleColor: '#000000',
+        backgroundColor: '#f7c046',
+        tuto: 'click',
+        genres: ['comedies', 'dramas']
+    },
+    {
         id: 'breaking-bad',
         type: '2d',
         props: {
@@ -81,41 +65,6 @@ export default
         ambientSound: '',
         tuto: 'hover',
         genres: ['crime', 'dramas']
-    },
-    {
-        id: 'orphan-black',
-        type: '2d',
-        props: {
-            name: 'orphan-black'
-        },
-        name: 'Orphan Black',
-        answers: ['orphan black'],
-        componentId: 'quiz-custom',
-        elapsedTime: 0,
-        color: '#B7D3D7',
-        titleColor: '#F73E39',
-        backgroundColor: '#034E6D',
-        ambientSound: '',
-        tuto: 'none',
-        genres: ['action-and-adventure', 'sci-fi-and-fantasy']
-    },
-    {
-        id: 'friends',
-        type: '2d',
-        props: {
-            name: 'friends',
-            image: 'dance.gif',
-            width: '50vw'
-        },
-        name: 'Friends',
-        answers: ['friends'],
-        componentId: 'quiz-dom',
-        elapsedTime: 0,
-        color: '#034e6d',
-        backgroundColor: '#B7D3D7',
-        ambientSound: '',
-        tuto: 'none',
-        genres: ['comedies']
     },
     {
         id: 'stranger-things',
@@ -147,6 +96,57 @@ export default
         ambientSound: '',
         tuto: 'none',
         genres: ['comedies', 'gay-and-lesbian-movies']
+    },
+    {
+        id: 'orphan-black',
+        type: '2d',
+        props: {
+            name: 'orphan-black'
+        },
+        name: 'Orphan Black',
+        answers: ['orphan black'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        color: '#B7D3D7',
+        titleColor: '#F73E39',
+        backgroundColor: '#034E6D',
+        ambientSound: '',
+        tuto: 'none',
+        genres: ['action-and-adventure', 'sci-fi-and-fantasy']
+    },
+    {
+        id: 'black-mirror',
+        type: '2d',
+        props: {
+            name: 'black-mirror'
+        },
+        name: 'Black Mirror',
+        answers: ['black mirror'],
+        componentId: 'quiz-custom',
+        elapsedTime: 0,
+        ambientSound: 'black_mirror',
+        color: '#000000',
+        backgroundColor: '#000000',
+        tuto: 'hover',
+        genres: ['comedies', 'sci-fi-and-fantasy']
+    },
+    {
+        id: 'friends',
+        type: '2d',
+        props: {
+            name: 'friends',
+            image: 'dance.gif',
+            width: '50vw'
+        },
+        name: 'Friends',
+        answers: ['friends'],
+        componentId: 'quiz-dom',
+        elapsedTime: 0,
+        color: '#034e6d',
+        backgroundColor: '#B7D3D7',
+        ambientSound: '',
+        tuto: 'none',
+        genres: ['comedies']
     },
     {
         id: 'narcos',

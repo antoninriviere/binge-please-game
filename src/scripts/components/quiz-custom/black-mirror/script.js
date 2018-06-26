@@ -25,7 +25,7 @@ export default
             isRoadOver: true,
             isCoupleOver: true,
             isDriveOver: true,
-            dropCount: 50,
+            dropCount: 80,
             canAnimateDrops: true,
             coupleHeight: 0,
             coupleWidth: 0
@@ -110,7 +110,6 @@ export default
     destroyed()
     {
         this.isAnimating = false
-        this.neonTl.clear()
         this.neonTl.kill()
         eventHub.$off('window:resize', this.onResize)
     },
@@ -140,36 +139,55 @@ export default
 
         animateSparkles()
         {
-            this.sparklesTl.clear()
-
             if(this.isRoadOver)
             {
                 const $sparkles = Array.from(this.$sparkles)
 
-                const sInitLength = $sparkles.length
-                let sLength = sInitLength - 1
-
-                for(let i = 0; i < sInitLength; i++)
+                for(let i = 0; i < $sparkles.length; i++)
                 {
-                    const index = randomIntInRange(0, sLength)
-
-                    this.sparklesTl.to($sparkles[index], 0.3,
+                    const tween = TweenMax.to($sparkles[i], randomInRange(0.2, 0.5),
                         {
-                            scale: randomInRange(0.5, 1.5),
-                            ease: Circ.easeOut
-                        }, 0.15 * i
-                    )
-
-                    this.sparklesTl.to($sparkles[index], 0.3,
-                        {
-                            scale: 0,
-                            ease: Circ.easeOut
-                        }, 0.45 * i
-                    )
-
-                    $sparkles.splice(index, 1)
-                    sLength--
+                            scale: randomInRange(0.5, 1.2),
+                            ease: Circ.easeOut,
+                            delay: i * randomInRange(0.3, 0.6),
+                            onComplete: () =>
+                            {
+                                TweenMax.delayedCall(randomInRange(1, 1.5), () => tween.reverse())
+                            },
+                            onReverseComplete: () =>
+                            {
+                                if(this.isAnimating)
+                                    TweenMax.delayedCall(randomInRange(0, 0.75), () => tween.restart())
+                                else
+                                    tween.kill()
+                            }
+                        })
                 }
+
+                // const sInitLength = $sparkles.length
+                // let sLength = sInitLength - 1
+
+                // for(let i = 0; i < sInitLength; i++)
+                // {
+                //     const index = randomIntInRange(0, sLength)
+
+                //     this.sparklesTl.to($sparkles[index], 0.3,
+                //         {
+                //             scale: randomInRange(0.5, 1.5),
+                //             ease: Circ.easeOut
+                //         }, 0.15 * i
+                //     )
+
+                //     this.sparklesTl.to($sparkles[index], 0.3,
+                //         {
+                //             scale: 0,
+                //             ease: Circ.easeOut
+                //         }, 0.45 * i
+                //     )
+
+                //     $sparkles.splice(index, 1)
+                //     sLength--
+                // }
 
                 this.sparklesTl.restart()
             }
@@ -256,7 +274,7 @@ export default
                         ease: Power0.easeNone,
                         onComplete: () =>
                         {
-                            if(this.isCoupleOver)
+                            if(this.isAnimating)
                             {
                                 this.animateDrop(drop, index)
                             }
