@@ -1,4 +1,4 @@
-import { TimelineMax } from 'gsap'
+import { TimelineMax, TweenMax } from 'gsap'
 
 export default
 {
@@ -40,7 +40,7 @@ export default
                 this.tl = new TimelineMax({
                     onComplete: () =>
                     {
-                        this.tl.set(this.$refs.container, { clearProps: 'all' })
+                        TweenMax.set(this.$refs.container, { clearProps: 'all' })
                         resolve()
                     }
                 })

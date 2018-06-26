@@ -56,7 +56,7 @@ export default
                         index = 0
                         TweenMax.set(this.$texts, { fill: '#ffffff' })
                         TweenMax.set(this.$refs.container.children, { clearProps: 'all' })
-                        this.tl.set(this.$refs.container, { clearProps: 'all' })
+                        TweenMax.set(this.$refs.container, { clearProps: 'all' })
                         resolve()
                     }
                 })
@@ -76,16 +76,12 @@ export default
                     y: -this.itemHeight * 2,
                     ease: Sine.easeOut
                 }, this.STAGGER_DURATION, this.DURATION)
+                this.tl.set(this.$texts[0], { fill: '#ffffff' }, '-=0.5')
                 this.tl.staggerFromTo(this.$subChildren, this.DURATION * 1.5, {
                     y: window.innerHeight + this.itemHeight * 2
                 }, {
                     y: this.middleScreenPos,
-                    ease: Sine.easeOut,
-                    onComplete: () =>
-                    {
-                        TweenMax.set(this.$texts[index], { fill: '#ffffff' })
-                        index++
-                    }
+                    ease: Sine.easeOut
                 }, this.STAGGER_DURATION * 1.5, '-=0.5')
                 this.tl.timeScale(0.8)
             })

@@ -24,6 +24,10 @@ export default
     mounted()
     {
         this.play()
+        setTimeout(() =>
+        {
+            this.$refs.container.classList.add('is-active')
+        }, 100)
     },
 
     destroyed()

@@ -41,7 +41,7 @@ body.isFinishPage {
             width 100%
         }
     }
-    &__points {
+    &__position {
         position absolute
 
         $r = 18%
@@ -49,16 +49,16 @@ body.isFinishPage {
         top 36%
         width 100% - $r
     }
-    &__points-text {
+    &__position-text {
         font-family 'SharpGrotesk-Bold10'
-        font-size 11vh
+        font-size 5vh
         letter-spacing 0.39vw
 
-        background-color $red
+        background-color $yellow
 
-        padding 1vh 3vw 0vh
+        padding 2vh 3vw 1.5vh
     }
-    &__points-background {
+    &__position-background {
         position absolute
 
         right 0
@@ -69,21 +69,36 @@ body.isFinishPage {
 
         z-index -1
 
-        background-color $red
+        background-color $yellow
     }
-    &__congrats {
+    &__cta {
         position absolute
 
-        left 50%
-        transform translateX(-50%)
-        bottom 23%
+        width 100%
+        bottom 10%
+
+        text-align center
+        &.is-animated {
+            animation scale 1.5s infinite $ease-out-sine;
+        }
     }
-    &__congrats-text {
+    @keyframes scale {
+        0% {
+            transform scale(1)
+        }
+        50% {
+            transform scale(1.1)
+        }
+        100% {
+            transform scale(1)
+        }
+    }
+    &__cta-text {
         font-family 'SharpGrotesk-Bold10'
         font-size 5vh
         letter-spacing 0.39vw
 
-        background-color $yellow
+        background-color $red
 
         padding 2vh 3vw 1.5vh
 

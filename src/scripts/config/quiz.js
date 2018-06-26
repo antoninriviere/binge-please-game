@@ -62,7 +62,7 @@ export default
         elapsedTime: 0,
         color: '#412789',
         backgroundColor: '#5934a5',
-        ambientSound: '',
+        ambientSound: 'breaking-bad',
         tuto: 'hover',
         genres: ['crime', 'dramas']
     },
@@ -110,7 +110,7 @@ export default
         color: '#B7D3D7',
         titleColor: '#F73E39',
         backgroundColor: '#034E6D',
-        ambientSound: '',
+        ambientSound: 'orphan-black',
         tuto: 'none',
         genres: ['action-and-adventure', 'sci-fi-and-fantasy']
     },
@@ -136,7 +136,7 @@ export default
         props: {
             name: 'friends',
             image: 'dance.gif',
-            width: '50vw'
+            width: '40vw'
         },
         name: 'Friends',
         answers: ['friends'],
@@ -144,7 +144,7 @@ export default
         elapsedTime: 0,
         color: '#034e6d',
         backgroundColor: '#B7D3D7',
-        ambientSound: '',
+        ambientSound: 'friends',
         tuto: 'none',
         genres: ['comedies']
     },
@@ -160,7 +160,7 @@ export default
         color: '#F73E39',
         titleColor: '#F7C046',
         backgroundColor: '#000000',
-        ambientSound: '',
+        ambientSound: 'narcos',
         tuto: 'hover',
         genres: ['history', 'dramas', 'thrillers']
     }

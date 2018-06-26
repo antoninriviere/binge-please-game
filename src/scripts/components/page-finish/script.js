@@ -57,24 +57,24 @@ export default
     {
         playAnim()
         {
-            const pointsChars = new SplitText(this.$refs.pointsText, { type: 'chars, words' }).chars
+            const positionChars = new SplitText(this.$refs.positionText, { type: 'chars, words' }).chars
             this.tl = new TimelineMax({
                 delay: 0.7,
                 onComplete: () =>
                 {
-                    // TweenMax.delayedCall(5, this.transitionOut)
+                    this.$refs.cta.classList.add('is-animated')
                 }
             })
-            this.tl.from(this.$refs.points, 0.5, {
+            this.tl.from(this.$refs.position, 0.5, {
                 xPercent: -100,
                 ease: Circ.easeOut
             }, 0)
-            this.tl.to(this.$refs.pointsBg, 0.6, {
+            this.tl.to(this.$refs.positionBg, 0.6, {
                 scaleX: 0,
                 transformOrigin: '100% 50%',
                 ease: Expo.easeInOut
             }, 0.3)
-            this.tl.staggerFromTo(pointsChars, 0.3, {
+            this.tl.staggerFromTo(positionChars, 0.3, {
                 yPercent: 100,
                 opacity: 0
             }, {
@@ -82,7 +82,7 @@ export default
                 opacity: 1,
                 ease: Expo.easeOut
             }, 0.03, 0.6)
-            this.tl.from(this.$refs.congratsText, 0.5, {
+            this.tl.from(this.$refs.ctaText, 0.5, {
                 yPercent: -100,
                 ease: Circ.easeOut
             }, 0.6)
