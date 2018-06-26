@@ -177,7 +177,7 @@
                 .is-active & {
                     opacity 1
 
-                    animation-duration 1s
+                    animation-duration 1.5s
                     animation-delay 0s
                     animation-timing-function linear
                     animation-iteration-count infinite
@@ -256,10 +256,12 @@
                     opacity 0
 
                     .is-active & {
+                        transform translate3d(-180px, 0, 0)
+
                         opacity 1
                         animation-name palmtrees
                         animation-delay: 0s
-                        animation-duration 1s
+                        animation-duration 1.5s
                         animation-timing-function linear
                         animation-iteration-count infinite
                     }
@@ -275,7 +277,7 @@
                 &__palm--big--2 {
 
                     .is-active & {
-                        animation-delay: 0.5s
+                        animation-delay: 0.75s
                     }
                 }
 
@@ -363,15 +365,15 @@
     }
 
     100% {
-        transform translate3d(112px, 0, 0)
-        -webkit-mask-position-x -112px
+        transform translate3d(182px, 0, 0)
+        -webkit-mask-position-x -182px
     }
 }
 
 @keyframes reflection-2 {
     0% {
-        transform translate3d(-112px, 0, 0)
-        -webkit-mask-position-x 112px
+        transform translate3d(-182px, 0, 0)
+        -webkit-mask-position-x 182px
     }
 
     100% {
@@ -382,10 +384,10 @@
 
 @keyframes palmtrees {
     0% {
-        transform translate3d(-100px, 0, 0) scale(1.7)
+        transform translate3d(-180px, 0, 0) scale(1.7)
     }
 
     100% {
-        transform translate3d(120px, 0, 0) scale(0.5)
+        transform translate3d(160px, 0, 0) scale(0.5)
     }
 }

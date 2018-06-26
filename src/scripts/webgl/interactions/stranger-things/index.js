@@ -31,7 +31,7 @@ export default class StrangerThings extends AInteraction
         this.name = 'strangerThings'
 
         this.parallaxe = {
-            intensity : 0.015,
+            intensity : 0.020,
             range: []
         }
 
@@ -123,7 +123,6 @@ export default class StrangerThings extends AInteraction
                 this.texture.needsUpdate = true
 
                 this.texture.repeat = new Vector2(0.2, 0.2)
-                console.log(this.texture)
 
                 const planeGeo = new PlaneBufferGeometry(1, 1)
                 this.uniforms = {
