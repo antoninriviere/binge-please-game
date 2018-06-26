@@ -93,7 +93,7 @@ export default
         color: '#e2c1c0',
         titleColor: '#F73E39',
         backgroundColor: '#f0d9d8',
-        ambientSound: '',
+        ambientSound: 'orange-is-the-new-black',
         tuto: 'none',
         genres: ['comedies', 'gay-and-lesbian-movies']
     },
