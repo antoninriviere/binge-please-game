@@ -31,8 +31,24 @@ export default class StrangerThings extends AInteraction
         this.name = 'strangerThings'
 
         this.parallaxe = {
-            intensity : 0.025,
+            intensity : 0.015,
             range: []
+        }
+
+        this.mouseAuto = {
+            enabled: true,
+            angle: 0,
+            radius: 300,
+            position : {
+                x: 0,
+                y: 0
+            },
+            ratio : {
+                fromCenter : {
+                    x: 0,
+                    y: 0
+                }
+            }
         }
 
         this.windowObj = options.windowObj
@@ -48,6 +64,8 @@ export default class StrangerThings extends AInteraction
         this.setupCamera()
 
         this.initGUI()
+
+        this.autoMouse()
     }
 
     setupCamera()
@@ -56,7 +74,7 @@ export default class StrangerThings extends AInteraction
 
         this.scene.camera.position.x = 0
         this.scene.camera.position.y = 0
-        this.scene.camera.position.z = 1.2
+        this.scene.camera.position.z = 1
 
         this.scene.camera.rotation.x = 0
         this.scene.camera.rotation.y = 0
@@ -67,9 +85,21 @@ export default class StrangerThings extends AInteraction
 
     animateCamera()
     {
-        TweenMax.to(this.scene.camera.position, 5, {
-            z: 1,
-            ease: Power0.easeNone
+        // TweenMax.to(this.scene.camera.position, 5, {
+        //     z: 1,
+        //     ease: Power0.easeNone
+        // })
+    }
+
+    autoMouse()
+    {
+        this.mouseTween = TweenMax.to(this.mouseAuto, 2, {
+            angle: -360,
+            ease: Power0.easeNone,
+            onComplete: () =>
+            {
+                this.mouseTween.restart()
+            }
         })
     }
 
@@ -89,10 +119,16 @@ export default class StrangerThings extends AInteraction
             (texture) =>
             {
                         // Plane background texture
+                this.texture = texture
+                this.texture.needsUpdate = true
+
+                this.texture.repeat = new Vector2(0.2, 0.2)
+                console.log(this.texture)
+
                 const planeGeo = new PlaneBufferGeometry(1, 1)
                 this.uniforms = {
                     uTime: { value: 0 },
-                    uTexture: { value: texture },
+                    uTexture: { value: this.texture },
                     uMap: { value: new TextureLoader().load('/static/stranger-things/depthmap.png') },
                     uMouse: { value: new Vector2(this.mouse.x, this.mouse.y) },
                     uResolution: { value: new Vector2(window.innerWidth, window.innerHeight) },
@@ -242,8 +278,8 @@ export default class StrangerThings extends AInteraction
 
     tweenBulbs()
     {
-        const phraseTl = new TimelineMax({
-            onComplete: () => phraseTl.restart()
+        this.phraseTl = new TimelineMax({
+            onComplete: () => this.phraseTl.restart()
         })
         const BULB_DELAY = 0.2
 
@@ -253,10 +289,10 @@ export default class StrangerThings extends AInteraction
         {
             const delay = i * BULB_DELAY
 
-            phraseTl.to(this.bulbs[phrase[i]].material, 0.2, {
+            this.phraseTl.to(this.bulbs[phrase[i]].material, 0.2, {
                 opacity: 1
             }, delay)
-            phraseTl.to(this.bulbs[phrase[i]].material, 0.2, {
+            this.phraseTl.to(this.bulbs[phrase[i]].material, 0.2, {
                 opacity: 0
             }, delay + 0.3)
         }
@@ -285,7 +321,21 @@ export default class StrangerThings extends AInteraction
         {
             super.update()
             this.uniforms.uTime.value = time.elapsed
-            this.uniforms.uMouse.value = new Vector2(this.mouse.ratio.fromCenter.x, this.mouse.ratio.fromCenter.y)
+
+            if(this.mouseAuto.enabled)
+            {
+                this.mouseAuto.position.x = Math.cos(this.mouseAuto.angle * Math.PI / 180) * this.mouseAuto.radius
+                this.mouseAuto.position.y = Math.sin(this.mouseAuto.angle * Math.PI / 180) * this.mouseAuto.radius
+
+                this.mouseAuto.ratio.fromCenter.x = (this.mouseAuto.position.x - this.windowObj.width / 2) / this.windowObj.width
+                this.mouseAuto.ratio.fromCenter.y = (this.mouseAuto.position.y - this.windowObj.height / 2) / this.windowObj.height
+
+                this.uniforms.uMouse.value = new Vector2(this.mouseAuto.ratio.fromCenter.x, this.mouseAuto.ratio.fromCenter.y)
+            }
+            else
+            {
+                this.uniforms.uMouse.value = new Vector2(this.mouse.ratio.fromCenter.x, this.mouse.ratio.fromCenter.y)
+            }
             this.uniforms.uParallaxe.value = this.parallaxe.intensity
         }
     }
@@ -335,5 +385,10 @@ export default class StrangerThings extends AInteraction
     clear()
     {
         super.clear()
+        this.phraseTl.clear()
+        this.phraseTl.kill()
+        this.mouseTween.kill()
+
+        this.scene.clearPostProcessing()
     }
 }
