@@ -13,7 +13,8 @@ export default
     data()
     {
         return {
-            hidden: true
+            hidden: true,
+            navVisible: false
         }
     },
 
@@ -21,6 +22,8 @@ export default
     {
         eventHub.$on('page:show-header', this.showHeader)
         eventHub.$on('page:hide-header', this.hideHeader)
+        eventHub.$on('page:show-nav', this.showNav)
+        eventHub.$on('page:hide-nav', this.hideNav)
     },
 
     mounted()
@@ -38,10 +41,17 @@ export default
         {
             this.hidden = false
         },
-
         hideHeader()
         {
             this.hidden = true
+        },
+        showNav()
+        {
+            this.navVisible = true
+        },
+        hideNav()
+        {
+            this.navVisible = false
         }
     }
 }

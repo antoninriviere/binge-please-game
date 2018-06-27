@@ -60,6 +60,7 @@ export default
         eventHub.$emit('page:enable-scroll')
         eventHub.$emit('page:hide-footer')
         this.$el.querySelectorAll('.js-container').forEach((elem) => elem.classList.add('is-active'))
+        eventHub.$emit('page:show-nav')
         this.$refs.score.classList.add('is-active')
     },
 

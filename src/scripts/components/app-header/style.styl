@@ -1,5 +1,5 @@
 .app-header {
-    position absolute
+    position fixed
 
     $padding = 2 * $margin
     width "calc(100% - %s)" % $padding
@@ -16,5 +16,60 @@
 
     &__logo {
         width 15vw
+    }
+
+    &__list {
+        margin-left 30px
+        &-link {
+            position relative
+            font-family 'SharpGrotesk-SemiBold15'
+            font-size 18px
+            line-height 14px
+            letter-spacing 3px
+            padding 0 5px
+
+            &:after {
+                position absolute
+
+                top 50%
+                left 50%
+                transform translate(-50%, -50%) translateY(10px)
+
+                opacity 0
+                // transition all 0.1s $ease-out-expo
+
+                font-family 'SharpGrotesk-Bold10'
+                font-size 34px
+                line-height 27px
+                letter-spacing 1.74px
+
+                padding 5px 5px 2px
+            }
+
+            &:hover:after, &.is-active:after {
+                opacity 1
+            }
+
+            &--about:after {
+                content 'about'
+                background-color $purple
+                color $pink
+                transform translate(-50%, -50%) rotate(-17deg)
+            }
+
+            &--gallery:after {
+                content 'gallery'
+                background-color $yellow
+                color $black
+                transform translate(-50%, -50%) rotate(-5deg)
+            }
+
+            &--results:after {
+                content 'results'
+                background-color $blue
+                color $red
+                transform translate(-50%, -50%) rotate(4deg)
+            }
+        }
     }
 }

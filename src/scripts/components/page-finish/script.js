@@ -1,4 +1,6 @@
 import appPage from 'Mixins/app-page'
+import eventHub from 'Application/event-hub'
+
 import {
     WEBGL_ADD_GROUP,
     WEBGL_CLEAR_GROUP
@@ -49,6 +51,7 @@ export default
     mounted()
     {
         this.playAnim()
+        eventHub.$emit('page:show-nav')
     },
 
     destroyed()

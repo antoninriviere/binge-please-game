@@ -5,7 +5,7 @@ import uiCircleTransition from 'Components/ui-circle-transition'
 import GameTutoManager from 'Components/game-tuto-manager'
 import Quiz from 'Config/quiz'
 import { TweenMax } from 'gsap'
-import { WEBGL_ADD_GROUP } from 'MutationTypes'
+import { WEBGL_ADD_GROUP, WEBGL_CLEAR_GROUP } from 'MutationTypes'
 
 export default
 {
@@ -44,6 +44,7 @@ export default
 
     destroyed()
     {
+        this.$store.commit(WEBGL_CLEAR_GROUP)
     },
 
     methods:

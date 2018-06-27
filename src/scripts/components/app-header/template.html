@@ -4,4 +4,15 @@
             <ui-logo></ui-logo>
         </router-link>
     </div>
+    <ul class="app-header__list" v-show="navVisible">
+        <li class="app-header__list-item display-inline-block">
+            <router-link active-class="is-active" class="app-header__list-link app-header__list-link--about color--white uppercase" to="/about">about</router-link>
+        </li>
+        <li class="app-header__list-item display-inline-block">
+            <router-link active-class="is-active" class="app-header__list-link app-header__list-link--gallery color--white uppercase" to="/gallery">gallery</router-link>
+        </li>
+        <li class="app-header__list-item &--results display-inline-block">
+            <router-link active-class="is-active" class="app-header__list-link app-header__list-link--results color--white uppercase" to="/results">results</router-link>
+        </li>
+    </ul>
 </header>
