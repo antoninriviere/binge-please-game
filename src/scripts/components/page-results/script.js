@@ -46,7 +46,7 @@ export default
     {
         this.animateMustBinge()
 
-        this.$stickers = this.$el.querySelectorAll('.sticker')
+        this.$stickers = this.$el.querySelectorAll('.js-sticker')
         this.stickersBoundingRect = []
 
         for(let i = 0; i < this.$stickers.length; i++)
@@ -59,7 +59,7 @@ export default
         window.addEventListener('scroll', this.onScroll)
         eventHub.$emit('page:enable-scroll')
         eventHub.$emit('page:hide-footer')
-        this.$refs.container.classList.add('is-active')
+        this.$el.querySelectorAll('.js-container').forEach((elem) => elem.classList.add('is-active'))
         this.$refs.score.classList.add('is-active')
     },
 
@@ -84,13 +84,12 @@ export default
             {
                 const elem = this.$stickers[i]
                 const bound = this.stickersBoundingRect[i]
-                const randomOffset = randomInRange(100, 200)
-                const randomY = randomInRange(100, 200)
+                const randomOffset = randomInRange(200, 300)
+                const randomY = randomInRange(0, 100)
                 const randomSign = Math.random() > 0.5 ? 1 : -1
 
                 if(i % 2 < 1)
                 {
-                    console.log(elem)
                     const distance = bound.x + bound.width - randomOffset
 
                     TweenMax.to(elem, 0.4, {

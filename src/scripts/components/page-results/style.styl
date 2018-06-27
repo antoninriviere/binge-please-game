@@ -79,6 +79,10 @@
             opacity 1
             transform translateY(0)
         }
+
+        &--profile {
+            width 80vw
+        }
     }
 
     &__profile {
@@ -134,7 +138,7 @@
     &__sticker {
 
         &--1 {
-            z-index 5
+            z-index 6
             padding 0 10px
 
             transform translate3d(0, -50%, 0) rotate(-14deg)
@@ -149,13 +153,13 @@
             }
 
             &__text {
-                font-size 10vh
+                font-size 8vh
                 color $blue
             }
         }
 
         &--2 {
-            z-index 4
+            z-index 5
             padding 0 20px
 
             transform translate3d(0, -50%, 0) rotate(-35deg)
@@ -176,7 +180,7 @@
         }
 
         &--3 {
-            z-index 3
+            z-index 4
             padding 0 20px
 
             transform rotate(-15deg)
@@ -197,7 +201,7 @@
         }
 
         &--4 {
-            z-index 2
+            z-index 3
             padding 0 20px
 
             transform rotate(14deg)
@@ -218,7 +222,7 @@
         }
 
         &--5 {
-            z-index 1
+            z-index 2
             padding 0 22px
 
             transform rotate(12deg)
@@ -235,6 +239,27 @@
             &__text {
                 font-size 24vh
                 color $yellow
+            }
+        }
+
+        &--6 {
+            z-index 1
+            padding 0 12px
+
+            transform rotate(-9deg)
+
+            top -12%
+            left 8%
+
+            &:before {
+                top -0.3vh
+                left -2px
+                background-color $red
+            }
+
+            &__text {
+                font-size 6vh
+                color $pink
             }
         }
     }
@@ -372,7 +397,7 @@
             width 50%
 
             .is-right & {
-                margin-left 50%
+                margin-left 44%
                 text-align right
             }
 
@@ -421,7 +446,7 @@
             position absolute
             top 40%
 
-            width 66%
+            width 60%
             margin-left 34%
             padding 50px
 
@@ -441,7 +466,7 @@
                 text-transform uppercase
                 letter-spacing 1px
 
-                margin-bottom 20px
+                margin-bottom 30px
             }
 
             &__text {
